@@ -1,2 +1,2 @@
 # cultu-sim
-lets do something for 
+a little ai sim game

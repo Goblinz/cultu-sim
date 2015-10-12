@@ -9,4 +9,7 @@ public abstract class Actor {
 	public void setX(int x){ posX = x; }
 	
 	public void setY(int y){ posY = y; }
+	public void update(){
+		//TODO
+	}
 }
