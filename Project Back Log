@@ -1,0 +1,31 @@
+Project Back Log
+
+World Gen
+	Different Types
+		Basic testing version.  An open Field with Resources in a limited Area 
+		Mountain ranges 
+		Weighted gen
+	Should eventually look at the resource list and be able to add resources based of that so its easy to add more resources
+Gui
+	Display the world map
+	Display actor/building/tile attributes
+	allow changing of actor/building/tile attributes
+	call the game object increment 
+View
+	Copy the nessisary data from the game object
+Game
+	init
+		Set up Factions
+		Call world gen
+		determine starting locations
+	Determine Resources 
+Faction
+	Set up basic actor handling 
+	Techs
+	Set up Order handling
+AI
+	Generate Orders
+Actor
+	Set up Order handling
+	
+		
