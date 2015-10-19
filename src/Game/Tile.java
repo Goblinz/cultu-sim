@@ -1,9 +1,10 @@
 package Game;
 
-public abstract class Tile {
+public class Tile {
+	String name;
 	private String type;
 	private Actor onTile = null;
-	String name;
+	private Resource resource = null;
 	private int x,y;
 	
 	public Tile(int X, int Y, String t){
@@ -16,9 +17,8 @@ public abstract class Tile {
 	 * when an actor moves onto the tile
 	 * @param actor
 	 */
-	public void onMove(Actor actor){
-		onTile = actor;
-	}
+	public void onMove(Actor actor){ onTile = actor; }
+	public void offMove(){ onTile == null }
 	
 	public Actor actorOnTile(){ return onTile; }
 	
@@ -29,9 +29,19 @@ public abstract class Tile {
 	public int getX(){ return x; }
 	public int getY(){ return y; }
 	
+	public Resource getResource(){ return resource; }
+	public void setResource(Resource r){ resource = r; }
+	
 	public String getType(){ return type; }
 	public void setType(String tp){
 		//TODO check type
 		type = tp;
+	}
+	
+	public boolean actorOnTile(){
+		if(onTile==null){
+			return false;
+		}
+		return true;
 	}
 }
