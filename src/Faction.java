@@ -9,4 +9,7 @@ public class Faction {
 		ID = idNum;
 		name = factionName;
 	}
+	public void giveOrder(Actor actor){
+		//TODO
+	}
 }
