@@ -1,7 +1,9 @@
+package Game;
 import java.util.ArrayList;
 
 
 public class Game {
+	public ArrayList<Resource> resources;
 	private Actor[][] actors;
 	private World world;
 	private ArrayList<Faction> factions;
@@ -15,7 +17,7 @@ public class Game {
 				Actor tempActor = actors[i][j];
 				Faction tempFaction = factions.get(tempActor.factionID);
 				tempFaction.giveOrder(tempActor);
-				tempActor.act();
+				tempActor.act(world,tempFaction,actors);
 				
 			}
 		}

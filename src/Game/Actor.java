@@ -1,3 +1,5 @@
+package Game;
+
 
 public abstract class Actor {
 	private int posX = 0;
@@ -10,8 +12,11 @@ public abstract class Actor {
 	public void setX(int x){ posX = x; }
 	
 	public void setY(int y){ posY = y; }
-	public void act(){
-		//TODO
+	public void recieveOrder(){
+		
+	}
+	public void act(World world,Faction faction,Actor[][] actors){
+		
 	}
 	
 }
