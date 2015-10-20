@@ -20,7 +20,7 @@ public class View {
 		startY = sY;
 		endX = eX;
 		endY = eY;
-		allTiles = gameboard'
+		allTiles = gameboard;
 	}
 	
 	public Faction getcurrentFaction(){	return currentFaction;	}

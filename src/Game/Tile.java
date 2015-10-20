@@ -18,13 +18,10 @@ public class Tile {
 	 * @param actor
 	 */
 	public void onMove(Actor actor){ onTile = actor; }
-	public void offMove(){ onTile == null }
+	public void offMove(){ onTile = null; }
 	
 	public Actor actorOnTile(){ return onTile; }
 	
-	public Resource getResource(){
-		return null;
-	}
 	
 	public int getX(){ return x; }
 	public int getY(){ return y; }
@@ -38,7 +35,7 @@ public class Tile {
 		type = tp;
 	}
 	
-	public boolean actorOnTile(){
+	public boolean isActorOnTile(){
 		if(onTile==null){
 			return false;
 		}

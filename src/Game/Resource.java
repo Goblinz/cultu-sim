@@ -7,6 +7,7 @@ public class Resource {
   public Resource(String Type, int Quantity){
     //TODO check type
     type = Type;  
+    quantity = Quantity;
   }
   
   public int getQuantity(){ return quantity; }
