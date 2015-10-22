@@ -4,15 +4,46 @@ import java.util.ArrayList;
 
 public class World {
 	
-	private int DEBUG_WORLD_SIZE = 20;
+	private int DEBUG_WORLD_SIZE = 10;
+	
+	//beststartpos will later be determines by looking at resource areas and choosing the area with the most plentiful amount
+	//of resources
+	private String bestStartPos = "5,5";
 	
 	
-	private ArrayList<ArrayList<Tile>> worldTiles = new ArrayList<ArrayList<Tile>>();
+	private Tile[][] worldTiles;
 	
 	//x and y are the size of the world in tiles
 	public World(int x, int y){
 		//basic world gen
 		
-		
+		worldTiles = new Tile[x][y];
+	}
+	
+	public World(){
+		//this is the current debug world 
+		//will make algorithims for better world generation later
+		worldTiles = new Tile[DEBUG_WORLD_SIZE][DEBUG_WORLD_SIZE];
+		for(int i = 0; i < DEBUG_WORLD_SIZE - 1; i++){
+			for(int j = 0; j < DEBUG_WORLD_SIZE -1 ;j++){
+				worldTiles[i][j] = new Tile(i,j,"ROCK");
+			}
+		}
+		worldTiles[3][4].setType("FURTILELAND");
+		worldTiles[5][7].setType("FURTILELAND");
+		worldTiles[3][6].setType("MINE");
+		worldTiles[4][4].setType("MINE");
+		worldTiles[6][4].setType("FOREST");
+		worldTiles[5][4].setType("FOREST");
+	}
+	
+	public String getBestStartingPos(){
+		return bestStartPos;
+	}
+	
+	public String findResourceTiles(){
+		//Made for the debug world will change to an actual algorithm later
+		String derp = "Mines at 3,6 and 4,4.  Forests at 6,4 and 5,4.  Furtile Land at 5,7 and 3,4.";
+		return derp;
 	}
 }
