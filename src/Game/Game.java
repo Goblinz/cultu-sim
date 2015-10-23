@@ -7,7 +7,9 @@ public class Game {
 	private Actor[][] actors;
 	private World world;
 	private ArrayList<Faction> factions;
+	private View view = new View(world);
 	public View generateView(){
+		
 		return null;//FILLER TODO
 	}
 	public void tick(){
