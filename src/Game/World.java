@@ -46,4 +46,6 @@ public class World {
 		String derp = "Mines at 3,6 and 4,4.  Forests at 6,4 and 5,4.  Furtile Land at 5,7 and 3,4.";
 		return derp;
 	}
+	
+	public Tile[][] getTiles(){ return worldTiles; }
 }
