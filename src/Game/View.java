@@ -50,7 +50,7 @@ public class View {
 	public void setCurrentFaction(Faction f){ currentFaction = f; }
 	
 	//sets the tile that is currently being viewed
-	public void setCurrentTile(int x, int y){ currentTile = tiles.get(x).get(y); }
+	public void setCurrentTile(int x, int y){ currentTile = allTiles[x][y]; }
 	public void setCurrentTile(Tile t){ currentTile = t; }
 	
 	public Tile[][] getViewedTiles(){ return viewedTiles; }
