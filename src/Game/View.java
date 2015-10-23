@@ -8,19 +8,22 @@ public class View {
 	
 	private Faction currentFaction = null;
 	private Tile currentTile = null;
-	private ArrayList<ArrayList<Tile>> viewedTiles = new ArrayList<ArrayList<Tile>>();
-	private ArrayList<ArrayList<Tile>> allTiles = new ArrayList<ArrayList<Tile>>();
+	private Tile[][] viewedTiles;
+	private Tile[][] allTiles;
 	private int startX;
 	private int startY;
 	private int endX;
 	private int endY;
 	
-	public View(int sX, int sY, int eX, int eY, ArrayList<ArrayList<Tile>> gameboard){
+	public View(int sX, int sY, int eX, int eY, World world){
 		startX = sX;
 		startY = sY;
 		endX = eX;
 		endY = eY;
-		allTiles = gameboard;
+		gameworld = world;
+		allTiles = gameworld.getTiles();
+		//for now
+		viewedTiles = allTiles;
 	}
 	
 	public Faction getcurrentFaction(){	return currentFaction;	}
@@ -30,5 +33,5 @@ public class View {
 	public void setCurrentTile(int x, int y){ currentTile = tiles.get(x).get(y); }
 	public void setCurrentTile(Tile t){ currentTile = t; }
 	
-	public ArrayList<ArrayList<Tile>> getViewedTiles(){ return viewedTiles; }
+	public Tile[][] getViewedTiles(){ return viewedTiles; }
 }
