@@ -34,6 +34,7 @@ public class GameView extends JPanel{
 	}
 	
 	private void initTiles(){
+		
 		tiles = new Tile[ROWS][COLS];
 		int w = getWidth();
 		int h = getHeight();
@@ -45,9 +46,11 @@ public class GameView extends JPanel{
                 double x = PAD + j*xInc;
                 Rectangle2D.Double r =
                     new Rectangle2D.Double(x, y, xInc, yInc);
-                tiles[i][j] = new Tile(i, j, r);
+                tiles[i][j] = new Tile(i, j, r,"ROCK");
             }
         }
+        
+		
 	}
 	
     private MouseListener ml = new MouseAdapter() {
@@ -71,7 +74,7 @@ public class GameView extends JPanel{
         return r.contains(p);
     }
     
-    private ComponentListener cl = new ComponentAdapter() {
+    public ComponentListener cl = new ComponentAdapter() {
         public void componentResized(ComponentEvent e) {
             tiles = null;
             repaint();

@@ -1,12 +1,17 @@
 package Game;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.Canvas;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Button;
+
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
@@ -18,19 +23,36 @@ public class Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Game game;
-		game = new Game();
-		game.generateView();
+		//Game game;
+		//game = new Game();
+		//game.generateView();
+		//this code displays a selectable grid
+		/*
+        GameView GV = new GameView();
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.add(GV);
+        f.setSize(400,400);
+        f.setLocation(100,100);
+        f.setVisible(true);
+        GV.addComponentListener(GV.cl);
+        */
+		
+		//this code displays the buttons
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
 				try {
 					Main window = new Main();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
+		
 	}
 
 	/**
@@ -44,14 +66,20 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+
 		frame = new JFrame();
+
 		frame.setBounds(100, 100, 668, 536);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		Canvas canvas = new Canvas();
-		canvas.setBounds(10, 10, 439, 368);
-		frame.getContentPane().add(canvas);
+		GameView GV = new GameView();
+		GV.setBounds(20, 20, 300, 300);
+		GV.addComponentListener(GV.cl);
+		frame.getContentPane().add(GV);
+
+		
 		
 		JLabel lblInspector = new JLabel("Inspector");
 		lblInspector.setFont(new Font("Tahoma", Font.PLAIN, 16));

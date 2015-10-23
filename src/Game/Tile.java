@@ -22,17 +22,20 @@ public class Tile {
 	private Resource resource = null;
 	private int x,y;
 	
-	/*
 	public Tile(int X, int Y, String t){
+		row = 0;
+		col = 0;
 		x=X;
 		y=Y;
 		type = t;
 	}
-	*/
-	public Tile(int r, int c, Rectangle2D.Double rect){
+	
+	public Tile(int r, int c, Rectangle2D.Double rect, String resource){
 		row = r;
 		col = c;
 		this.rect = rect;
+		type = resource;
+		
 	}
 	
 	/**
@@ -78,4 +81,9 @@ public class Tile {
     }
     
     public boolean isSelected() { return selected; }
+    
+    public String toString() {
+        return "SQUARE[row:" + row + ", col:" + col +
+                    ", selected:" + selected + "]";
+    }
 }
