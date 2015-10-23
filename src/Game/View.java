@@ -16,33 +16,35 @@ public class View {
 	private int endY;
 
 	/**
-	 * input the starting and ending coordinates to be displayed
+	 * input the world to be displayed
+	 * default view is the entire map
 	 * 
-	 * @param sX 
-	 * @param sY
-	 * @param eX
-	 * @param eY
 	 * @param world the world object
 	 */
-	public View(int sX, int sY, int eX, int eY, World world){
-		startX = sX;
-		startY = sY;
-		endX = eX;
-		endY = eY;
+	public View(World world){
 		gameworld = world;
 		allTiles = gameworld.getTiles();
-		//for now
 		viewedTiles = allTiles;
 	}
 	
-	public void setEnd(int eX, int eY){
+	public void setView(int sX, int sY, int eX, int eY) throws Exception{
+		
+		if(sX>eX || sY>eY || sX<0 || sY<0 || eX>allTiles.length || eY>allTiles[0].length){
+			throw new Exception("coordinates are invalid");
+		}
+		
 		endX = eX;
 		endY = eY;
-	}
-	
-	public void setStart(int sX, int sY){
 		startX = sX;
 		startY = sY;
+
+		Tile[][] tempTileArray = new Tile[eX-sX+1][eY-sY+1];
+		for(int x=sX; x<=eX; x++){
+			for(int y=sY; y<=eY; y++){
+				tempTileArray[x-sX][y-sY] = allTiles[x][y];
+			}
+		}
+		viewedTiles = tempTileArray;
 	}
 	
 	
@@ -52,6 +54,7 @@ public class View {
 	//sets the tile that is currently being viewed
 	public void setCurrentTile(int x, int y){ currentTile = allTiles[x][y]; }
 	public void setCurrentTile(Tile t){ currentTile = t; }
+	public Tile getCurrentTile(){ return currentTile; }
 	
 	public Tile[][] getViewedTiles(){ return viewedTiles; }
 }
