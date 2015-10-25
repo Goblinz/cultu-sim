@@ -25,6 +25,12 @@ public class Game {
 	}
 	*/
 	public void tick(){
-		//TODO
+		Tile[][] tiles = world.getTiles();
+		for(int i=0;i<tiles.length;i++){
+			for(int j=0;j<tiles.length;j++){
+				if(tiles[i][j].isActorOnTile())
+					tiles[i][j].actorOnTile().act(world, null);
+			}
+		}
 	}
 }
