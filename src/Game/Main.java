@@ -14,6 +14,8 @@ import java.awt.Button;
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main {
 
@@ -88,14 +90,26 @@ public class Main {
 		frame.getContentPane().add(lblInspector);
 		
 		JButton btnNextTurn = new JButton("Next Turn");
+		btnNextTurn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNextTurn.setBounds(208, 384, 117, 23);
 		frame.getContentPane().add(btnNextTurn);
 		
 		JButton btnPlay = new JButton("Play");
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnPlay.setBounds(109, 384, 89, 23);
 		frame.getContentPane().add(btnPlay);
 		
 		JButton btnPause = new JButton("Pause");
+		btnPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnPause.setBounds(10, 384, 89, 23);
 		frame.getContentPane().add(btnPause);
 		
