@@ -8,6 +8,7 @@ public abstract class Actor {
 	protected int posX = 0;
 	protected int posY = 0;
 	public static int factionID;
+	//public Dictionary  
 	public int getX(){ return posX; }
 	
 	public int getY(){ return posY; }

@@ -12,5 +12,6 @@ public class Resource {
   
   public int getQuantity(){ return quantity; }
   public void setQuantity(int q){ quantity = q; }
+  public void addQuantity(int q){ quantity =quantity+ q; }
 
 }
