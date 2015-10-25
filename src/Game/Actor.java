@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public abstract class Actor {
-	
+	public int carryCapacity=100;
 	protected int posX = 0;
 	protected int posY = 0;
 	public static int factionID;
@@ -29,7 +29,8 @@ public abstract class Actor {
 	public void setY(int y){ posY = y; }
 	
 	public void act(World world,Faction faction){
-		
+		Tile onTile = world.getTiles()[posX][posY];
+		//onTile.
 	}
 	
 	
