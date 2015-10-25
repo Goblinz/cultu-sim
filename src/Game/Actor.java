@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class Actor {
 	
-	Ellipse2D.Double ellipse;
+	public Ellipse2D.Double ellipse;
 	
 
 	public int carryCapacity=100;
@@ -46,7 +46,6 @@ public abstract class Actor {
 	
     public void draw(Graphics2D g2) {
     	//need to set ellipse
-        ellipse = new Ellipse2D.Double(posX, posY, 40, 40);
         g2.setPaint(Color.blue);
         g2.fill(ellipse);
         //g2.setPaint(color);

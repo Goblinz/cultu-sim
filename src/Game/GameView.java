@@ -14,6 +14,11 @@ public class GameView extends JPanel{
 	final int COLS = 10;
 	private boolean start = true;
 	
+	private int w;
+	private int h;
+	double xInc;
+	double yInc;
+	
 	public GameView(){
 		addMouseListener(ml);
 	}
@@ -43,11 +48,15 @@ public class GameView extends JPanel{
 			for(int j = 0; j < COLS; j++){
 				tiles[i][j].draw(g2);
 				if(tiles[i][j].onTile != null){
+					//Draw actor on tile
+					double y = PAD + i * yInc;
+					double x = PAD + j * xInc;
+					Ellipse2D.Double ellipse = new Ellipse2D.Double(x, y, xInc, yInc);
+					tiles[i][j].onTile.ellipse = ellipse;
 					tiles[i][j].onTile.draw(g2);
 				}
 			}
 		}
-		//Draw Actors
 	}
 	
 	private void initTiles(){
@@ -70,16 +79,16 @@ public class GameView extends JPanel{
         */
 		
 		
-		int w = getWidth();
-		int h = getHeight();
-		double xInc = (double)(w - 2 * PAD)/ COLS;
-		double yInc = (double)(h - 2 * PAD)/ ROWS;
+		w = getWidth();
+		h = getHeight();
+		xInc = (double)(w - 2 * PAD)/ COLS;
+		yInc = (double)(h - 2 * PAD)/ ROWS;
         for(int i = 0; i < ROWS; i++) {
             double y = PAD + i*yInc;
             for(int j = 0; j < COLS; j++) {
                 double x = PAD + j*xInc;
                 Rectangle2D.Double r = new Rectangle2D.Double(x, y, xInc, yInc);
-                System.out.println(r);
+                //System.out.println(r);
                 tiles[i][j].rect = r;
             }
         }
