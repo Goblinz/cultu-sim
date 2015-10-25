@@ -2,6 +2,7 @@ package Game;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 
 public class Tile {
@@ -14,13 +15,14 @@ public class Tile {
 	Color bgColor = Color.orange;
 	Color selColor = Color.red;
 	private boolean selected = false;
+	public Point point;
 	
 	//nates stuff
 	String name;
 	private String type;
 	private Actor onTile = null;
 	private Resource resource = null;
-	private int x,y;
+	//private int x,y;
 	
 	public Tile(int X, int Y, String t){
 		row = X;
@@ -28,6 +30,7 @@ public class Tile {
 		//x=X;
 		//y=Y;
 		type = t;
+		point = new Point(X,Y);
 	}
 	
 	public Tile(int r, int c, Rectangle2D.Double rect, String resource){
@@ -47,9 +50,6 @@ public class Tile {
 	
 	public Actor actorOnTile(){ return onTile; }
 	
-	
-	public int getX(){ return x; }
-	public int getY(){ return y; }
 	
 	public Resource getResource(){ return resource; }
 	public void setResource(Resource r){ resource = r; }
@@ -98,5 +98,9 @@ public class Tile {
     public String toString() {
         return "SQUARE[row:" + row + ", col:" + col +
                     ", selected:" + selected + " type: " + type +"]";
+    }
+    
+    public Point getPoint(){
+    	return point;
     }
 }
