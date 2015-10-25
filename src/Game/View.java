@@ -57,4 +57,5 @@ public class View {
 	public Tile getCurrentTile(){ return currentTile; }
 	
 	public Tile[][] getViewedTiles(){ return viewedTiles; }
+
 }
