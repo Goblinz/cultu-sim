@@ -92,6 +92,7 @@ public class Main {
 		JButton btnNextTurn = new JButton("Next Turn");
 		btnNextTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				game.tick();
 			}
 		});
 		btnNextTurn.setBounds(208, 384, 117, 23);

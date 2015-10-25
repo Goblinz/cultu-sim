@@ -20,7 +20,7 @@ public class Tile {
 	//nates stuff
 	String name;
 	private String type;
-	private Actor onTile = null;
+	public Actor onTile = null;
 	private Resource resource = null;
 	//private int x,y;
 	

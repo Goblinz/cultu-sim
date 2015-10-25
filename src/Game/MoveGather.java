@@ -11,9 +11,15 @@ public class MoveGather implements Order {
 
 	public void OrderAct(World world, Faction faction, Unit self) {
 		temp = (int) (path[pathPointer].getX() - self.getX());
-		xdir = temp / Math.abs(temp);
+		if(temp!=0){
+			xdir = temp / Math.abs(temp);
+			xdir=0;
+		}
 		temp = (int) (path[pathPointer].getY() - self.getY());
-		ydir = temp / Math.abs(temp);
+		if(temp!=0){
+			ydir = temp / Math.abs(temp);
+			ydir=0;
+			}
 		if (xdir == 0 && ydir == 0) {
 			updatePoint();
 		} else {
@@ -31,7 +37,9 @@ public class MoveGather implements Order {
 			}
 		}
 	}
-
+	public void setPath(Point[] newPath){
+		path = newPath;
+	}
 	private void updatePoint() {
 		pathPointer++;
 		if (pathPointer == path.length)
