@@ -42,6 +42,9 @@ public class GameView extends JPanel{
 		for(int i = 0; i < ROWS; i++){
 			for(int j = 0; j < COLS; j++){
 				tiles[i][j].draw(g2);
+				if(tiles[i][j].onTile != null){
+					tiles[i][j].onTile.draw(g2);
+				}
 			}
 		}
 		//Draw Actors
