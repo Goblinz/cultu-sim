@@ -31,4 +31,7 @@ public class Unit extends Actor {
 	public void act(World world, Faction faction) {
 		currentOrder.OrderAct(world, faction, this);
 	}
+	public void takeResource(Actor target){
+		
+	}
 }

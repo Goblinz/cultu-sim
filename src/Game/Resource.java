@@ -9,7 +9,7 @@ public class Resource {
     type = Type;  
     quantity = Quantity;
   }
-  
+  public String getType(){return type;};
   public int getQuantity(){ return quantity; }
   public void setQuantity(int q){ quantity = q; }
   public void addQuantity(int q){ quantity =quantity+ q; }
