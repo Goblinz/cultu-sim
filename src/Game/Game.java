@@ -1,4 +1,5 @@
 package Game;
+import java.awt.Point;
 import java.util.ArrayList;
 
 
@@ -10,7 +11,12 @@ public class Game {
 	
 	public Game(){
 		world = new World();
-		
+		//creating an actor 
+		Actor temp = new Unit();
+		Order patrol = new MoveGather();
+		Point[] path = {new Point(5,5),new Point(5,0),new Point(0,5)};
+		((MoveGather) patrol).setPath(path);
+		((Unit) temp).recieveOrder(patrol);
 	}
 	/*
 	public View generateView(){
