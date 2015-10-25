@@ -17,6 +17,7 @@ public class Game {
 		Point[] path = {new Point(5,5),new Point(5,0),new Point(0,5)};
 		((MoveGather) patrol).setPath(path);
 		((Unit) temp).recieveOrder(patrol);
+		world.getTiles()[5][5].onMove(temp);
 	}
 	/*
 	public View generateView(){
