@@ -44,6 +44,7 @@ public class GameView extends JPanel{
 				tiles[i][j].draw(g2);
 			}
 		}
+		//Draw Actors
 	}
 	
 	private void initTiles(){
