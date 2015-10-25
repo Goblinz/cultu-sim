@@ -5,13 +5,20 @@ import java.util.ArrayList;
 public class Game {
 	public ArrayList<Resource> resources;
 	private Actor[][] actors;
-	private World world;
+	public World world;
 	private ArrayList<Faction> factions;
-	private View view = new View(world);
+	//private View view = new View(world);
+	
+	public Game(){
+		world = new World();
+		
+	}
+	/*
 	public View generateView(){
 		
 		return null;//FILLER TODO
 	}
+	*/
 	public void tick(){
 		//TODO
 		for(int i=0;i<actors.length;i++){

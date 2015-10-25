@@ -23,10 +23,10 @@ public class Tile {
 	private int x,y;
 	
 	public Tile(int X, int Y, String t){
-		row = 0;
-		col = 0;
-		x=X;
-		y=Y;
+		row = X;
+		col = Y;
+		//x=X;
+		//y=Y;
 		type = t;
 	}
 	
@@ -71,9 +71,22 @@ public class Tile {
 	
     public void draw(Graphics2D g2) {
         g2.setPaint(selected ? selColor : bgColor);
+        if(type == "ROCK"){
+        	g2.setPaint(Color.black);
+        }
+        else if (type == "FOREST"){
+        	g2.setPaint(Color.green);
+        }
+        else if(type == "MINE"){
+        	g2.setPaint(Color.gray);
+        }
         g2.fill(rect);
         g2.setPaint(color);
         g2.draw(rect);
+    }
+    
+    public void setRect(Rectangle2D.Double rect){
+    	this.rect = rect;
     }
     
     public void setSelected(boolean selected) {
@@ -84,6 +97,6 @@ public class Tile {
     
     public String toString() {
         return "SQUARE[row:" + row + ", col:" + col +
-                    ", selected:" + selected + "]";
+                    ", selected:" + selected + " type: " + type +"]";
     }
 }

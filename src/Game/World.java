@@ -24,8 +24,8 @@ public class World {
 		//this is the current debug world 
 		//will make algorithims for better world generation later
 		worldTiles = new Tile[DEBUG_WORLD_SIZE][DEBUG_WORLD_SIZE];
-		for(int i = 0; i < DEBUG_WORLD_SIZE - 1; i++){
-			for(int j = 0; j < DEBUG_WORLD_SIZE -1 ;j++){
+		for(int i = 0; i < DEBUG_WORLD_SIZE; i++){
+			for(int j = 0; j < DEBUG_WORLD_SIZE;j++){
 				worldTiles[i][j] = new Tile(i,j,"ROCK");
 			}
 		}

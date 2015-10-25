@@ -18,6 +18,7 @@ import javax.swing.JRadioButton;
 public class Main {
 
 	private JFrame frame;
+	private Game game;
 
 	/**
 	 * Launch the application.
@@ -59,6 +60,7 @@ public class Main {
 	 * Create the application.
 	 */
 	public Main() {
+		game = new Game();
 		initialize();
 	}
 
@@ -74,21 +76,20 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		GameView GV = new GameView();
+		GameView GV = new GameView(game.world.getTiles());
+		//GameView GV = new GameView();
 		GV.setBounds(20, 20, 300, 300);
 		GV.addComponentListener(GV.cl);
 		frame.getContentPane().add(GV);
 
-		
-		
 		JLabel lblInspector = new JLabel("Inspector");
 		lblInspector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblInspector.setBounds(497, 10, 104, 22);
 		frame.getContentPane().add(lblInspector);
 		
-		JButton btnFastForward = new JButton("Fast Forward");
-		btnFastForward.setBounds(208, 384, 117, 23);
-		frame.getContentPane().add(btnFastForward);
+		JButton btnNextTurn = new JButton("Next Turn");
+		btnNextTurn.setBounds(208, 384, 117, 23);
+		frame.getContentPane().add(btnNextTurn);
 		
 		JButton btnPlay = new JButton("Play");
 		btnPlay.setBounds(109, 384, 89, 23);
