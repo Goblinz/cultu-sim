@@ -43,7 +43,7 @@ public abstract class Actor {
 		Tile onTile = world.getTiles()[posX][posY];
 		//onTile.
 	}
-	
+	//fuck this
     public void draw(Graphics2D g2) {
     	//need to set ellipse
         g2.setPaint(Color.blue);

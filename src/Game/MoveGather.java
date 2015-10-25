@@ -31,7 +31,9 @@ public class MoveGather implements Order {
 			}
 		}
 	}
-
+	public void setPath(Point[] newPath){
+		path = newPath;
+	}
 	private void updatePoint() {
 		pathPointer++;
 		if (pathPointer == path.length)
