@@ -29,12 +29,12 @@ public class World {
 				worldTiles[i][j] = new Tile(i,j,"ROCK");
 			}
 		}
-		worldTiles[3][4].setType("FURTILELAND");
-		worldTiles[5][7].setType("FURTILELAND");
+		worldTiles[3][4].setType("FERTILELAND");
+		worldTiles[5][7].setType("FERTILELAND");
 		worldTiles[3][6].setType("MINE");
-		worldTiles[4][4].setType("MINE");
-		worldTiles[6][4].setType("FOREST");
-		worldTiles[5][4].setType("FOREST");
+		worldTiles[4][8].setType("MINE");
+		worldTiles[8][4].setType("FOREST");
+		worldTiles[5][1].setType("FOREST");
 	}
 	
 	public String getBestStartingPos(){
