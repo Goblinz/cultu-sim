@@ -1,0 +1,9 @@
+Cultu Sim ReadME
+Work In progress
+
+The Program currently spawns an actor (the blue circle) at 6,6 and will patrol to 5,5 to 0,5 to 5,0 in an endless loop
+To progress the program click the next turn and the actor will move
+clicking on a tile will display what kind of tile in the console
+
+If you want you can add more actors in the Main method (in the Main class),  just give them at least 2 points and they won't move if there is another actor in the way
+

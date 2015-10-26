@@ -13,13 +13,19 @@ public class MoveGather implements Order {
 		temp = (int) (path[pathPointer].getX() - self.getX());
 		if(temp!=0){
 			xdir = temp / Math.abs(temp);
+		}
+		else{
 			xdir=0;
 		}
+			
 		temp = (int) (path[pathPointer].getY() - self.getY());
 		if(temp!=0){
 			ydir = temp / Math.abs(temp);
-			ydir=0;
 			}
+		else{
+			ydir=0;
+		}
+		System.out.format("actor trying to move in %d,%d heading twoards %s\n",xdir,ydir,path[pathPointer].toString());
 		if (xdir == 0 && ydir == 0) {
 			updatePoint();
 		} else {
@@ -34,6 +40,8 @@ public class MoveGather implements Order {
 				}
 			} else {
 				self.move(xdir, ydir, world);
+				if(self.getX()==path[pathPointer].getX() && self.getY()==path[pathPointer].getY())
+					updatePoint();
 			}
 		}
 	}

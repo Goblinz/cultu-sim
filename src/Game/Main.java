@@ -11,9 +11,11 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Button;
+import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -63,6 +65,8 @@ public class Main {
 	 */
 	public Main() {
 		game = new Game();
+		Point[] path = {new Point(5,5),new Point(0,5),new Point(5,0)};
+		game.spawnUnitMoveGather(6, 6,path);
 		initialize();
 	}
 

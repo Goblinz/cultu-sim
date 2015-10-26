@@ -12,12 +12,7 @@ public class Game {
 	public Game(){
 		world = new World();
 		//creating an actor 
-		Actor temp = new Unit();
-		Order patrol = new MoveGather();
-		Point[] path = {new Point(5,5),new Point(5,0),new Point(0,5)};
-		((MoveGather) patrol).setPath(path);
-		((Unit) temp).recieveOrder(patrol);
-		world.getTiles()[5][5].onMove(temp);
+		
 	}
 	/*
 	public View generateView(){
@@ -29,9 +24,29 @@ public class Game {
 		Tile[][] tiles = world.getTiles();
 		for(int i=0;i<tiles.length;i++){
 			for(int j=0;j<tiles.length;j++){
-				if(tiles[i][j].isActorOnTile())
+				if(tiles[i][j].isActorOnTile() && !tiles[i][j].actorOnTile().hasActed()){
+					System.out.format("actor at %d,%d is acting\n",i,j);
+					tiles[i][j].actorOnTile().toggleActed();
 					tiles[i][j].actorOnTile().act(world, null);
+					
+				}
 			}
 		}
+		for(int i=0;i<tiles.length;i++){
+			for(int j=0;j<tiles.length;j++){
+				if(tiles[i][j].isActorOnTile() && tiles[i][j].actorOnTile().hasActed()){
+					tiles[i][j].actorOnTile().toggleActed();
+				}
+			}
+		}	
+	}
+	public void spawnUnitMoveGather(int x,int y,Point[] path){
+		Actor temp = new Unit();
+		Order patrol = new MoveGather();
+		((MoveGather) patrol).setPath(path);
+		((Unit) temp).recieveOrder(patrol);
+		temp.setX(x);
+		temp.setY(y);
+		world.getTiles()[x][y].onMove(temp);
 	}
 }

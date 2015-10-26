@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class Actor {
 	
 	public Ellipse2D.Double ellipse;
-	
+	private boolean hasActed = false;
 
 	public int carryCapacity=100;
 
@@ -43,6 +43,8 @@ public abstract class Actor {
 		Tile onTile = world.getTiles()[posX][posY];
 		//onTile.
 	}
+	public boolean hasActed(){return hasActed;}
+	public void toggleActed(){hasActed = !hasActed;}
 	//fuck this
     public void draw(Graphics2D g2) {
     	//need to set ellipse
