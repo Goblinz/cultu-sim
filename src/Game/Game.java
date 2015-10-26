@@ -17,7 +17,9 @@ public class Game {
 		Point[] path = {new Point(5,5),new Point(5,0),new Point(0,5)};
 		((MoveGather) patrol).setPath(path);
 		((Unit) temp).recieveOrder(patrol);
-		world.getTiles()[5][5].onMove(temp);
+		temp.setX(6);
+		temp.setY(6);
+		world.getTiles()[6][6].onMove(temp);
 	}
 	/*
 	public View generateView(){
@@ -29,9 +31,20 @@ public class Game {
 		Tile[][] tiles = world.getTiles();
 		for(int i=0;i<tiles.length;i++){
 			for(int j=0;j<tiles.length;j++){
-				if(tiles[i][j].isActorOnTile())
+				if(tiles[i][j].isActorOnTile() && !tiles[i][j].actorOnTile().hasActed()){
+					System.out.format("actor at %d,%d is acting\n",i,j);
+					tiles[i][j].actorOnTile().toggleActed();
 					tiles[i][j].actorOnTile().act(world, null);
+					
+				}
 			}
 		}
+		for(int i=0;i<tiles.length;i++){
+			for(int j=0;j<tiles.length;j++){
+				if(tiles[i][j].isActorOnTile() && tiles[i][j].actorOnTile().hasActed()){
+					tiles[i][j].actorOnTile().toggleActed();
+				}
+			}
+		}	
 	}
 }
