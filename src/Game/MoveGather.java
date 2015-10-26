@@ -14,10 +14,17 @@ public class MoveGather implements Order {
 		if(temp!=0){
 			xdir = temp / Math.abs(temp);
 		}
+		else{
+			xdir=0;
+		}
+			
 		temp = (int) (path[pathPointer].getY() - self.getY());
 		if(temp!=0){
 			ydir = temp / Math.abs(temp);
 			}
+		else{
+			ydir=0;
+		}
 		System.out.format("actor trying to move in %d,%d heading twoards %s\n",xdir,ydir,path[pathPointer].toString());
 		if (xdir == 0 && ydir == 0) {
 			updatePoint();
