@@ -12,14 +12,7 @@ public class Game {
 	public Game(){
 		world = new World();
 		//creating an actor 
-		Actor temp = new Unit();
-		Order patrol = new MoveGather();
-		Point[] path = {new Point(5,5),new Point(5,0),new Point(0,5)};
-		((MoveGather) patrol).setPath(path);
-		((Unit) temp).recieveOrder(patrol);
-		temp.setX(6);
-		temp.setY(6);
-		world.getTiles()[6][6].onMove(temp);
+		
 	}
 	/*
 	public View generateView(){
@@ -46,5 +39,14 @@ public class Game {
 				}
 			}
 		}	
+	}
+	public void spawnUnitMoveGather(int x,int y,Point[] path){
+		Actor temp = new Unit();
+		Order patrol = new MoveGather();
+		((MoveGather) patrol).setPath(path);
+		((Unit) temp).recieveOrder(patrol);
+		temp.setX(x);
+		temp.setY(y);
+		world.getTiles()[x][y].onMove(temp);
 	}
 }
