@@ -82,7 +82,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		GameView GV = new GameView(game.world.getTiles());
+		final GameView GV = new GameView(game.world.getTiles());
 		//GameView GV = new GameView();
 		GV.setBounds(20, 20, 300, 300);
 		GV.addComponentListener(GV.cl);
@@ -97,6 +97,7 @@ public class Main {
 		btnNextTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.tick();
+				GV.repaint();
 			}
 		});
 		btnNextTurn.setBounds(208, 384, 117, 23);
