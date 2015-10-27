@@ -107,7 +107,7 @@ public class Tile {
     
     public String toString() {
         return "SQUARE[row:" + row + ", col:" + col +
-                    ", selected:" + selected + " type: " + type +"]";
+                    ", selected:" + selected + " type: " + type +"Actor:" + onTile + "]";
     }
     
     public Point getPoint(){

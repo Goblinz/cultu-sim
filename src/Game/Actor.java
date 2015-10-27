@@ -67,7 +67,7 @@ public abstract class Actor {
     	sb.append("ID:" + ID);
     	sb.append(",\n");
     	sb.append("Resources{");
-    	sb.append(",\n");
+    	sb.append("\n");
     	Enumeration<Resource> i = resources.elements();
     	Resource temp;
     	while(i.hasMoreElements()){
@@ -76,5 +76,8 @@ public abstract class Actor {
 		}
     	sb.append("}");
     	return sb.toString();
+    }
+    public ActorType getType(){
+    	return type;
     }
 }

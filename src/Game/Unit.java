@@ -1,5 +1,6 @@
 package Game;
 
+import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
@@ -49,11 +50,24 @@ public class Unit extends Actor {
 		while(i.hasMoreElements()){
 			temp = i.nextElement();
 			int moveAmount = Math.min(resoucesLeftToTake, temp.getQuantity());
+			if(moveAmount!=0)
+				System.out.format("Moving %d of %s from Actor at %d,%d to unit at %d,%d\n",
+						moveAmount,temp.getType(),target.getX(),target.getY(),posX,posY);
 			resoucesLeftToTake = resoucesLeftToTake - moveAmount;
 			temp.addQuantity(-moveAmount);
 			resources.get(temp.getType()).addQuantity(moveAmount);
 			if(resoucesLeftToTake<=0)
 				break;
+		}
+	}
+	public void dumpResources(double effeciency,Faction faction){
+		Enumeration<Resource> i = resources.elements();
+		Resource temp;
+		Dictionary<String,Resource> factionResouces = faction.getResources();
+		while(i.hasMoreElements()){
+			temp = i.nextElement();
+			if(temp.getQuantity()>0)
+				factionResouces.get(temp.getType()).addQuantity((int) (temp.getQuantity()*effeciency));
 		}
 	}
 }

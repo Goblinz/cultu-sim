@@ -14,6 +14,10 @@ public class Game {
 		factions = new ArrayList<Faction>();
 		Faction temp = new Faction(0,"chaKrim",null);
 		factions.add(temp);
+		Structure testBuild = new Structure(0,0);
+		testBuild.setX(3);
+		testBuild.setY(4);
+		world.getTiles()[3][4].onMove(testBuild);
 	}
 	/*
 	public View generateView(){
