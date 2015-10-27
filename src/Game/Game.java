@@ -1,4 +1,5 @@
 package Game;
+import java.awt.Point;
 import java.util.ArrayList;
 
 
@@ -10,6 +11,7 @@ public class Game {
 	
 	public Game(){
 		world = new World();
+		//creating an actor 
 		
 	}
 	/*
@@ -19,6 +21,32 @@ public class Game {
 	}
 	*/
 	public void tick(){
-		//TODO
+		Tile[][] tiles = world.getTiles();
+		for(int i=0;i<tiles.length;i++){
+			for(int j=0;j<tiles.length;j++){
+				if(tiles[i][j].isActorOnTile() && !tiles[i][j].actorOnTile().hasActed()){
+					System.out.format("actor at %d,%d is acting\n",i,j);
+					tiles[i][j].actorOnTile().toggleActed();
+					tiles[i][j].actorOnTile().act(world, null);
+					
+				}
+			}
+		}
+		for(int i=0;i<tiles.length;i++){
+			for(int j=0;j<tiles.length;j++){
+				if(tiles[i][j].isActorOnTile() && tiles[i][j].actorOnTile().hasActed()){
+					tiles[i][j].actorOnTile().toggleActed();
+				}
+			}
+		}	
+	}
+	public void spawnUnitMoveGather(int x,int y,Point[] path){
+		Actor temp = new Unit();
+		Order patrol = new MoveGather();
+		((MoveGather) patrol).setPath(path);
+		((Unit) temp).recieveOrder(patrol);
+		temp.setX(x);
+		temp.setY(y);
+		world.getTiles()[x][y].onMove(temp);
 	}
 }

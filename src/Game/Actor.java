@@ -1,16 +1,23 @@
 package Game;
 
+
 import java.util.Dictionary;
 import java.util.Hashtable;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.*;
 import java.util.List;
 
 
 
-
 public abstract class Actor {
+	
+	public Ellipse2D.Double ellipse;
+	private boolean hasActed = false;
+
 	public int carryCapacity=100;
+
 	protected int posX = 0;
 	protected int posY = 0;
 	public static int factionID;
@@ -36,11 +43,14 @@ public abstract class Actor {
 		Tile onTile = world.getTiles()[posX][posY];
 		//onTile.
 	}
-	
+	public boolean hasActed(){return hasActed;}
+	public void toggleActed(){hasActed = !hasActed;}
+	//fuck this
     public void draw(Graphics2D g2) {
+    	//need to set ellipse
         g2.setPaint(Color.blue);
-        g2.fill(rect);
+        g2.fill(ellipse);
         //g2.setPaint(color);
-        g2.draw(rect);
+        g2.draw(ellipse);
     }
 }
