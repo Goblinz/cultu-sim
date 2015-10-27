@@ -17,6 +17,7 @@ public abstract class Actor {
 	private boolean hasActed = false;
 
 	public int carryCapacity=100;
+	protected ActorType type;
 
 	protected int posX = 0;
 	protected int posY = 0;
