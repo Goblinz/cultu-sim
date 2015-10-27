@@ -87,6 +87,9 @@ public class Tile {
         else if(type == "FERTILELAND"){
         	g2.setPaint(Color.magenta);
         }
+        else if(type == "WATER"){
+        	g2.setPaint(Color.BLUE);
+        }
         g2.fill(rect);
         g2.setPaint(color);
         g2.draw(rect);
@@ -113,5 +116,13 @@ public class Tile {
     
     public int getNoise(){
     	return noise;
+    }
+    
+    public boolean getPassable(){
+    	return isPassable;
+    }
+    
+    public void setPassable(boolean pass){
+    	isPassable = pass;
     }
 }

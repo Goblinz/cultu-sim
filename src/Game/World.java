@@ -38,6 +38,10 @@ public class World {
 				if(worldTiles[i][j].getNoise() <= 50 && worldTiles[i][j].getNoise() >= 45){
 					worldTiles[i][j].setType("FERTILELAND");
 				}
+				if(worldTiles[i][j].getNoise() <= 80 && worldTiles[i][j].getNoise() >= 71){
+					worldTiles[i][j].setType("WATER");
+					worldTiles[i][j].setPassable(false);
+				}
 			}
 		}
 //		worldTiles[3][4].setType("FERTILELAND");

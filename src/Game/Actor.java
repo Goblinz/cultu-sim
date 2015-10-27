@@ -50,7 +50,7 @@ public abstract class Actor {
 	//fuck this
     public void draw(Graphics2D g2) {
     	//need to set ellipse
-        g2.setPaint(Color.blue);
+        g2.setPaint(Color.white);
         g2.fill(ellipse);
         //g2.setPaint(color);
         g2.draw(ellipse);
