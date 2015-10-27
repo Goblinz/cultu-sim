@@ -43,6 +43,11 @@ public class Tile {
 		
 	}
 	
+	public boolean isPassable(){
+		return isPassable;
+	}
+	
+	
 	/**
 	 * when an actor moves onto the tile
 	 * @param actor
@@ -62,7 +67,7 @@ public class Tile {
 		type = tp;
 	}
 	
-	public boolean isActorOnTile(){
+	public boolean hasActorOnTile(){
 		if(onTile==null){
 			return false;
 		}
