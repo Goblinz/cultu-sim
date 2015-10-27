@@ -1,6 +1,7 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class World {
 	
@@ -9,6 +10,7 @@ public class World {
 	//beststartpos will later be determines by looking at resource areas and choosing the area with the most plentiful amount
 	//of resources
 	private String bestStartPos = "5,5";
+	Random noiseGen = new Random();
 	
 	
 	private Tile[][] worldTiles;
@@ -26,15 +28,24 @@ public class World {
 		worldTiles = new Tile[DEBUG_WORLD_SIZE][DEBUG_WORLD_SIZE];
 		for(int i = 0; i < DEBUG_WORLD_SIZE; i++){
 			for(int j = 0; j < DEBUG_WORLD_SIZE;j++){
-				worldTiles[i][j] = new Tile(i,j,"ROCK",true);
+				worldTiles[i][j] = new Tile(i,j,"ROCK",true,noiseGen.nextInt(100));
+				if(worldTiles[i][j].getNoise() <= 15){
+					worldTiles[i][j].setType("FOREST");
+				}
+				if(worldTiles[i][j].getNoise() <= 30 && worldTiles[i][j].getNoise() >= 28){
+					worldTiles[i][j].setType("MINE");
+				}
+				if(worldTiles[i][j].getNoise() <= 50 && worldTiles[i][j].getNoise() >= 45){
+					worldTiles[i][j].setType("FERTILELAND");
+				}
 			}
 		}
-		worldTiles[3][4].setType("FERTILELAND");
-		worldTiles[5][7].setType("FERTILELAND");
-		worldTiles[3][6].setType("MINE");
-		worldTiles[4][8].setType("MINE");
-		worldTiles[8][4].setType("FOREST");
-		worldTiles[5][1].setType("FOREST");
+//		worldTiles[3][4].setType("FERTILELAND");
+//		worldTiles[5][7].setType("FERTILELAND");
+//		worldTiles[3][6].setType("MINE");
+//		worldTiles[4][8].setType("MINE");
+//		worldTiles[8][4].setType("FOREST");
+//		worldTiles[5][1].setType("FOREST");
 	}
 	
 	public String getBestStartingPos(){
