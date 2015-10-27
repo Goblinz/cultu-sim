@@ -70,7 +70,7 @@ public class Tile {
 	//matts edit
 	
     public void draw(Graphics2D g2) {
-        g2.setPaint(selected ? selColor : bgColor);
+        //g2.setPaint(selected ? selColor : bgColor);
         if(type == "ROCK"){
         	g2.setPaint(Color.black);
         }
@@ -79,6 +79,9 @@ public class Tile {
         }
         else if(type == "MINE"){
         	g2.setPaint(Color.gray);
+        }
+        else if(type == "FERTILELAND"){
+        	g2.setPaint(Color.magenta);
         }
         g2.fill(rect);
         g2.setPaint(color);

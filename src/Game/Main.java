@@ -11,9 +11,11 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.Button;
+import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -63,6 +65,8 @@ public class Main {
 	 */
 	public Main() {
 		game = new Game();
+		Point[] path = {new Point(5,5),new Point(0,5),new Point(5,0)};
+		game.spawnUnitMoveGather(6, 6,path);
 		initialize();
 	}
 
@@ -78,7 +82,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		GameView GV = new GameView(game.world.getTiles());
+		final GameView GV = new GameView(game.world.getTiles());
 		//GameView GV = new GameView();
 		GV.setBounds(20, 20, 300, 300);
 		GV.addComponentListener(GV.cl);
@@ -93,6 +97,7 @@ public class Main {
 		btnNextTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.tick();
+				GV.repaint();
 			}
 		});
 		btnNextTurn.setBounds(208, 384, 117, 23);
