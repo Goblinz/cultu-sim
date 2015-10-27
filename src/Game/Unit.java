@@ -5,6 +5,9 @@ import java.util.List;
 public class Unit extends Actor {
 	private List<Order> possibleOrders;
 	private Order currentOrder;
+	public Unit(){
+		type = ActorType.UNIT;
+	}
 
 	public boolean move(int xdir, int ydir, World world) {
 		Tile target = world.getTiles()[posX + xdir][posY + ydir];
