@@ -29,4 +29,8 @@ public class PathFinder {
 		return null;
 	}
 	
+	public ArrayList<Tile> adjacentTiles(){
+		return null;
+	}
+	
 }
