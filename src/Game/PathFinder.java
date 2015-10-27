@@ -9,6 +9,9 @@ public class PathFinder {
 	private World world;
 	private Point toPoint;
 	
+	/**
+	 * an object used to find the shortest passable path between an actor and a Point
+	 */
 	public PathFinder(){
 		
 	}
@@ -29,12 +32,8 @@ public class PathFinder {
 			toReturn[i] = path.get(i);
 		}
 
-		return toReturn;
-		
+		return toReturn;	
 	}
-	
-	
-	
 	
 	/**
 	 * 
@@ -58,7 +57,7 @@ public class PathFinder {
 				exploredTiles.add(current);
 				for(Tile t: adjacentPassabeTiles(current)){
 					stack.add(t);
-					if(p==t.getPoint()){
+					if(toPoint==t.getPoint()){
 						return stack;
 					}
 				}
