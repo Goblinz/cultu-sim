@@ -26,7 +26,7 @@ public class World {
 		worldTiles = new Tile[DEBUG_WORLD_SIZE][DEBUG_WORLD_SIZE];
 		for(int i = 0; i < DEBUG_WORLD_SIZE; i++){
 			for(int j = 0; j < DEBUG_WORLD_SIZE;j++){
-				worldTiles[i][j] = new Tile(i,j,"ROCK");
+				worldTiles[i][j] = new Tile(i,j,"ROCK",true);
 			}
 		}
 		worldTiles[3][4].setType("FERTILELAND");

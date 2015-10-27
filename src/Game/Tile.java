@@ -14,6 +14,7 @@ public class Tile {
 	Color color = new Color(140,200,160);
 	Color bgColor = Color.orange;
 	Color selColor = Color.red;
+	private boolean isPassable = false;
 	private boolean selected = false;
 	public Point point;
 	
@@ -24,13 +25,14 @@ public class Tile {
 	private Resource resource = null;
 	//private int x,y;
 	
-	public Tile(int X, int Y, String t){
+	public Tile(int X, int Y, String t, boolean passable){
 		row = X;
 		col = Y;
 		//x=X;
 		//y=Y;
 		type = t;
 		point = new Point(X,Y);
+		isPassable = passable;
 	}
 	
 	public Tile(int r, int c, Rectangle2D.Double rect, String resource){
