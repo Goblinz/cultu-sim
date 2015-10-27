@@ -2,8 +2,8 @@ package Game;
 
 
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Hashtable;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.*;
@@ -57,5 +57,24 @@ public abstract class Actor {
     }
     public void onDie(Actor killer,World world){
     	
+    }
+    public String toString(){
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("Type:"+type.toString());
+    	sb.append(",\n");
+    	sb.append("Faction ID:" + factionID);
+    	sb.append(",\n");
+    	sb.append("ID:" + ID);
+    	sb.append(",\n");
+    	sb.append("Resources{");
+    	sb.append(",\n");
+    	Enumeration<Resource> i = resources.elements();
+    	Resource temp;
+    	while(i.hasMoreElements()){
+			temp = i.nextElement();
+			sb.append("   "+temp.getType() + ":"+temp.getQuantity()+"\n");
+		}
+    	sb.append("}");
+    	return sb.toString();
     }
 }

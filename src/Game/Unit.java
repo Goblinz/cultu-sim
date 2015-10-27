@@ -1,12 +1,16 @@
 package Game;
 
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 
 public class Unit extends Actor {
 	private List<Order> possibleOrders;
 	private Order currentOrder;
 	public Unit(int FactionID,int id){
+		
 		super();
+		carryCapacity=30;
 		factionID = FactionID;
 		ID=id;
 		type = ActorType.UNIT;
@@ -39,6 +43,17 @@ public class Unit extends Actor {
 		currentOrder.OrderAct(world, faction, this);
 	}
 	public void takeResource(Actor target){
-		
+		int resoucesLeftToTake = carryCapacity;
+		Enumeration<Resource> i = target.resources.elements();
+		Resource temp;
+		while(i.hasMoreElements()){
+			temp = i.nextElement();
+			int moveAmount = Math.min(resoucesLeftToTake, temp.getQuantity());
+			resoucesLeftToTake = resoucesLeftToTake - moveAmount;
+			temp.addQuantity(-moveAmount);
+			resources.get(temp.getType()).addQuantity(moveAmount);
+			if(resoucesLeftToTake<=0)
+				break;
+		}
 	}
 }
