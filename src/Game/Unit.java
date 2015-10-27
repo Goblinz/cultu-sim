@@ -5,7 +5,10 @@ import java.util.List;
 public class Unit extends Actor {
 	private List<Order> possibleOrders;
 	private Order currentOrder;
-	public Unit(){
+	public Unit(int FactionID,int id){
+		super();
+		factionID = FactionID;
+		ID=id;
 		type = ActorType.UNIT;
 	}
 

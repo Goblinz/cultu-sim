@@ -11,8 +11,9 @@ public class Game {
 	
 	public Game(){
 		world = new World();
-		//creating an actor 
-		
+		factions = new ArrayList<Faction>();
+		Faction temp = new Faction(0,"chaKrim",null);
+		factions.add(temp);
 	}
 	/*
 	public View generateView(){
@@ -21,6 +22,10 @@ public class Game {
 	}
 	*/
 	public void tick(){
+		//TODO FACTION ACT
+		for(Faction f:factions){
+			f.act(world, factions);
+		}
 		Tile[][] tiles = world.getTiles();
 		for(int i=0;i<tiles.length;i++){
 			for(int j=0;j<tiles.length;j++){
@@ -41,7 +46,7 @@ public class Game {
 		}	
 	}
 	public void spawnUnitMoveGather(int x,int y,Point[] path){
-		Actor temp = new Unit();
+		Actor temp = new Unit(0,0);
 		Order patrol = new MoveGather();
 		((MoveGather) patrol).setPath(path);
 		((Unit) temp).recieveOrder(patrol);

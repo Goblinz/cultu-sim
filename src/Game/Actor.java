@@ -22,6 +22,7 @@ public abstract class Actor {
 	protected int posX = 0;
 	protected int posY = 0;
 	public static int factionID;
+	public static int ID;
 	public Dictionary<String,Resource> resources;
 	public Actor(){
 		resources = new Hashtable<String,Resource>();
@@ -53,5 +54,8 @@ public abstract class Actor {
         g2.fill(ellipse);
         //g2.setPaint(color);
         g2.draw(ellipse);
+    }
+    public void onDie(Actor killer,World world){
+    	
     }
 }
