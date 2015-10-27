@@ -17,6 +17,7 @@ public class Tile {
 	private boolean isPassable = false;
 	private boolean selected = false;
 	public Point point;
+	private int noise;
 	
 	//nates stuff
 	String name;
@@ -25,7 +26,7 @@ public class Tile {
 	private Resource resource = null;
 	//private int x,y;
 	
-	public Tile(int X, int Y, String t, boolean passable){
+	public Tile(int X, int Y, String t, boolean passable, int num){
 		row = X;
 		col = Y;
 		//x=X;
@@ -33,6 +34,7 @@ public class Tile {
 		type = t;
 		point = new Point(X,Y);
 		isPassable = passable;
+		noise = num;
 	}
 	
 	public Tile(int r, int c, Rectangle2D.Double rect, String resource){
@@ -90,6 +92,9 @@ public class Tile {
         else if(type == "FERTILELAND"){
         	g2.setPaint(Color.magenta);
         }
+        else if(type == "WATER"){
+        	g2.setPaint(Color.BLUE);
+        }
         g2.fill(rect);
         g2.setPaint(color);
         g2.draw(rect);
@@ -107,10 +112,22 @@ public class Tile {
     
     public String toString() {
         return "SQUARE[row:" + row + ", col:" + col +
-                    ", selected:" + selected + " type: " + type +"]";
+                    ", selected:" + selected + " type: " + type +"Actor:" + onTile + "]";
     }
     
     public Point getPoint(){
     	return point;
+    }
+    
+    public int getNoise(){
+    	return noise;
+    }
+    
+    public boolean getPassable(){
+    	return isPassable;
+    }
+    
+    public void setPassable(boolean pass){
+    	isPassable = pass;
     }
 }
