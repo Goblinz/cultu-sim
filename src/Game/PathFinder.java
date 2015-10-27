@@ -2,9 +2,8 @@ package Game;
 import java.awt.Point;
 import java.util.ArrayList;
 
-//TEST POST
 public class PathFinder {
-
+	
 	private Actor actor;
 	private World world;
 	private Point toPoint;
