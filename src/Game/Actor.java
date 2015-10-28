@@ -37,6 +37,7 @@ public abstract class Actor {
 		posX=x;
 		posY=y;
 		world.getTiles()[x][y].onMove(this);
+		//color = Color.CYAN;
 	}
 	public int getX(){ return posX; }
 	

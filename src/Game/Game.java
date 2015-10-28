@@ -14,10 +14,10 @@ public class Game {
 		world = new World();
 		
 		factions = new ArrayList<Faction>();
-		Faction temp = new Faction(0,"chaKrim",null);
+		Faction temp = new Faction(0,"chaKrim",new SimpleFactionAI());
 		temp.setCityLocation(new Point(0,0));
 		factions.add(temp);
-		temp = new Faction(1,"hakoa",null);
+		temp = new Faction(1,"hakoa",new SimpleFactionAI());
 		temp.setCityLocation(new Point(9,9));
 		factions.add(temp);
 		Actor city = new City(0,0,0,world);
@@ -44,7 +44,7 @@ public class Game {
 				if(tiles[i][j].isActorOnTile() && !tiles[i][j].actorOnTile().hasActed()){
 					System.out.format("actor at %d,%d is acting\n",i,j);
 					tiles[i][j].actorOnTile().toggleActed();
-					tiles[i][j].actorOnTile().act(world, null);
+					tiles[i][j].actorOnTile().act(world, factions.get(tiles[i][j].actorOnTile().factionID));
 					
 				}
 			}

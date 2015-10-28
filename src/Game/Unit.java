@@ -9,15 +9,7 @@ import java.util.List;
 public class Unit extends Actor {
 	private List<Order> possibleOrders;
 	private Order currentOrder;
-<<<<<<< .mine
 	public Unit(int FactionID,int id,int x,int y, World world){
-||||||| .r77
-	public Unit(int FactionID,int id){
-=======
-	
-	public Unit(int FactionID,int id){
->>>>>>> .r82
-		
 		super(x,y,world);
 		carryCapacity=30;
 		factionID = FactionID;
@@ -75,8 +67,10 @@ public class Unit extends Actor {
 		Dictionary<String,Resource> factionResouces = faction.getResources();
 		while(i.hasMoreElements()){
 			temp = i.nextElement();
-			if(temp.getQuantity()>0)
+			if(temp.getQuantity()>0){
 				factionResouces.get(temp.getType()).addQuantity((int) (temp.getQuantity()*effeciency));
+				temp.setQuantity(0);
+			}
 		}
 	}
 }
