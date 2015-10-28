@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Color;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.List;
 public class Unit extends Actor {
 	private List<Order> possibleOrders;
 	private Order currentOrder;
+	
 	public Unit(int FactionID,int id){
 		
 		super();
@@ -15,6 +17,7 @@ public class Unit extends Actor {
 		factionID = FactionID;
 		ID=id;
 		type = ActorType.UNIT;
+		color = new Color((factionID * 50) % 255,200,200);
 	}
 
 	public boolean move(int xdir, int ydir, World world) {

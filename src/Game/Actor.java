@@ -18,6 +18,8 @@ public abstract class Actor {
 
 	public int carryCapacity=100;
 	protected ActorType type;
+	
+	public Color color;
 
 	protected int posX = 0;
 	protected int posY = 0;
@@ -50,7 +52,7 @@ public abstract class Actor {
 	//fuck this
     public void draw(Graphics2D g2) {
     	//need to set ellipse
-        g2.setPaint(Color.white);
+        g2.setPaint(color);
         g2.fill(ellipse);
         //g2.setPaint(color);
         g2.draw(ellipse);

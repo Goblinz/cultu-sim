@@ -1,5 +1,7 @@
 package Game;
 
+import java.awt.Color;
+
 
 public class Structure extends Actor {
 	public Structure(int FactionID,int id){
@@ -7,6 +9,7 @@ public class Structure extends Actor {
 		factionID = FactionID;
 		ID=id;
 		type = ActorType.STRUCTURE;
+		color = new Color((factionID * 50) % 255,200,200);
 	}
 	public void act(World world,Faction faction){
 		Tile onTile = world.getTiles()[posX][posY];

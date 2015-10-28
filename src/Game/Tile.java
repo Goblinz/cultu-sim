@@ -59,6 +59,12 @@ public class Tile {
 	
 	public Actor actorOnTile(){ return onTile; }
 	
+	public boolean isActorOnTile(){
+		if (onTile != null){
+			return true;
+		}
+		return false;
+	}
 	
 	public Resource getResource(){ return resource; }
 	public void setResource(Resource r){ resource = r; }
