@@ -23,6 +23,7 @@ public class Tile {
 	String name;
 	private String type;
 	public Actor onTile = null;
+	private boolean actorOnTile = false;
 	private Resource resource = null;
 	//private int x,y;
 	
@@ -54,16 +55,20 @@ public class Tile {
 	 * when an actor moves onto the tile
 	 * @param actor
 	 */
-	public void onMove(Actor actor){ onTile = actor; }
-	public void offMove(){ onTile = null; }
+	public void onMove(Actor actor){
+		onTile = actor;
+		actorOnTile = true;
+	}
+	
+	public void offMove(){
+		onTile = null;
+		actorOnTile = false;
+	}
 	
 	public Actor actorOnTile(){ return onTile; }
 	
 	public boolean isActorOnTile(){
-		if (onTile != null){
-			return true;
-		}
-		return false;
+		return actorOnTile;
 	}
 	
 	public Resource getResource(){ return resource; }
@@ -73,13 +78,6 @@ public class Tile {
 	public void setType(String tp){
 		//TODO check type
 		type = tp;
-	}
-	
-	public boolean hasActorOnTile(){
-		if(onTile==null){
-			return false;
-		}
-		return true;
 	}
 	
 	//matts edit
