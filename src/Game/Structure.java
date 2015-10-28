@@ -4,8 +4,8 @@ import java.awt.Color;
 
 
 public class Structure extends Actor {
-	public Structure(int FactionID,int id){
-		super();
+	public Structure(int FactionID,int id, int x,int y,World world){
+		super(x,y,world);
 		factionID = FactionID;
 		ID=id;
 		type = ActorType.STRUCTURE;

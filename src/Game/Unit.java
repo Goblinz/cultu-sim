@@ -9,10 +9,16 @@ import java.util.List;
 public class Unit extends Actor {
 	private List<Order> possibleOrders;
 	private Order currentOrder;
+<<<<<<< .mine
+	public Unit(int FactionID,int id,int x,int y, World world){
+||||||| .r77
+	public Unit(int FactionID,int id){
+=======
 	
 	public Unit(int FactionID,int id){
+>>>>>>> .r82
 		
-		super();
+		super(x,y,world);
 		carryCapacity=30;
 		factionID = FactionID;
 		ID=id;

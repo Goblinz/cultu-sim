@@ -26,7 +26,7 @@ public abstract class Actor {
 	public static int factionID;
 	public static int ID;
 	public Dictionary<String,Resource> resources;
-	public Actor(){
+	public Actor(int x,int y,World world){
 		resources = new Hashtable<String,Resource>();
 		Resource temp = new Resource("Food",0);
 		resources.put(temp.getType(), temp);
@@ -34,6 +34,9 @@ public abstract class Actor {
 		resources.put(temp.getType(), temp);
 		temp = new Resource("Wood",0);
 		resources.put(temp.getType(), temp);
+		posX=x;
+		posY=y;
+		world.getTiles()[x][y].onMove(this);
 	}
 	public int getX(){ return posX; }
 	
@@ -44,7 +47,7 @@ public abstract class Actor {
 	public void setY(int y){ posY = y; }
 	
 	public void act(World world,Faction faction){
-		Tile onTile = world.getTiles()[posX][posY];
+		//Tile onTile = world.getTiles()[posX][posY];
 		//onTile.
 	}
 	public boolean hasActed(){return hasActed;}

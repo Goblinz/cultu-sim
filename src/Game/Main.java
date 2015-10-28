@@ -65,8 +65,8 @@ public class Main {
 	 */
 	public Main() {
 		game = new Game();
-		Point[] path = {new Point(8,8),new Point(3,4)};
-		game.spawnUnitMoveGather(6, 6,path);
+		//Point[] path = {new Point(8,8),new Point(3,4)};
+		//game.spawnUnitMoveGather(6, 6,path);
 		initialize();
 	}
 

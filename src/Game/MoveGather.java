@@ -36,9 +36,8 @@ public class MoveGather implements Order {
 				// checking if colliding with destination 
 				if(path[pathPointer].getX() == self.getX() + xdir && path[pathPointer].getY() == self.getY() + ydir){
 					//transfer resources
-					if(world.getTiles()[self.getX() + xdir][self.getY() + ydir].actorOnTile().getType() == ActorType.CITY){
+					if(world.getTiles()[self.getX() + xdir][self.getY() + ydir].actorOnTile().getType() == ActorType.CITY)
 						self.dumpResources(1, faction);
-					}
 					else
 						self.takeResource(world.getTiles()[self.getX() + xdir][self.getY() + ydir].actorOnTile());
 					

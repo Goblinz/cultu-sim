@@ -13,11 +13,17 @@ public class Game {
 		world = new World();
 		factions = new ArrayList<Faction>();
 		Faction temp = new Faction(0,"chaKrim",null);
+		temp.setCityLocation(new Point(0,0));
 		factions.add(temp);
-		Structure testBuild = new Structure(0,0);
+		temp = new Faction(1,"hakoa",null);
+		temp.setCityLocation(new Point(9,9));
+		factions.add(temp);
+		Actor city = new City(0,0,0,world);
+		city = new City(1,9,9,world);
+		/*Structure testBuild = new Structure(0,0);
 		testBuild.setX(3);
 		testBuild.setY(4);
-		world.getTiles()[3][4].onMove(testBuild);
+		world.getTiles()[3][4].onMove(testBuild);*/
 	}
 	/*
 	public View generateView(){
@@ -49,7 +55,7 @@ public class Game {
 			}
 		}	
 	}
-	public void spawnUnitMoveGather(int x,int y,Point[] path){
+	/*public void spawnUnitMoveGather(int x,int y,Point[] path){
 		Actor temp = new Unit(0,0);
 		Order patrol = new MoveGather();
 		((MoveGather) patrol).setPath(path);
@@ -57,5 +63,5 @@ public class Game {
 		temp.setX(x);
 		temp.setY(y);
 		world.getTiles()[x][y].onMove(temp);
-	}
+	}*/
 }

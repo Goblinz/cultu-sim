@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class GameTest {
 
-	@Test
+	/*@Test
 	public void testPatrol() {
 		Game game = new Game();
 		Point[] path = {new Point(5,5),new Point(0,5),new Point(5,0)};
@@ -42,6 +42,6 @@ public class GameTest {
 		game.tick();
 		if(!game.world.getTiles()[5][5].isActorOnTile())
 			fail("actor should be there");
-	}
+	}*/
 
 }

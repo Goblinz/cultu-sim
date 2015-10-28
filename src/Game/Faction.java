@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.awt.Color;
+import java.awt.Point;
 
 public class Faction {
 	Color factionColor;
@@ -10,23 +11,28 @@ public class Faction {
 	int ID;
 	FactionAI brain;
 	Dictionary<String,Resource> resources;
+	Point cityloc;
 	public Faction(int idNum,String factionName,FactionAI type){
 		ID = idNum;
 		name = factionName;
 		brain = type;
 		
 		resources = new Hashtable<String,Resource>();
-		Resource temp = new Resource("Food",0);
+		Resource temp = new Resource("Food",100);
 		resources.put(temp.getType(), temp);
 		temp = new Resource("Metal",0);
 		resources.put(temp.getType(), temp);
-		temp = new Resource("Wood",0);
+		temp = new Resource("Wood",100);
 		resources.put(temp.getType(), temp);
 	}
 	public void act(World world,ArrayList<Faction> factions){
-		
+		//spawn stuff in
+		brain.FactionAct(this, world, factions);
 	}
 	public Dictionary<String,Resource> getResources(){
 		return resources;
+	}
+	public void setCityLocation(Point loc){
+		cityloc=loc;
 	}
 }
