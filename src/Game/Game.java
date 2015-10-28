@@ -10,7 +10,9 @@ public class Game {
 	//private View view = new View(world);
 	
 	public Game(){
+		//Change to random gen by entering new World(x,y,z) where the world is an X * Y grid with seed z(long integer)
 		world = new World();
+		
 		factions = new ArrayList<Faction>();
 		Faction temp = new Faction(0,"chaKrim",null);
 		temp.setCityLocation(new Point(0,0));
