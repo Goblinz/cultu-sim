@@ -84,7 +84,7 @@ public class PathFinder {
 			//System.out.println(adjs[i].x + ", " + adjs[i].y);
 
 			if(adjs[i].x>=0 && adjs[i].y>=0   &&   adjs[i].x<worldTiles.length && adjs[i].y<worldTiles[0].length){
-				if(worldTiles[adjs[i].x][adjs[i].y].isPassable() && !worldTiles[adjs[i].x][adjs[i].y].hasActorOnTile()){
+				if(worldTiles[adjs[i].x][adjs[i].y].isPassable() && !worldTiles[adjs[i].x][adjs[i].y].isActorOnTile()){
 					adj.add(worldTiles[adjs[i].x][adjs[i].y]);
 				}
 			}

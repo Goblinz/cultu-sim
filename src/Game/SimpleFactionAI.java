@@ -37,7 +37,7 @@ public class SimpleFactionAI implements FactionAI {
 		for (int i = 0; i < world.getTiles().length; i++) {
 			for (int j = 0; j < world.getTiles().length; j++) {
 				if (world.getTiles()[i][j].getType() == type
-						&& !world.getTiles()[i][j].hasActorOnTile()) {
+						&& !world.getTiles()[i][j].isActorOnTile()) {
 					if (Return == null)
 						Return = new Point(i, j);
 					else {
@@ -55,7 +55,7 @@ public class SimpleFactionAI implements FactionAI {
 
 		for (int i = 0; i < world.getTiles().length; i++) {
 			for (int j = 0; j < world.getTiles().length; j++) {
-				if (!world.getTiles()[i][j].hasActorOnTile()) {
+				if (!world.getTiles()[i][j].isActorOnTile()) {
 					if (Return == null)
 						Return = new Point(i, j);
 					else {
