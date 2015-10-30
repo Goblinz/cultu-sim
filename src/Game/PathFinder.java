@@ -2,7 +2,6 @@ package Game;
 import java.awt.Point;
 import java.util.ArrayList;
 
-//TEST PUSH
 public class PathFinder {
 	
 	private Actor actor;
@@ -43,22 +42,41 @@ public class PathFinder {
 	 * @return an ArrayList of Tiles that is the shortest not obstructed path
 	 */
 	public ArrayList<Tile> getPathToAL(World w, Actor a, Point p){
+		
+		//sets the shortest path of all tiles to null
+		for(Tile[] TA: w.getTiles()){
+			for(Tile t: TA){
+				t.setShortestPath(null);
+			}
+		}
+		
 		actor = a;
 		world = w;
 		toPoint = p;
 		Tile current = world.getTiles()[actor.getX()][actor.getY()];
+		Tile last = null;
 		ArrayList<Tile> stack = new ArrayList<Tile>();
 		ArrayList<Tile> exploredTiles = new ArrayList<Tile>();
 		
 		stack.add(current);
 		while(stack.size()>0){
+			last = current;
 			current = stack.remove(stack.size()-1);
-			if(!exploredTiles.contains(current)){
-				exploredTiles.add(current);
+			if(current.shortestPath==null){
+				ArrayList<Tile> temp = new ArrayList<Tile>();
+				if(last == null || last.getShortestPath() == null){
+					temp.add(current);
+				}else{
+					temp=last.getShortestPath();
+					temp.add(current);
+				}
+				
+				current.setShortestPath(temp);
+				
 				for(Tile t: adjacentPassabeTiles(current)){
 					stack.add(t);
 					if(toPoint==t.getPoint()){
-						return stack;
+						return t.shortestPath;
 					}
 				}
 				
