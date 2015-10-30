@@ -9,13 +9,9 @@ import java.util.List;
 public class Unit extends Actor {
 	private List<Order> possibleOrders;
 	private Order currentOrder;
-	public Unit(int FactionID,int id,int x,int y, World world){
-		super(x,y,world);
+	public Unit(int factionid,int id,int x,int y, World world){
+		super(x,y,world,id,factionid, ActorType.UNIT);
 		carryCapacity=30;
-		factionID = FactionID;
-		ID=id;
-		type = ActorType.UNIT;
-		color = new Color((factionID * 50) % 255,200,200);
 	}
 
 	public boolean move(int xdir, int ydir, World world) {

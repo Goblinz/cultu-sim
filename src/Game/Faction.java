@@ -27,6 +27,7 @@ public class Faction {
 	}
 	public void act(World world,ArrayList<Faction> factions){
 		//spawn stuff in
+		System.out.println("faction " + ID + "acting");
 		brain.FactionAct(this, world, factions);
 	}
 	public Dictionary<String,Resource> getResources(){
@@ -34,5 +35,8 @@ public class Faction {
 	}
 	public void setCityLocation(Point loc){
 		cityloc=loc;
+	}
+	public String toString(){
+		return name + " " + ID;
 	}
 }

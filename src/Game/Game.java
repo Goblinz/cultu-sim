@@ -14,14 +14,22 @@ public class Game {
 		world = new World();
 		
 		factions = new ArrayList<Faction>();
-		Faction temp = new Faction(0,"chaKrim",new SimpleFactionAI());
+		FactionAI foo = new SimpleFactionAI();
+		Faction temp = new Faction(0,"chaKrim",foo);
+		FactionAI foo2 = new SimpleFactionAI();
+		Faction temp2 = new Faction(1,"hakoa",foo2);
+		//System.out.println(temp.toString());
+		//System.out.println(temp2.toString());
 		temp.setCityLocation(new Point(0,0));
+		
+		temp2.setCityLocation(new Point(9,9));
 		factions.add(temp);
-		temp = new Faction(1,"hakoa",new SimpleFactionAI());
-		temp.setCityLocation(new Point(9,9));
-		factions.add(temp);
+		factions.add(temp2);
 		Actor city = new City(0,0,0,world);
-		city = new City(1,9,9,world);
+		//System.out.println(city.toString());
+		Actor city2 = new City(1,9,9,world);
+		//System.out.println(city.toString());
+		//System.out.println(city2.toString());
 		/*Structure testBuild = new Structure(0,0);
 		testBuild.setX(3);
 		testBuild.setY(4);
@@ -42,8 +50,9 @@ public class Game {
 		for(int i=0;i<tiles.length;i++){
 			for(int j=0;j<tiles.length;j++){
 				if(tiles[i][j].isActorOnTile() && !tiles[i][j].actorOnTile().hasActed()){
-					System.out.format("actor at %d,%d is acting\n",i,j);
+					//System.out.format("actor at %d,%d is acting\n",i,j);
 					tiles[i][j].actorOnTile().toggleActed();
+					System.out.println(tiles[i][j].actorOnTile().factionID);
 					tiles[i][j].actorOnTile().act(world, factions.get(tiles[i][j].actorOnTile().factionID));
 					
 				}

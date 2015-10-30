@@ -22,6 +22,7 @@ public class SimpleFactionAI implements FactionAI {
 						world);
 				Unit temp = new Unit(self.ID, curID, actorSpawn.x,
 						actorSpawn.y, world);
+				curID++;
 				MoveGather path = new MoveGather();
 				Point[] points = { targetPoint, self.cityloc };
 				path.setPath(points);

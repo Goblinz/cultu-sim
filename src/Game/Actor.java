@@ -23,10 +23,13 @@ public abstract class Actor {
 
 	protected int posX = 0;
 	protected int posY = 0;
-	public static int factionID;
-	public static int ID;
+	public int factionID;
+	public int ID;
 	public Dictionary<String,Resource> resources;
-	public Actor(int x,int y,World world){
+	public Actor(int x,int y,World world,int id,int factionid, ActorType actorType){
+		type=actorType;
+		ID=id;
+		factionID=factionid;
 		resources = new Hashtable<String,Resource>();
 		Resource temp = new Resource("Food",0);
 		resources.put(temp.getType(), temp);
@@ -36,6 +39,7 @@ public abstract class Actor {
 		resources.put(temp.getType(), temp);
 		posX=x;
 		posY=y;
+		//System.out.format("putting actor at %d,%d with faction ID of %d\n",x,y,factionID);
 		world.getTiles()[x][y].onMove(this);
 		//color = Color.CYAN;
 	}
@@ -55,6 +59,11 @@ public abstract class Actor {
 	public void toggleActed(){hasActed = !hasActed;}
 	//fuck this
     public void draw(Graphics2D g2) {
+    	if(factionID==1)
+    		g2.setPaint(Color.RED);
+    	else
+    		g2.setPaint(Color.CYAN);
+    	
     	//need to set ellipse
         g2.setPaint(color);
         g2.fill(ellipse);

@@ -25,7 +25,7 @@ public class MoveGather implements Order {
 		else{
 			ydir=0;
 		}
-		System.out.format("actor trying to move in %d,%d heading twoards %s\n",xdir,ydir,path[pathPointer].toString());
+		//System.out.format("actor trying to move in %d,%d heading twoards %s\n",xdir,ydir,path[pathPointer].toString());
 		if (xdir == 0 && ydir == 0) {
 			updatePoint();
 		} else {
