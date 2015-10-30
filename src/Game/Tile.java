@@ -134,4 +134,11 @@ public class Tile {
     public void setPassable(boolean pass){
     	isPassable = pass;
     }
+    
+        //Pathfinding stuff
+    ArrayList<Tile> shortestPath = null;
+    
+    public ArrayList<Tile> getShortestPath(){ return shortestPath; }
+    
+    public void setShortestPath(ArrayList<Tile> s){ shortestPath = s; }
 }
