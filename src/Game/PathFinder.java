@@ -11,6 +11,10 @@ public class PathFinder {
 	/**
 	 * an object used to find the shortest passable path between an actor and a Point
 	 */
+	public PathFinder(World w){
+		world = w;
+	}
+	
 	public PathFinder(){
 		
 	}
@@ -62,41 +66,53 @@ public class PathFinder {
 		while(stack.size()>0){
 			last = current;
 			current = stack.remove(stack.size()-1);
+			//if unexplored
 			if(current.shortestPath==null){
-				ArrayList<Tile> temp = new ArrayList<Tile>();
-				if(last == null || last.getShortestPath() == null){
-					temp.add(current);
-				}else{
-					temp=last.getShortestPath();
-					temp.add(current);
+				
+				//finds adjacent tile with shortest path TODO
+				ArrayList<Tile> shortestPath = new ArrayList<Tile>();
+				int shortestSize = 9999999;
+				
+				//for each adjacent passable tile
+				ArrayList<Tile> adjTiles = adjacentPassabeTiles(current);
+				for(Tile t: adjTiles){
+					if(t.getShortestPath()!=null && shortestSize > t.getShortestPath().size()){
+						shortestSize = t.getShortestPath().size();
+						shortestPath = t.getShortestPath();
+					}
+				}				
+				
+				if(current.getShortestPath()==null || shortestPath.size()<current.getShortestPath().size()){
+					ArrayList<Tile> toAdd = copyAL(shortestPath);
+					toAdd.add(current);
+					current.setShortestPath(toAdd);
 				}
-				
-				current.setShortestPath(temp);
-				
+
 				for(Tile t: adjacentPassabeTiles(current)){
 					stack.add(t);
-					if(toPoint==t.getPoint()){
-						return t.shortestPath;
-					}
+					//System.out.println("fount it");
 				}
 				
 			}
 		}
-		return null;
+		return world.getTiles()[toPoint.x][toPoint.y].getShortestPath();
 	}
 	
 	public ArrayList<Tile> adjacentPassabeTiles(Tile t){
 		Tile[][] worldTiles = world.getTiles();
 		ArrayList<Tile> adj = new ArrayList<Tile>();
+		int x = t.getPoint().x;
+		int y = t.getPoint().y;
 		
-		Point[] adjs = {new Point(t.getPoint().x-1,t.getPoint().y-1),
-				new Point(t.getPoint().x,t.getPoint().y-1),
-				new Point(t.getPoint().x+1,t.getPoint().y+1),
-				new Point(t.getPoint().x-1,t.getPoint().y),
-				new Point(t.getPoint().x+1,t.getPoint().y),
-				new Point(t.getPoint().x-1,t.getPoint().y-1),
-				new Point(t.getPoint().x+1,t.getPoint().y),
-				new Point(t.getPoint().x+1,t.getPoint().y+1)};
+		Point[] adjs = {
+				new Point(x-1,y-1),
+				new Point(x,y-1),
+				new Point(x+1,y-1),
+				new Point(x-1,y),
+				new Point(x+1,y),
+				new Point(x-1,y+1),
+				new Point(x,y+1),
+				new Point(x+1,y+1)};
 		
 		for(int i=0; i<8; i++){
 			//System.out.println(adjs[i].x + ", " + adjs[i].y);
@@ -109,6 +125,17 @@ public class PathFinder {
 		}
 
 		return adj;
+	}
+	
+	private ArrayList<Tile> copyAL(ArrayList<Tile> al){
+		
+		ArrayList toReturn = new ArrayList();
+		for(Tile t: al){
+			toReturn.add(t);
+		}
+		
+		return toReturn;
+		
 	}
 	
 }
