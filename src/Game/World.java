@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class World {
 	
-	private int DEBUG_WORLD_SIZE = 10;
+	private int DEBUG_WORLD_SIZE = 20;
 	
 	//beststartpos will later be determines by looking at resource areas and choosing the area with the most plentiful amount
 	//of resources

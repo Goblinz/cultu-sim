@@ -10,8 +10,8 @@ import javax.swing.*;
 public class GameView extends JPanel{
 	Tile[][] tiles;
 	final int PAD = 20;
-	final int ROWS = 10;
-	final int COLS = 10;
+	final int ROWS = 20;
+	final int COLS = 20;
 	private boolean start = true;
 	
 	private int w;
