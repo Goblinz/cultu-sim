@@ -8,6 +8,7 @@ import java.awt.Point;
 public class Faction {
 	Color factionColor;
 	String name;
+	TechTree techTree;
 	int ID;
 	FactionAI brain;
 	Dictionary<String,Resource> resources;

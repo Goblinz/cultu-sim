@@ -20,14 +20,14 @@ public class Game {
 		Faction temp2 = new Faction(1,"hakoa",foo2);
 		//System.out.println(temp.toString());
 		//System.out.println(temp2.toString());
-		temp.setCityLocation(new Point(0,0));
+		temp.setCityLocation(new Point(5,5));
 		
-		temp2.setCityLocation(new Point(9,9));
+		temp2.setCityLocation(new Point(15,15));
 		factions.add(temp);
 		factions.add(temp2);
-		Actor city = new City(0,0,0,world);
+		Actor city = new City(0,5,5,world);
 		//System.out.println(city.toString());
-		Actor city2 = new City(1,9,9,world);
+		Actor city2 = new City(1,15,15,world);
 		//System.out.println(city.toString());
 		//System.out.println(city2.toString());
 		/*Structure testBuild = new Structure(0,0);
