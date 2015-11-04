@@ -25,8 +25,12 @@ public abstract class Actor {
 	protected int posY = 0;
 	public int factionID;
 	public int ID;
+	World world;
+	
 	public Dictionary<String,Resource> resources;
+	
 	public Actor(int x,int y,World world,int id,int factionid, ActorType actorType){
+		this.world = world;
 		type=actorType;
 		ID=id;
 		factionID=factionid;

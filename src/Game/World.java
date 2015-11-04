@@ -34,8 +34,14 @@ public class World {
 		}
 		worldTiles[3][4].setType("FERTILELAND");
 		worldTiles[5][7].setType("FERTILELAND");
+		worldTiles[13][14].setType("FERTILELAND");
+		worldTiles[1][17].setType("FERTILELAND");
+		worldTiles[13][16].setType("MINE");
+		worldTiles[14][18].setType("MINE");
 		worldTiles[3][6].setType("MINE");
 		worldTiles[4][8].setType("MINE");
+		worldTiles[18][14].setType("FOREST");
+		worldTiles[15][11].setType("FOREST");
 		worldTiles[8][4].setType("FOREST");
 		worldTiles[5][1].setType("FOREST");
 	}
