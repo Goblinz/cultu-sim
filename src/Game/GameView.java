@@ -1,10 +1,13 @@
 package Game;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class GameView extends JPanel{
@@ -13,11 +16,14 @@ public class GameView extends JPanel{
 	final int ROWS = 20;
 	final int COLS = 20;
 	private boolean start = true;
+	public JFrame mainWindow;
 	
 	private int w;
 	private int h;
 	double xInc;
 	double yInc;
+	
+	private ArrayList<JLabel> labels = new ArrayList<JLabel>();
 	
 	public GameView(){
 		addMouseListener(ml);
@@ -105,6 +111,49 @@ public class GameView extends JPanel{
             int row = (int)((p.y-PAD)/yInc);
             int col = (int)((p.x-PAD)/xInc);
             System.out.println(tiles[row][col]);
+            
+            //labels.add()
+            //testing adding a label to main window
+            
+            //remove old components
+            
+            if(!labels.isEmpty()){
+            	while(!labels.isEmpty()){
+            		mainWindow.remove(labels.get(0));
+            		labels.remove(0);
+            	}
+            	/*
+            	for(int i = 0; i <= labels.size(); i++ ){
+            		mainWindow.remove(labels.get(i));
+            		System.out.println(labels.get(i).getText());
+            		labels.remove(i);
+            	}
+            	*/
+            }
+            //System.out.println(labels.isEmpty());
+            
+            String[] info = tiles[row][col].getInfo();
+            	for(int i = 0; i < info.length; i++){
+            		JLabel newLabel = new JLabel(info[i]);
+            		newLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+            		newLabel.setBounds(400, 50 * (i + 1), 200, 22);
+            		mainWindow.getContentPane().add(newLabel);
+            		labels.add(newLabel);
+            	}
+            
+            //add new components
+            /*
+    		JLabel testLabel = new JLabel(tiles[row][col].type);
+    		testLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    		testLabel.setBounds(497, 50, 104, 22);
+    		mainWindow.getContentPane().add(testLabel);
+    		*/
+            //JList list = new Jlist();
+    		
+    		mainWindow.revalidate();
+    		mainWindow.repaint();
+    		//end test
+    		
             boolean isSelected = tiles[row][col].isSelected();
             tiles[row][col].setSelected(!isSelected);
             repaint();

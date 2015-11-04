@@ -23,6 +23,7 @@ public class Main {
 
 	private JFrame frame;
 	private Game game;
+	public JLabel lblInspector;
 
 	/**
 	 * Launch the application.
@@ -86,9 +87,10 @@ public class Main {
 		//GameView GV = new GameView();
 		GV.setBounds(20, 20, 300, 300);
 		GV.addComponentListener(GV.cl);
+		GV.mainWindow = frame;
 		frame.getContentPane().add(GV);
 
-		JLabel lblInspector = new JLabel("Inspector");
+		lblInspector = new JLabel("Inspector");
 		lblInspector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblInspector.setBounds(497, 10, 104, 22);
 		frame.getContentPane().add(lblInspector);

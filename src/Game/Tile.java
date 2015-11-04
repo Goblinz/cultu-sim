@@ -22,7 +22,7 @@ public class Tile {
 	
 	//nates stuff
 	String name;
-	private String type;
+	public String type;
 	public Actor onTile = null;
 	private boolean actorOnTile = false;
 	private Resource resource = null;
@@ -134,6 +134,25 @@ public class Tile {
     
     public void setPassable(boolean pass){
     	isPassable = pass;
+    }
+    
+    public String[] getInfo(){
+    	String[] ret = null;
+    	if(isActorOnTile()){
+    		ret = new String [5];
+    		ret[0] = "Tile type : " + type;
+    		ret[1] = "Row : " + row;
+    		ret[2] = "Col : " + col;
+    		ret[3] = "Contains : " + onTile;
+    		ret[4] = "Faction ID :" + onTile.factionID;
+    	}
+    	else{
+    		ret = new String[3];
+    		ret[0] = "Tile type : " + type;
+    		ret[1] = "Row:" + row;
+    		ret[2] = "Col:" + col;
+    	}
+    	return ret;
     }
     
         //Pathfinding stuff
