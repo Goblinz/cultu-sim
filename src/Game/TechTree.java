@@ -8,13 +8,13 @@ public class TechTree {
 	Dictionary<String,Integer> rescourceBonusRate;
 	int carryCapacity=30;
 	public TechTree(){
-		String[] temparray;
+		String[] temparray={};
 		techs = new ArrayList<Tech>();
-		Tech temp = new Tech("Grain Storage",null,10,"Improves food gather rate");
+		Tech temp = new Tech("Grain Storage",temparray,10,"Improves food gather rate");
 		techs.add(temp);
-		temp = new Tech("Axes",null,10,"Improves wood gather rate");
+		temp = new Tech("Axes",temparray,10,"Improves wood gather rate");
 		techs.add(temp);
-		temp = new Tech("Shaft Mining",null,10,"Improves metal gather rate");
+		temp = new Tech("Shaft Mining",temparray,10,"Improves metal gather rate");
 		techs.add(temp);
 		temparray = new String[]{"Grain Storage"};
 		temp = new Tech("Pottery",temparray,20,"Increases carry capicity");
@@ -40,10 +40,10 @@ public class TechTree {
 				if(!foundMatch)
 					metReq = false;
 			}
-			if(metReq)
+			if(metReq && !t.researched)
 				possibleTechs.add(t);
 		}
-		return null;
+		return possibleTechs;
 	}
 	public ArrayList<Tech> getTechList(){
 		return techs;
@@ -52,9 +52,10 @@ public class TechTree {
 		return techs;
 	}
 	public int buyTech(Tech target,int techPoints){
-		for(Tech t:techs){
-			//if()
+		if(techPoints>= target.cost){
+			target.researched=true;
+			techPoints = techPoints - target.cost;
 		}
-		return 0;
+		return techPoints;
 	}
 }

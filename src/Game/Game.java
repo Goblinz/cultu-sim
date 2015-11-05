@@ -71,7 +71,7 @@ public class Game {
 				if(tiles[i][j].isActorOnTile() && !tiles[i][j].actorOnTile().hasActed()){
 					//System.out.format("actor at %d,%d is acting\n",i,j);
 					tiles[i][j].actorOnTile().toggleActed();
-					System.out.println(tiles[i][j].actorOnTile().factionID);
+					//System.out.println(tiles[i][j].actorOnTile().factionID);
 					tiles[i][j].actorOnTile().act(world, factions.get(tiles[i][j].actorOnTile().factionID));
 					
 				}
