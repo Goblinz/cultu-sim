@@ -15,6 +15,7 @@ public class World {
 	ArrayList<Point> resourceNodes = new ArrayList<Point>();
 	ArrayList<Point> startCoords = new ArrayList<Point>();
 	Point point;
+	public int buffer = 4;
 	
 	private Tile[][] worldTiles;
 	
@@ -76,15 +77,16 @@ public class World {
 				}
 			}
 		}
+		createBestStartCoords();
 	}
 	
-	public ArrayList<Point> getBestStartingPos(){
+	public void createBestStartCoords(){
 		int check = 0;
 		Point start = null;
 		for(int i = 0; i < worldTiles.length;i++){
 			for(int j = 0 ; j < worldTiles[i].length; j++){
 				for(Point coord : resourceNodes){
-					if(coord.getX() - i < 4 && coord.getY() - j < 4){
+					if(coord.getX() - i < buffer && coord.getY() - j < buffer){
 						start.setLocation(i, j);
 						check++;
 					}
@@ -98,14 +100,20 @@ public class World {
 				start = null;
 			}
 		}
-		return startCoords;
 	}
 	
-//	public String findResourceTiles(){
-//		//Made for the debug world will change to an actual algorithm later
-//		String derp = "Mines at 3,6 and 4,4.  Forests at 6,4 and 5,4.  Furtile Land at 5,7 and 3,4.";
-//		return derp;
-//	}
+	public Point getStartPos(){
+		if(startCoords.size() == 0){
+			System.out.println("It appears there aren't any resource tiles " + buffer + " tiles away from any point");
+		}
+		
+		Random gen = new Random();
+		return startCoords.get(gen.nextInt(startCoords.size()-1));
+	}
+	
+	public void setBuffer(int x){
+		buffer = x;
+	}
 	
 	public Tile[][] getTiles(){ return worldTiles; }
 }
