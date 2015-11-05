@@ -10,7 +10,7 @@ public class World {
 	
 	//beststartpos will later be determines by looking at resource areas and choosing the area with the most plentiful amount
 	//of resources
-	private String bestStartPos = "5,5";
+	//private String bestStartPos = "5,5";
 	Random noiseGen;
 	ArrayList<Point> resourceNodes = new ArrayList<Point>();
 	ArrayList<Point> startCoords = new ArrayList<Point>();
@@ -78,23 +78,34 @@ public class World {
 		}
 	}
 	
-//	public ArrayList<Point> getBestStartingPos(){
-//		int check = 0;
-//		for(int i = 0; i < worldTiles.length;i++){
-//			for(int j = 0 ; j < worldTiles[i].length; j++){
-//				if(){
-//					
-//				}
-//			}
-//		}
-//		return null;
-//	}
-	
-	public String findResourceTiles(){
-		//Made for the debug world will change to an actual algorithm later
-		String derp = "Mines at 3,6 and 4,4.  Forests at 6,4 and 5,4.  Furtile Land at 5,7 and 3,4.";
-		return derp;
+	public ArrayList<Point> getBestStartingPos(){
+		int check = 0;
+		Point start = null;
+		for(int i = 0; i < worldTiles.length;i++){
+			for(int j = 0 ; j < worldTiles[i].length; j++){
+				for(Point coord : resourceNodes){
+					if(coord.getX() - i < 4 && coord.getY() - j < 4){
+						start.setLocation(i, j);
+						check++;
+					}
+				}
+				if(check >= 2){
+					startCoords.add(start);
+					check = 0;
+					start = null;
+				}
+				check = 0;
+				start = null;
+			}
+		}
+		return startCoords;
 	}
+	
+//	public String findResourceTiles(){
+//		//Made for the debug world will change to an actual algorithm later
+//		String derp = "Mines at 3,6 and 4,4.  Forests at 6,4 and 5,4.  Furtile Land at 5,7 and 3,4.";
+//		return derp;
+//	}
 	
 	public Tile[][] getTiles(){ return worldTiles; }
 }
