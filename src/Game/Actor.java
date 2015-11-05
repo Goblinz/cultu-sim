@@ -82,11 +82,7 @@ public abstract class Actor {
 		//g2.setPaint(color);
 		g2.draw(ellipse);
 	}
-	public void onDie(Actor killer,World world){
-		//TODO
-		System.out.println("AHHHRGGG " + killer + " killed me");
-
-	}
+	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("Type:"+type.toString());
@@ -114,7 +110,14 @@ public abstract class Actor {
 	int combatValue = 5;
 
 	public int getCombatValue(){ return combatValue; }	
+	
+	public void setCombatValue(int combat){ combatValue = combat; } 
 
+	public void onDie(Actor killer,World world){
+		//TODO
+		System.out.println("AHHHRGGG actor at (" + killer.getX()+ ", " + killer.getY() + ") killed me. my pos: (" + posX + ", " + posY + ")" );
+	}
+	
 	public static void combat(World w){
 		Tile[][] worldTiles = w.getTiles();
 		ArrayList<Actor> fights = new ArrayList<Actor>();

@@ -66,6 +66,7 @@ public class Game {
 		
 		//combat testing
 		ArrayList<Tile> adjEnemyTiles = world.getTiles()[5][5].actorOnTile().adjacentEnemyActors();
+		
 		world.getTiles()[5][5].actorOnTile().combat(world);
 		
 		for(Tile t: adjEnemyTiles){
