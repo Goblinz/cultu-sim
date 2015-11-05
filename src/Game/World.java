@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,7 +12,9 @@ public class World {
 	//of resources
 	private String bestStartPos = "5,5";
 	Random noiseGen;
-	
+	ArrayList<Point> resourceNodes = new ArrayList<Point>();
+	ArrayList<Point> startCoords = new ArrayList<Point>();
+	Point point;
 	
 	private Tile[][] worldTiles;
 	
@@ -49,17 +52,23 @@ public class World {
 	public World(long seed, int worldSizex,int worldSizey){
 		noiseGen = new Random(seed);
 		worldTiles = new Tile[worldSizex][worldSizey];
-		for(int i = 0; i < DEBUG_WORLD_SIZE; i++){
-			for(int j = 0; j < DEBUG_WORLD_SIZE;j++){
+		for(int i = 0; i < worldSizex; i++){
+			for(int j = 0; j < worldSizey;j++){
 				worldTiles[i][j] = new Tile(i,j,"ROCK",true,noiseGen.nextInt(100));
 				if(worldTiles[i][j].getNoise() <= 15){
 					worldTiles[i][j].setType("FOREST");
+					point.setLocation(i, j);
+					resourceNodes.add(point);
 				}
 				if(worldTiles[i][j].getNoise() <= 30 && worldTiles[i][j].getNoise() >= 28){
 					worldTiles[i][j].setType("MINE");
+					point.setLocation(i, j);
+					resourceNodes.add(point);
 				}
 				if(worldTiles[i][j].getNoise() <= 50 && worldTiles[i][j].getNoise() >= 45){
 					worldTiles[i][j].setType("FERTILELAND");
+					point.setLocation(i, j);
+					resourceNodes.add(point);
 				}
 				if(worldTiles[i][j].getNoise() <= 80 && worldTiles[i][j].getNoise() >= 71){
 					worldTiles[i][j].setType("WATER");
@@ -69,9 +78,17 @@ public class World {
 		}
 	}
 	
-	public String getBestStartingPos(){
-		return bestStartPos;
-	}
+//	public ArrayList<Point> getBestStartingPos(){
+//		int check = 0;
+//		for(int i = 0; i < worldTiles.length;i++){
+//			for(int j = 0 ; j < worldTiles[i].length; j++){
+//				if(){
+//					
+//				}
+//			}
+//		}
+//		return null;
+//	}
 	
 	public String findResourceTiles(){
 		//Made for the debug world will change to an actual algorithm later

@@ -18,7 +18,7 @@ public class Tile {
 	private boolean isPassable = false;
 	private boolean selected = false;
 	public Point point;
-	private int noise;
+
 	
 	//nates stuff
 	String name;
@@ -26,13 +26,15 @@ public class Tile {
 	public Actor onTile = null;
 	private boolean actorOnTile = false;
 	private Resource resource = null;
-	//private int x,y;
+	private int noise;
+	
+	public enum tileSpaces{
+		FOREST,ROCK,WATER,FERTILELAND,ICE,MINE
+	}
 	
 	public Tile(int X, int Y, String t, boolean passable, int num){
 		row = X;
 		col = Y;
-		//x=X;
-		//y=Y;
 		type = t;
 		point = new Point(X,Y);
 		isPassable = passable;
