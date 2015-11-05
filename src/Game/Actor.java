@@ -1,11 +1,13 @@
 package Game;
 
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.*;
 import java.util.List;
 
@@ -105,4 +107,80 @@ public abstract class Actor {
     public ActorType getType(){
     	return type;
     }
+    
+  //COMBAT STUFF
+  	int combatValue = 5;
+
+  	public int getCombatValue(){ return combatValue; }	
+
+  	public static void combat(World w){
+  		Tile[][] worldTiles = w.getTiles();
+  		ArrayList<Actor> fights = new ArrayList<Actor>();
+
+  		//for each tile
+  		for(int x=0; x<worldTiles.length; x++){
+  			for(int y=0; y<worldTiles[0].length; y++){
+  				//if the tile has a unit
+  				if(worldTiles[x][y].isActorOnTile()){
+  					//if there is an adjacent actor
+  					if(worldTiles[x][y].actorOnTile().adjacentEnemyActors() != null){
+  						fights.add(worldTiles[x][y].actorOnTile());
+  						fights.add(worldTiles[x][y].actorOnTile().adjacentEnemyActors().get(0).actorOnTile());
+  					}
+  				}
+
+  			}
+  		}
+  		
+  		for(int i=0; i<fights.size()-1; i++){
+  			Actor winner = fight(fights.get(i), fights.get(i+1));
+  			Actor loser;
+  			if(winner == fights.get(i)){
+  				loser = fights.get(i+1);
+  			}else{
+  				loser = fights.get(i);
+  			}
+  		}
+  		
+
+  	}
+
+  	private static Actor fight(Actor a1, Actor a2){
+
+  		double a1c = Math.random()+5;
+  		double a2c = Math.random()+5;
+
+  		if(a1.getCombatValue()*a1c>a2.getCombatValue()*a2c){
+  			return a1;
+  		}
+  		return a2;
+  	}
+
+  	public ArrayList<Tile> adjacentEnemyActors(){
+  		Tile[][] worldTiles = world.getTiles();
+  		ArrayList<Tile> enemies = new ArrayList<Tile>();
+  		int x = posX;
+  		int y = posY;
+
+  		Point[] adjs = {
+  				new Point(x-1,y-1),
+  				new Point(x,y-1),
+  				new Point(x+1,y-1),
+  				new Point(x-1,y),
+  				new Point(x+1,y),
+  				new Point(x-1,y+1),
+  				new Point(x,y+1),
+  				new Point(x+1,y+1)};
+
+  		for(int i=0; i<8; i++){
+  			if(adjs[i].x>=0 && adjs[i].y>=0   &&   adjs[i].x<worldTiles.length && adjs[i].y<worldTiles[0].length){
+  				if(worldTiles[adjs[i].x][adjs[i].y].isActorOnTile() && worldTiles[adjs[i].x][adjs[i].y].actorOnTile().factionID != factionID ){
+  					enemies.add(worldTiles[adjs[i].x][adjs[i].y]);
+  				}
+  			}
+  		}
+
+  		return enemies;
+  	}
+    
 }
