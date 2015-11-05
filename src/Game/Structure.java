@@ -9,12 +9,15 @@ public class Structure extends Actor {
 	}
 	public void act(World world,Faction faction){
 		Tile onTile = world.getTiles()[posX][posY];
-		if(onTile.getType() == "FERTILELAND")
+		if(onTile.getType() == "FERTILELAND"){
 			resources.get("Food").addQuantity(5);
-		else if(onTile.getType() == "MINE")
+		}
+		else if(onTile.getType() == "MINE"){
 			resources.get("Metal").addQuantity(5);
-		else if(onTile.getType() == "FOREST")
+		}
+		else if(onTile.getType() == "FOREST"){
 			resources.get("Wood").addQuantity(5);
+		}
 	}
 
 }

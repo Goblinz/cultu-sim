@@ -55,9 +55,11 @@ public class World {
 		worldTiles = new Tile[worldSizex][worldSizey];
 		for(int i = 0; i < worldSizex; i++){
 			for(int j = 0; j < worldSizey;j++){
+				point = new Point();
 				worldTiles[i][j] = new Tile(i,j,"ROCK",true,noiseGen.nextInt(100));
 				if(worldTiles[i][j].getNoise() <= 15){
 					worldTiles[i][j].setType("FOREST");
+					System.out.format("bulding %d,%d \n",i,j);
 					point.setLocation(i, j);
 					resourceNodes.add(point);
 				}
@@ -82,9 +84,10 @@ public class World {
 	
 	public void createBestStartCoords(){
 		int check = 0;
-		Point start = null;
+		Point start = new Point();
 		for(int i = 0; i < worldTiles.length;i++){
 			for(int j = 0 ; j < worldTiles[i].length; j++){
+				start = new Point();
 				for(Point coord : resourceNodes){
 					if(coord.getX() - i < buffer && coord.getY() - j < buffer){
 						start.setLocation(i, j);
