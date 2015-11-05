@@ -83,6 +83,8 @@ public abstract class Actor {
 		g2.draw(ellipse);
 	}
 	public void onDie(Actor killer,World world){
+		//TODO
+		System.out.println("AHHHRGGG " + killer + " killed me");
 
 	}
 	public String toString(){
@@ -127,9 +129,10 @@ public abstract class Actor {
 					if(adjEnemyTiles != null){
 
 						//removes tiles with adjacent enemy actors are already in a fight
-						for(Tile t: adjEnemyTiles){
-							if(fights.contains(t.actorOnTile())){
-								adjEnemyTiles.remove(t);
+						//for(Tile t: adjEnemyTiles){
+						for(int i=0; i<adjEnemyTiles.size(); i++){
+							if(fights.contains(adjEnemyTiles.get(i).actorOnTile())){
+								adjEnemyTiles.remove(adjEnemyTiles.get(i));
 							}
 						}
 

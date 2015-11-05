@@ -51,7 +51,8 @@ public class Game {
 			temp.setCityLocation(pos);
 			factions.add(temp);
 			Actor city = new City(i,pos.x,pos.y,world);
-			
+			new Structure(0,-1,5,5,world);
+			new Structure(1,-1,6,6,world);
 		}
 	}
 	/*
@@ -62,6 +63,17 @@ public class Game {
 	*/
 	public void tick(){
 		//TODO FACTION ACT
+		
+		//combat testing
+		ArrayList<Tile> adjEnemyTiles = world.getTiles()[5][5].actorOnTile().adjacentEnemyActors();
+		world.getTiles()[5][5].actorOnTile().combat(world);
+		
+		for(Tile t: adjEnemyTiles){
+			//System.out.println(t.point);
+		}
+		
+		//end combat testing
+		
 		for(Faction f:factions){
 			f.act(world, factions);
 		}
@@ -73,7 +85,7 @@ public class Game {
 					tiles[i][j].actorOnTile().toggleActed();
 					//System.out.println(tiles[i][j].actorOnTile().factionID);
 					tiles[i][j].actorOnTile().act(world, factions.get(tiles[i][j].actorOnTile().factionID));
-					
+	
 				}
 			}
 		}
