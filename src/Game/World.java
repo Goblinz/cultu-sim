@@ -1,8 +1,11 @@
 package Game;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class World {
 	
@@ -19,11 +22,36 @@ public class World {
 	
 	private Tile[][] worldTiles;
 	
-	//x and y are the size of the world in tiles
 	public World(int x, int y){
 		//basic world gen
 		
 		worldTiles = new Tile[x][y];
+		noiseGen = new Random();
+		
+		for(int i = 0; i < DEBUG_WORLD_SIZE; i++){
+			for(int j = 0; j < DEBUG_WORLD_SIZE;j++){
+				worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,noiseGen.nextInt(100),(i*4 + noiseGen.nextInt(20)));
+				
+				if(worldTiles[i][j].getTemp() < 18 && worldTiles[i][j].getNoise() < 20 ){
+					worldTiles[i][j].setType(TileType.ROCK);
+				}
+				if(worldTiles[i][j].getTemp() < 28 && worldTiles[i][j].getNoise() > 60){
+					worldTiles[i][j].setType(TileType.MINE);
+				}
+				if(worldTiles[i][j].getTemp() >=29){
+					int num = noiseGen.nextInt(100);
+					if(num <= 25){
+						worldTiles[i][j].setType(TileType.FOREST);
+					}
+					if(num >= 25 && num <= 50){
+						worldTiles[i][j].setType(TileType.FERTILELAND);
+					}
+					if(num >= 51 && num <= 79){
+						worldTiles[i][j].setType(TileType.ICE);
+					}
+				}
+			}
+		}
 	}
 	
 	public World(){
@@ -33,21 +61,57 @@ public class World {
 		for(int i = 0; i < DEBUG_WORLD_SIZE; i++){
 			for(int j = 0; j < DEBUG_WORLD_SIZE;j++){
 				//worldTiles[i][j] = new Tile(i,j,"ROCK",true,noiseGen.nextInt(100));
-				worldTiles[i][j] = new Tile(i,j,"ROCK",true,0);
+				worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
 			}
 		}
-		worldTiles[3][4].setType("FERTILELAND");
-		worldTiles[5][7].setType("FERTILELAND");
-		worldTiles[13][14].setType("FERTILELAND");
-		worldTiles[1][17].setType("FERTILELAND");
-		worldTiles[13][16].setType("MINE");
-		worldTiles[14][18].setType("MINE");
-		worldTiles[3][6].setType("MINE");
-		worldTiles[4][8].setType("MINE");
-		worldTiles[18][14].setType("FOREST");
-		worldTiles[15][11].setType("FOREST");
-		worldTiles[8][4].setType("FOREST");
-		worldTiles[5][1].setType("FOREST");
+		worldTiles[3][4].setType(TileType.FERTILELAND);
+		worldTiles[5][7].setType(TileType.FERTILELAND);
+		worldTiles[13][14].setType(TileType.FERTILELAND);
+		worldTiles[1][17].setType(TileType.FERTILELAND);
+		worldTiles[13][16].setType(TileType.MINE);
+		worldTiles[14][18].setType(TileType.MINE);
+		worldTiles[3][6].setType(TileType.MINE);
+		worldTiles[4][8].setType(TileType.MINE);
+		worldTiles[18][14].setType(TileType.FOREST);
+		worldTiles[15][11].setType(TileType.FOREST);
+		worldTiles[8][4].setType(TileType.FOREST);
+		worldTiles[5][1].setType(TileType.FOREST);
+	}
+	
+	public World(String worldName) throws FileNotFoundException{
+		Scanner scanner = new Scanner(new File("src/Worlds/Debug.txt"));
+		
+		scanner.useDelimiter(",");
+		
+		int count = 0;
+		
+		int x = scanner.nextInt();
+		int y = scanner.nextInt();
+		
+		System.out.println("rows: " + x + " columns: " + y);
+		
+		worldTiles = new Tile[x][y];
+		scanner.nextLine();
+		for(int i = 0; i < x; i++){
+			for(int j = 0; j < y;j++){
+				String foo = "";
+				
+				foo = scanner.next();
+				System.out.println(foo);
+				if (foo.compareTo("x") == 0){
+					count++;
+					System.out.format("adding to %d,%d\n",i,j);
+					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+				}
+			}
+			scanner.nextLine();
+		}
+		for(int i=0;i<20;i++){
+			for(int j=0;j<20;j++)
+				System.out.format("%s",worldTiles[i][j]);
+			System.out.println();
+		}
+		System.out.println(count);
 	}
 	
 	public World(long seed, int worldSizex,int worldSizey){
@@ -55,24 +119,24 @@ public class World {
 		worldTiles = new Tile[worldSizex][worldSizey];
 		for(int i = 0; i < worldSizex; i++){
 			for(int j = 0; j < worldSizey;j++){
-				worldTiles[i][j] = new Tile(i,j,"ROCK",true,noiseGen.nextInt(100));
+				worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,noiseGen.nextInt(100),0);
 				if(worldTiles[i][j].getNoise() <= 15){
-					worldTiles[i][j].setType("FOREST");
+					worldTiles[i][j].setType(TileType.FOREST);
 					point.setLocation(i, j);
 					resourceNodes.add(point);
 				}
 				if(worldTiles[i][j].getNoise() <= 30 && worldTiles[i][j].getNoise() >= 28){
-					worldTiles[i][j].setType("MINE");
+					worldTiles[i][j].setType(TileType.MINE);
 					point.setLocation(i, j);
 					resourceNodes.add(point);
 				}
 				if(worldTiles[i][j].getNoise() <= 50 && worldTiles[i][j].getNoise() >= 45){
-					worldTiles[i][j].setType("FERTILELAND");
+					worldTiles[i][j].setType(TileType.FERTILELAND);
 					point.setLocation(i, j);
 					resourceNodes.add(point);
 				}
 				if(worldTiles[i][j].getNoise() <= 80 && worldTiles[i][j].getNoise() >= 71){
-					worldTiles[i][j].setType("WATER");
+					worldTiles[i][j].setType(TileType.WATER);
 					worldTiles[i][j].setPassable(false);
 				}
 			}

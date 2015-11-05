@@ -22,26 +22,28 @@ public class Tile {
 	
 	//nates stuff
 	String name;
-	public String type;
 	public Actor onTile = null;
 	private boolean actorOnTile = false;
 	private Resource resource = null;
 	private int noise;
+	private int temp;
+	public TileType type;
 	
 	public enum tileSpaces{
 		FOREST,ROCK,WATER,FERTILELAND,ICE,MINE
 	}
 	
-	public Tile(int X, int Y, String t, boolean passable, int num){
+	public Tile(int X, int Y, TileType typ, boolean passable, int num, int temperature){
 		row = X;
 		col = Y;
-		type = t;
+		type = typ;
 		point = new Point(X,Y);
 		isPassable = passable;
 		noise = num;
+		temp = temperature;
 	}
 	
-	public Tile(int r, int c, Rectangle2D.Double rect, String resource){
+	public Tile(int r, int c, Rectangle2D.Double rect, TileType resource){
 		row = r;
 		col = c;
 		this.rect = rect;
@@ -77,9 +79,11 @@ public class Tile {
 	public Resource getResource(){ return resource; }
 	public void setResource(Resource r){ resource = r; }
 	
-	public String getType(){ return type; }
-	public void setType(String tp){
-		//TODO check type
+	public TileType getType(){ 
+		return type; 
+	}
+	
+	public void setType(TileType tp){
 		type = tp;
 	}
 	
@@ -87,19 +91,19 @@ public class Tile {
 	
     public void draw(Graphics2D g2) {
         //g2.setPaint(selected ? selColor : bgColor);
-        if(type == "ROCK"){
+        if(type == TileType.ROCK){
         	g2.setPaint(Color.black);
         }
-        else if (type == "FOREST"){
+        else if (type == TileType.FOREST){
         	g2.setPaint(Color.green);
         }
-        else if(type == "MINE"){
+        else if(type == TileType.MINE){
         	g2.setPaint(Color.gray);
         }
-        else if(type == "FERTILELAND"){
+        else if(type == TileType.FERTILELAND){
         	g2.setPaint(Color.magenta);
         }
-        else if(type == "WATER"){
+        else if(type == TileType.WATER){
         	g2.setPaint(Color.BLUE);
         }
         g2.fill(rect);
@@ -163,4 +167,9 @@ public class Tile {
     public ArrayList<Tile> getShortestPath(){ return shortestPath; }
     
     public void setShortestPath(ArrayList<Tile> s){ shortestPath = s; }
+
+	public int getTemp() {
+		// TODO Auto-generated method stub
+		return temp;
+	}
 }
