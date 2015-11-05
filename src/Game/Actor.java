@@ -63,10 +63,16 @@ public abstract class Actor {
 	public void toggleActed(){hasActed = !hasActed;}
 	//fuck this
     public void draw(Graphics2D g2) {
-    	if(factionID==1)
+    	if(factionID==0)
     		g2.setPaint(Color.RED);
-    	else
-    		g2.setPaint(Color.CYAN);
+    	else if(factionID==1)
+    		g2.setPaint(new Color(200,50,50));
+    	else if(factionID==2)
+    		g2.setPaint(new Color(150,150,50));
+    	else if(factionID==3)
+    		g2.setPaint(new Color(50,150,50));
+    	else if(factionID==4)
+    		g2.setPaint(new Color(150,50,150));
     	
     	//need to set ellipse
         g2.setPaint(color);

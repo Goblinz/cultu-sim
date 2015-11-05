@@ -59,7 +59,7 @@ public class World {
 				worldTiles[i][j] = new Tile(i,j,"ROCK",true,noiseGen.nextInt(100));
 				if(worldTiles[i][j].getNoise() <= 15){
 					worldTiles[i][j].setType("FOREST");
-					System.out.format("bulding %d,%d \n",i,j);
+					//System.out.format("bulding %d,%d \n",i,j);
 					point.setLocation(i, j);
 					resourceNodes.add(point);
 				}
