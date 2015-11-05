@@ -157,10 +157,37 @@ public class Tile {
     	return ret;
     }
     
-        //Pathfinding stuff
-    ArrayList<Tile> shortestPath = null;
-    
-    public ArrayList<Tile> getShortestPath(){ return shortestPath; }
-    
-    public void setShortestPath(ArrayList<Tile> s){ shortestPath = s; }
+
+	//Pathfinding stuff
+
+	private Tile last = null;
+	public Tile getLastTile(){	return last; }
+	
+	public void setLastTile(Tile t){ last = t; }
+	
+	public int pathLength(){
+		if(this.getLastTile()==this){
+			return 1;
+		}
+		
+		if(this.getLastTile()==null){
+			return 0;
+		}else{
+			return this.getLastTile().pathLength()+1;
+		}
+	}
+	
+	public ArrayList<Tile> getShortestPath2(){
+		ArrayList<Tile> toReturn = new ArrayList<Tile>();
+		Tile temp = this;
+		System.out.println("LT: " + this.getLastTile());
+		
+		for(int i=0; i<this.pathLength(); i++){
+			toReturn.add(temp);
+			temp = temp.getLastTile();
+		}
+		
+		return toReturn;
+		
+	}
 }
