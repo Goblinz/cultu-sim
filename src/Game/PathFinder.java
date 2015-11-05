@@ -46,11 +46,12 @@ public class PathFinder {
 	 * @return an ArrayList of Tiles that is the shortest not obstructed path
 	 */
 	public ArrayList<Tile> getPathToAL(World w, Actor a, Point p){
+				
 		
 		//sets the shortest path of all tiles to null
 		for(Tile[] TA: w.getTiles()){
 			for(Tile t: TA){
-				t.setShortestPath(null);
+				t.setLastTile(null);
 			}
 		}
 		
@@ -63,31 +64,41 @@ public class PathFinder {
 		ArrayList<Tile> exploredTiles = new ArrayList<Tile>();
 		
 		stack.add(current);
+		current.setLastTile(current);
 		while(stack.size()>0){
 			last = current;
 			current = stack.remove(stack.size()-1);
 			//if unexplored
-			if(current.shortestPath==null){
-				
-				//finds adjacent tile with shortest path TODO
-				ArrayList<Tile> shortestPath = new ArrayList<Tile>();
-				int shortestSize = 9999999;
-				
-				//for each adjacent passable tile
-				ArrayList<Tile> adjTiles = adjacentPassabeTiles(current);
-				for(Tile t: adjTiles){
-					if(t.getShortestPath()!=null && shortestSize > t.getShortestPath().size()){
-						shortestSize = t.getShortestPath().size();
-						shortestPath = t.getShortestPath();
-					}
-				}				
-				
-				if(current.getShortestPath()==null || shortestPath.size()<current.getShortestPath().size()){
-					ArrayList<Tile> toAdd = copyAL(shortestPath);
-					toAdd.add(current);
-					current.setShortestPath(toAdd);
-				}
+			if(!exploredTiles.contains(current)){
 
+				ArrayList<Tile> adjTiles = adjacentPassabeTiles(current);
+
+				exploredTiles.add(current);
+				int shortPath = 99999999;
+				Tile shortTile = null;
+				//finds adjacent tile with the shortest path
+				for(Tile t: adjTiles){
+					
+					if(t.getLastTile()==null){
+						t.setLastTile(current);
+					}
+					
+					if(t.getPoint().x==0 && t.getPoint().y==0){
+						//System.out.println("PATH LENGTH OF TILE t: " + t.pathLength() + "######################################");	
+					}
+
+					if(t.pathLength()<shortPath && t.pathLength() != 0){
+						shortTile = t;
+						shortPath = t.pathLength();
+					}
+				}
+				
+				//System.out.println(shortTile);
+				if(current.getLastTile()==null ||(shortPath<current.pathLength() && shortTile != null)){
+					current.setLastTile(shortTile);
+				}
+				//PF 2 END
+				
 				for(Tile t: adjacentPassabeTiles(current)){
 					stack.add(t);
 					//System.out.println("fount it");
@@ -95,7 +106,7 @@ public class PathFinder {
 				
 			}
 		}
-		return world.getTiles()[toPoint.x][toPoint.y].getShortestPath();
+		return world.getTiles()[toPoint.x][toPoint.y].getShortestPath2();
 	}
 	
 	public ArrayList<Tile> adjacentPassabeTiles(Tile t){
@@ -116,7 +127,12 @@ public class PathFinder {
 		
 		for(int i=0; i<8; i++){
 			//System.out.println(adjs[i].x + ", " + adjs[i].y);
-
+			
+			//System.out.println(actor);
+			if(adjs[i].x==actor.getX() && adjs[i].y==actor.getY()){
+				adj.add(worldTiles[adjs[i].x][adjs[i].y]);
+			}
+			
 			if(adjs[i].x>=0 && adjs[i].y>=0   &&   adjs[i].x<worldTiles.length && adjs[i].y<worldTiles[0].length){
 				if(worldTiles[adjs[i].x][adjs[i].y].isPassable() && !worldTiles[adjs[i].x][adjs[i].y].isActorOnTile()){
 					adj.add(worldTiles[adjs[i].x][adjs[i].y]);
@@ -125,17 +141,6 @@ public class PathFinder {
 		}
 
 		return adj;
-	}
-	
-	private ArrayList<Tile> copyAL(ArrayList<Tile> al){
-		
-		ArrayList toReturn = new ArrayList();
-		for(Tile t: al){
-			toReturn.add(t);
-		}
-		
-		return toReturn;
-		
 	}
 	
 }
