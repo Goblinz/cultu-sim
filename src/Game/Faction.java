@@ -9,6 +9,7 @@ public class Faction {
 	Color factionColor;
 	String name;
 	TechTree techTree;
+	int techPoints=0;
 	int ID;
 	FactionAI brain;
 	Dictionary<String,Resource> resources;
@@ -17,7 +18,7 @@ public class Faction {
 		ID = idNum;
 		name = factionName;
 		brain = type;
-		
+		techTree = new TechTree();
 		resources = new Hashtable<String,Resource>();
 		Resource temp = new Resource("Food",100);
 		resources.put(temp.getType(), temp);
@@ -28,7 +29,7 @@ public class Faction {
 	}
 	public void act(World world,ArrayList<Faction> factions){
 		//spawn stuff in
-		System.out.println("faction " + ID + "acting");
+		//System.out.println("faction " + ID + "acting");
 		brain.FactionAct(this, world, factions);
 	}
 	public Dictionary<String,Resource> getResources(){

@@ -19,4 +19,5 @@ public class Tech {
 		return researched;
 	}
 	public String[] getPreReq(){return preReq;}
+	public String ToString(){return name;}
 }
