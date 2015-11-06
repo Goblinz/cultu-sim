@@ -99,4 +99,114 @@ public abstract class Actor {
     public ActorType getType(){
     	return type;
     }
+    
+    //COMBAT STUFF
+	int combatValue = 5;
+
+	public int getCombatValue(){ return combatValue; }	
+	
+	public void setCombatValue(int combat){ combatValue = combat; } 
+
+	public void onDie(Actor killer,World world){
+		//TODO
+		System.out.println("AHHHRGGG actor at (" + killer.getX()+ ", " + killer.getY() + ") killed me! my pos: (" + posX + ", " + posY + ")" );
+		
+	}
+	
+	public static void combat(World w){
+		Tile[][] worldTiles = w.getTiles();
+		ArrayList<Actor> fights = new ArrayList<Actor>();
+
+		//for each tile
+		for(int x=0; x<worldTiles.length; x++){
+			for(int y=0; y<worldTiles[0].length; y++){
+				//if the tile has a unit and that actor isn't already in a fight
+				if(worldTiles[x][y].isActorOnTile() && !fights.contains(worldTiles[x][y].actorOnTile())){
+					//if there is an adjacent enemy actor
+					ArrayList<Tile> adjEnemyTiles = worldTiles[x][y].actorOnTile().adjacentEnemyActors();
+					if(adjEnemyTiles != null){
+
+						//removes tiles with adjacent enemy actors are already in a fight
+						//for(Tile t: adjEnemyTiles){
+						for(int i=0; i<adjEnemyTiles.size(); i++){
+							if(fights.contains(adjEnemyTiles.get(i).actorOnTile())){
+								adjEnemyTiles.remove(adjEnemyTiles.get(i));
+							}
+						}
+
+						//if tiles are left in adjEnemyTiles
+						if(adjEnemyTiles.size()>=1){
+							fights.add(worldTiles[x][y].actorOnTile());
+							fights.add(adjEnemyTiles.get(0).actorOnTile());
+						}
+					}
+				}
+
+			}
+		}
+
+		ArrayList<Actor> losers = new ArrayList<Actor>();
+		ArrayList<Actor> winners = new ArrayList<Actor>();
+		for(int i=0; i<fights.size()-1; i++){
+			Actor winner = fight(fights.get(i), fights.get(i+1));
+			Actor loser;
+			if(winner == fights.get(i)){
+				loser = fights.get(i+1);
+			}else{
+				loser = fights.get(i);
+			}
+			losers.add(loser);
+			winners.add(winner);
+		}
+
+		for(int i=0; i<winners.size(); i++){
+			losers.get(i).onDie(winners.get(i), w);
+		}
+
+
+	}
+
+	/**
+	 * 
+	 * @param a1 actor 1
+	 * @param a2 actor 2
+	 * @return the winn
+	 */
+	private static Actor fight(Actor a1, Actor a2){
+
+		double a1c = Math.random()+5;
+		double a2c = Math.random()+5;
+
+		if(a1.getCombatValue()*a1c>a2.getCombatValue()*a2c){
+			return a1;
+		}
+		return a2;
+	}
+
+	public ArrayList<Tile> adjacentEnemyActors(){
+		Tile[][] worldTiles = world.getTiles();
+		ArrayList<Tile> enemies = new ArrayList<Tile>();
+		int x = posX;
+		int y = posY;
+
+		Point[] adjs = {
+				new Point(x-1,y-1),
+				new Point(x,y-1),
+				new Point(x+1,y-1),
+				new Point(x-1,y),
+				new Point(x+1,y),
+				new Point(x-1,y+1),
+				new Point(x,y+1),
+				new Point(x+1,y+1)};
+
+		for(int i=0; i<8; i++){
+			if(adjs[i].x>=0 && adjs[i].y>=0   &&   adjs[i].x<worldTiles.length && adjs[i].y<worldTiles[0].length){
+				if(worldTiles[adjs[i].x][adjs[i].y].isActorOnTile() && worldTiles[adjs[i].x][adjs[i].y].actorOnTile().factionID != factionID ){
+					enemies.add(worldTiles[adjs[i].x][adjs[i].y]);
+				}
+			}
+		}
+
+		return enemies;
+	}
 }
