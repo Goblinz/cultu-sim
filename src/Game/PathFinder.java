@@ -109,6 +109,11 @@ public class PathFinder {
 		return world.getTiles()[toPoint.x][toPoint.y].getShortestPath2();
 	}
 	
+	/**
+	 * 
+	 * @param t Tile
+	 * @return ArrayList of adjacent passable tiles
+	 */
 	public ArrayList<Tile> adjacentPassabeTiles(Tile t){
 		Tile[][] worldTiles = world.getTiles();
 		ArrayList<Tile> adj = new ArrayList<Tile>();
