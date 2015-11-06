@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class MoveGather implements Order {
 	private Point[] path;
@@ -25,6 +26,12 @@ public class MoveGather implements Order {
 		else{
 			ydir=0;
 		}
+		/*
+		PathFinder pathfind = new PathFinder();
+		Tile[] tilePath = pathfind.getPathTo(world, self, path[pathPointer]);
+		xdir = tilePath[0].getPoint().x - self.getX();
+		ydir = tilePath[0].getPoint().y - self.getY();*/
+		
 		//System.out.format("actor trying to move in %d,%d heading twoards %s\n",xdir,ydir,path[pathPointer].toString());
 		if (xdir == 0 && ydir == 0) {
 			updatePoint();

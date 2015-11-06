@@ -4,13 +4,35 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class SimpleFactionAI implements FactionAI {
-	String[] buildQueue = { "FOREST", "FERTILELAND", "MINE" };
+	TileType[] buildQueue = { TileType.FOREST, TileType.FERTILELAND, TileType.MINE };
 	int buildQueueIndex = 0;
 	int curID = 1;
 
 	public void FactionAct(Faction self, World world,
 			ArrayList<Faction> factions) {
-		String tileSearch = buildQueue[buildQueueIndex];
+<<<<<<< .mine
+		TileType tileSearch = buildQueue[buildQueueIndex];
+		self.techPoints++;
+		//research tech if possible
+		//System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
+		for(Tech t: self.techTree.getPossibleTechs()){
+			if(t.cost<=self.techPoints){
+				self.techPoints = self.techTree.buyTech(t, self.techPoints);
+				System.out.format("%s has researched %s granting %s\n",self.name,t.name,t.desc);
+			}
+		}
+||||||| .r115
+		self.techPoints++;
+		//research tech if possible
+		//System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
+		for(Tech t: self.techTree.getPossibleTechs()){
+			if(t.cost<=self.techPoints){
+				self.techPoints = self.techTree.buyTech(t, self.techPoints);
+				System.out.format("%s has researched %s granting %s\n",self.name,t.name,t.desc);
+			}
+		}
+=======
+>>>>>>> .r116
 		if (self.resources.get("Food").getQuantity() >= 50
 				&& self.resources.get("Wood").getQuantity() >= 50) {
 			self.resources.get("Food").addQuantity(-50);
@@ -32,7 +54,7 @@ public class SimpleFactionAI implements FactionAI {
 		}
 	}
 
-	private Point findNearest(String type, Point orgin, World world) {
+	private Point findNearest(TileType type, Point orgin, World world) {
 		Point Return = null;
 
 		for (int i = 0; i < world.getTiles().length; i++) {

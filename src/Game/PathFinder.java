@@ -127,6 +127,7 @@ public class PathFinder {
 		return adj;
 	}
 	
+
 	private ArrayList<Tile> copyAL(ArrayList<Tile> al){
 		
 		ArrayList toReturn = new ArrayList();
