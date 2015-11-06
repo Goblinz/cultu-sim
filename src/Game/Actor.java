@@ -1,11 +1,13 @@
 package Game;
 
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.*;
 import java.util.List;
 
@@ -74,9 +76,7 @@ public abstract class Actor {
         //g2.setPaint(color);
         g2.draw(ellipse);
     }
-    public void onDie(Actor killer,World world){
-    	
-    }
+
     public String toString(){
     	StringBuilder sb = new StringBuilder();
     	sb.append("Type:"+type.toString());
@@ -120,7 +120,7 @@ public abstract class Actor {
 	 * @param killer
 	 * @param world
 	 */
-	public void onDie(Actor killer,World world){
+	public void onDie(Actor killer, World world){
 		//TODO
 		System.out.println("AHHHRGGG actor at (" + killer.getX()+ ", " + killer.getY() + ") killed me! my pos: (" + posX + ", " + posY + ")" );
 		
