@@ -10,29 +10,16 @@ public class SimpleFactionAI implements FactionAI {
 
 	public void FactionAct(Faction self, World world,
 			ArrayList<Faction> factions) {
-<<<<<<< .mine
 		TileType tileSearch = buildQueue[buildQueueIndex];
 		self.techPoints++;
 		//research tech if possible
 		//System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
-		for(Tech t: self.techTree.getPossibleTechs()){
+		/*for(Tech t: self.techTree.getPossibleTechs()){
 			if(t.cost<=self.techPoints){
 				self.techPoints = self.techTree.buyTech(t, self.techPoints);
-				System.out.format("%s has researched %s granting %s\n",self.name,t.name,t.desc);
+				//System.out.format("%s has researched %s granting %s\n",self.name,t.name,t.desc);
 			}
-		}
-||||||| .r115
-		self.techPoints++;
-		//research tech if possible
-		//System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
-		for(Tech t: self.techTree.getPossibleTechs()){
-			if(t.cost<=self.techPoints){
-				self.techPoints = self.techTree.buyTech(t, self.techPoints);
-				System.out.format("%s has researched %s granting %s\n",self.name,t.name,t.desc);
-			}
-		}
-=======
->>>>>>> .r116
+		}*/
 		if (self.resources.get("Food").getQuantity() >= 50
 				&& self.resources.get("Wood").getQuantity() >= 50) {
 			self.resources.get("Food").addQuantity(-50);

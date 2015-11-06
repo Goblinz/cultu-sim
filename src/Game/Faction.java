@@ -10,6 +10,7 @@ public class Faction {
 	String name;
 	TechTree techTree;
 	int ID;
+	int techPoints=0;
 	FactionAI brain;
 	Dictionary<String,Resource> resources;
 	Point cityloc;

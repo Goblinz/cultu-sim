@@ -168,7 +168,6 @@ public class Tile {
     
     public void setShortestPath(ArrayList<Tile> s){ shortestPath = s; }
 
-<<<<<<< .mine
 	public int getTemp() {
 		// TODO Auto-generated method stub
 		return temp;
@@ -192,32 +191,8 @@ public class Tile {
 				return this.getLastTile().pathLength()+1;
 			}
 		}
-||||||| .r115
-	//Pathfinding stuff
-
-	private Tile last = null;
-	public Tile getLastTile(){	return last; }
 	
-	public void setLastTile(Tile t){ last = t; }
-	
-	public int pathLength(){
-		if(this.getLastTile()==this){
-			return 1;
-		}
-		
-		if(this.getLastTile()==null){
-			return 0;
-		}else{
-			return this.getLastTile().pathLength()+1;
-		}
-=======
-	public int getTemp() {
-		// TODO Auto-generated method stub
-		return temp;
->>>>>>> .r116
-<<<<<<< .mine
-		
-		public ArrayList<Tile> getShortestPath2(){
+	public ArrayList<Tile> getShortestPath2(){
 			ArrayList<Tile> toReturn = new ArrayList<Tile>();
 			Tile temp = this;
 			System.out.println("LT: " + this.getLastTile());
@@ -230,23 +205,5 @@ public class Tile {
 			return toReturn;
 			
 		}
-||||||| .r115
 	}
-	
-	public ArrayList<Tile> getShortestPath2(){
-		ArrayList<Tile> toReturn = new ArrayList<Tile>();
-		Tile temp = this;
-		System.out.println("LT: " + this.getLastTile());
-		
-		for(int i=0; i<this.pathLength(); i++){
-			toReturn.add(temp);
-			temp = temp.getLastTile();
-		}
-		
-		return toReturn;
-		
-	}
-=======
-	}
->>>>>>> .r116
-}
+

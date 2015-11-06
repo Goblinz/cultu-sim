@@ -119,15 +119,8 @@ public class World {
 		worldTiles = new Tile[worldSizex][worldSizey];
 		for(int i = 0; i < worldSizex; i++){
 			for(int j = 0; j < worldSizey;j++){
-<<<<<<< .mine
 				point = new Point();
 				worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,noiseGen.nextInt(100),0);
-||||||| .r115
-				point = new Point();
-				worldTiles[i][j] = new Tile(i,j,"ROCK",true,noiseGen.nextInt(100));
-=======
-				worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,noiseGen.nextInt(100),0);
->>>>>>> .r116
 				if(worldTiles[i][j].getNoise() <= 15){
 					worldTiles[i][j].setType(TileType.FOREST);
 					point.setLocation(i, j);
