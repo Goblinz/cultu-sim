@@ -83,7 +83,7 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		final GameView GV = new GameView(game.world.getTiles());
+		final GameView GV = new GameView(game.world.getTiles(), game);
 		//GameView GV = new GameView();
 		GV.setBounds(20, 20, 300, 300);
 		GV.addComponentListener(GV.cl);
@@ -108,6 +108,9 @@ public class Main {
 		JButton btnPlay = new JButton("Play");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//start game loop
+				Thread thread = new Thread(GV);
+				thread.start();
 			}
 		});
 		btnPlay.setBounds(109, 384, 89, 23);
@@ -116,6 +119,8 @@ public class Main {
 		JButton btnPause = new JButton("Pause");
 		btnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//pause game loop
+				GV.pause = true;
 			}
 		});
 		btnPause.setBounds(10, 384, 89, 23);
@@ -146,4 +151,5 @@ public class Main {
 		rdbtnHuntingGround.setBounds(121, 467, 109, 23);
 		frame.getContentPane().add(rdbtnHuntingGround);
 	}
+	
 }

@@ -10,13 +10,15 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class GameView extends JPanel{
+public class GameView extends JPanel implements Runnable{
 	Tile[][] tiles;
 	final int PAD = 20;
 	final int ROWS = 20;
 	final int COLS = 20;
 	private boolean start = true;
 	public JFrame mainWindow;
+	private Game game;
+	public boolean pause = false;
 	
 	private int w;
 	private int h;
@@ -29,9 +31,10 @@ public class GameView extends JPanel{
 		addMouseListener(ml);
 	}
 	
-	public GameView(Tile[][] tiles){
+	public GameView(Tile[][] tiles, Game game){
 		addMouseListener(ml);
 		this.tiles = tiles;
+		this.game = game;
 		//initTiles();
 	}
 	
@@ -172,4 +175,23 @@ public class GameView extends JPanel{
             repaint();
         }
     };
+
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true){
+			game.tick();
+			repaint();
+			if(pause){
+				pause = false;
+				break;
+			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+   
 }
