@@ -18,7 +18,7 @@ public class Faction {
 		ID = idNum;
 		name = factionName;
 		brain = type;
-		
+		techTree = new TechTree();
 		resources = new Hashtable<String,Resource>();
 		Resource temp = new Resource("Food",100);
 		resources.put(temp.getType(), temp);

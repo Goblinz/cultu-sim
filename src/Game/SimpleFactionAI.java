@@ -13,13 +13,14 @@ public class SimpleFactionAI implements FactionAI {
 		TileType tileSearch = buildQueue[buildQueueIndex];
 		self.techPoints++;
 		//research tech if possible
-		//System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
-		/*for(Tech t: self.techTree.getPossibleTechs()){
+		System.out.format("looking at %s\n",self.techTree);
+		System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
+		for(Tech t: self.techTree.getPossibleTechs()){
 			if(t.cost<=self.techPoints){
 				self.techPoints = self.techTree.buyTech(t, self.techPoints);
-				//System.out.format("%s has researched %s granting %s\n",self.name,t.name,t.desc);
+				System.out.format("%s has researched %s granting %s\n",self.name,t.name,t.desc);
 			}
-		}*/
+		}
 		if (self.resources.get("Food").getQuantity() >= 50
 				&& self.resources.get("Wood").getQuantity() >= 50) {
 			self.resources.get("Food").addQuantity(-50);
