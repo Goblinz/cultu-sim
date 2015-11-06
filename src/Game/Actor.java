@@ -103,10 +103,23 @@ public abstract class Actor {
     //COMBAT STUFF
 	int combatValue = 5;
 
+/**
+	 * 
+	 * @return the combat value of the unit
+	 */
 	public int getCombatValue(){ return combatValue; }	
 	
+	/**
+	 * sets the combat value of the unit
+	 * @param combat int combat value
+	 */
 	public void setCombatValue(int combat){ combatValue = combat; } 
 
+	/**
+	 * 
+	 * @param killer
+	 * @param world
+	 */
 	public void onDie(Actor killer,World world){
 		//TODO
 		System.out.println("AHHHRGGG actor at (" + killer.getX()+ ", " + killer.getY() + ") killed me! my pos: (" + posX + ", " + posY + ")" );
