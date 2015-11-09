@@ -11,6 +11,8 @@ public class Game {
 	
 	public Game(){
 		//Change to random gen by entering new World(x,y,z) where the world is an X * Y grid with seed z(long integer)
+		//To load from a file put the name of the file as the parameter.  MAKE SURE THE FILE IS IN THE WORLDS FOLDER
+		//FORMAT FOR WORLD FILE: r=rock, w=water, fl=fertileland, f=forest, i=ice, m=mine
 		world = new World();
 		
 		factions = new ArrayList<Faction>();

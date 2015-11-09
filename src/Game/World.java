@@ -106,27 +106,27 @@ public class World {
 				if (foo.compareTo("f") == 0){
 					count++;
 					System.out.format("adding to %d,%d\n",i,j);
-					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+					worldTiles[i][j] = new Tile(i,j,TileType.FOREST,true,0,0);
 				}
 				if (foo.compareTo("fl") == 0){
 					count++;
 					System.out.format("adding to %d,%d\n",i,j);
-					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+					worldTiles[i][j] = new Tile(i,j,TileType.FERTILELAND,true,0,0);
 				}
 				if (foo.compareTo("w") == 0){
 					count++;
 					System.out.format("adding to %d,%d\n",i,j);
-					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+					worldTiles[i][j] = new Tile(i,j,TileType.WATER,true,0,0);
 				}
 				if (foo.compareTo("m") == 0){
 					count++;
 					System.out.format("adding to %d,%d\n",i,j);
-					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+					worldTiles[i][j] = new Tile(i,j,TileType.MINE,true,0,0);
 				}
 				if (foo.compareTo("i") == 0){
 					count++;
 					System.out.format("adding to %d,%d\n",i,j);
-					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+					worldTiles[i][j] = new Tile(i,j,TileType.ICE,true,0,0);
 				}
 			}
 			scanner.nextLine();
