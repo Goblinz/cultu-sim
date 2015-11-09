@@ -79,7 +79,7 @@ public class World {
 	}
 	
 	public World(String worldName) throws FileNotFoundException{
-		Scanner scanner = new Scanner(new File("src/Worlds/Debug.txt"));
+		Scanner scanner = new Scanner(new File("src/Worlds/" + worldName));
 		
 		scanner.useDelimiter(",");
 		
