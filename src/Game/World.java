@@ -98,7 +98,32 @@ public class World {
 				
 				foo = scanner.next();
 				System.out.println(foo);
-				if (foo.compareTo("x") == 0){
+				if (foo.compareTo("r") == 0){
+					count++;
+					System.out.format("adding to %d,%d\n",i,j);
+					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+				}
+				if (foo.compareTo("f") == 0){
+					count++;
+					System.out.format("adding to %d,%d\n",i,j);
+					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+				}
+				if (foo.compareTo("fl") == 0){
+					count++;
+					System.out.format("adding to %d,%d\n",i,j);
+					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+				}
+				if (foo.compareTo("w") == 0){
+					count++;
+					System.out.format("adding to %d,%d\n",i,j);
+					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+				}
+				if (foo.compareTo("m") == 0){
+					count++;
+					System.out.format("adding to %d,%d\n",i,j);
+					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+				}
+				if (foo.compareTo("i") == 0){
 					count++;
 					System.out.format("adding to %d,%d\n",i,j);
 					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
