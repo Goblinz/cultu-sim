@@ -17,31 +17,7 @@ public class MoveGather implements Order {
 
 		xdir=PFpath.get(PFpath.size()-2).point.x-self.posX;
 		ydir=PFpath.get(PFpath.size()-2).point.y-self.posY;
-		
-		System.out.println("actor at:(" + self.posX + ", " + self.posY + ") xdir:" + xdir + " ydir: " + ydir); 
-		
-		for(Tile t: PFpath){
-			System.out.println(t.point);
-		}
-		
-		/**
-		temp = (int) (path[pathPointer].getX() - self.getX());
-		if(temp!=0){
-			xdir = temp / Math.abs(temp);
-		}
-		else{
-			xdir=0;
-		}
-			
-		temp = (int) (path[pathPointer].getY() - self.getY());
-		if(temp!=0){
-			ydir = temp / Math.abs(temp);
-			}
-		else{
-			ydir=0;
-		}
-		*/
-		
+
 		//System.out.format("actor trying to move in %d,%d heading twoards %s\n",xdir,ydir,path[pathPointer].toString());
 		if (xdir == 0 && ydir == 0) {
 			updatePoint();
