@@ -187,6 +187,9 @@ public abstract class Actor {
 	public void onDie(Actor killer, World world){
 		//TODO
 		System.out.println("AHHHRGGG actor at (" + killer.getX()+ ", " + killer.getY() + ") killed me! my pos: (" + posX + ", " + posY + ")" );
+		world.getTiles()[x][y].offMove(); //setting tile to null
+		
+		//TODO give resources to killing faction
 		
 	}
 	

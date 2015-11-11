@@ -12,24 +12,6 @@ public class MoveGather implements Order {
 
 	public void OrderAct(World world, Faction faction, Unit self) {
 
-		//TEST Checks actors on tile
-		/**
-		for(int x=0; x<world.getTiles().length; x++){
-			for(int y=0; y<world.getTiles()[0].length; y++){
-				String a;
-				if(world.getTiles()[x][y].isActorOnTile()){
-					a="X";
-				}else{
-					a=" ";
-				}
-
-				System.out.print("["+a+"]");
-			}
-			System.out.println();
-		}
-		*/
-
-
 		PathFinder pf = new PathFinder();
 		ArrayList<Tile> PFpath = pf.getPathToAL(world, self, path[pathPointer]);
 		//System.out.println("ADJ PATH LENGTH: " + PFpath2.size() + ". (8,4) actor on:" + world.getTiles()[4][8].isActorOnTile());
