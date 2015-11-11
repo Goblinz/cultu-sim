@@ -71,7 +71,16 @@ public abstract class Actor {
 		}
 		if(actorType == actorType.UNIT){
 			try {
-				image = ImageIO.read(getClass().getResourceAsStream("/Unit2.png"));
+				image = ImageIO.read(getClass().getResourceAsStream("/Unit.png"));
+				setColor();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
+		}
+		if(actorType == actorType.STRUCTURE){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/Structure.png"));
 				setColor();
 			} catch (IOException e) {
 				e.printStackTrace();
