@@ -7,9 +7,16 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 
 
@@ -22,6 +29,11 @@ public abstract class Actor {
 	protected ActorType type;
 	
 	public Color color;
+	public BufferedImage image;
+	private int xInc;
+	private int yInc;
+	private int x;
+	private int y;
 
 	protected int posX = 0;
 	protected int posY = 0;
@@ -43,12 +55,54 @@ public abstract class Actor {
 		resources.put(temp.getType(), temp);
 		temp = new Resource("Wood",0);
 		resources.put(temp.getType(), temp);
+		color = new Color((100 * (factionID + 5)) % 255, (5 * (factionID + 5)) % 255, (80 * (factionID + 5)) % 255);
 		posX=x;
 		posY=y;
 		//System.out.format("putting actor at %d,%d with faction ID of %d\n",x,y,factionID);
 		world.getTiles()[x][y].onMove(this);
-		//color = Color.CYAN;
+		if(actorType == actorType.CITY){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/City.png"));
+				setColor();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
+		}
+		if(actorType == actorType.UNIT){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/Unit2.png"));
+				setColor();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
+		}
 	}
+	
+	public void setColor(){
+		
+		int width = image.getWidth();
+		int height = image.getHeight();
+		//loop through all pixels in the image
+		for (int i = 0; i < height; i++){
+			for (int j = 0; j < width; j++){
+				int p = image.getRGB(j, i);
+				//if the pixel is white set the new color
+				if(p == -1){
+					image.setRGB(j, i, color.getRGB());
+				}
+			}
+		}
+	}
+	
+	public void setDimensions(double x, double y, double xInc, double yInc){
+		this.x = (int)x;
+		this.y = (int)y;
+		this.xInc = (int)xInc;
+		this.yInc = (int)yInc;
+	}
+	
 	public int getX(){ return posX; }
 	
 	public int getY(){ return posY; }
@@ -65,16 +119,18 @@ public abstract class Actor {
 	public void toggleActed(){hasActed = !hasActed;}
 	//fuck this
     public void draw(Graphics2D g2) {
+    	/*
     	if(factionID==1)
     		g2.setPaint(Color.RED);
     	else
     		g2.setPaint(Color.CYAN);
-    	
+    	*/
     	//need to set ellipse
-        g2.setPaint(color);
-        g2.fill(ellipse);
         //g2.setPaint(color);
-        g2.draw(ellipse);
+        //g2.fill(ellipse);
+        //g2.setPaint(color);
+        //g2.draw(ellipse);
+    	g2.drawImage(image, x, y, xInc, yInc, null);
     }
     public String toString(){
     	StringBuilder sb = new StringBuilder();
