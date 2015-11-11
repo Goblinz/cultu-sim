@@ -11,27 +11,13 @@ public class MoveGather implements Order {
 	int ydir;
 
 	public void OrderAct(World world, Faction faction, Unit self) {
-		temp = (int) (path[pathPointer].getX() - self.getX());
-		if(temp!=0){
-			xdir = temp / Math.abs(temp);
-		}
-		else{
-			xdir=0;
-		}
-			
-		temp = (int) (path[pathPointer].getY() - self.getY());
-		if(temp!=0){
-			ydir = temp / Math.abs(temp);
-			}
-		else{
-			ydir=0;
-		}
-		/*
-		PathFinder pathfind = new PathFinder();
-		Tile[] tilePath = pathfind.getPathTo(world, self, path[pathPointer]);
-		xdir = tilePath[0].getPoint().x - self.getX();
-		ydir = tilePath[0].getPoint().y - self.getY();*/
 		
+		PathFinder pf = new PathFinder();
+		ArrayList<Tile> PFpath = pf.getPathToAL(world, self, new Point(12,18));
+
+		xdir=PFpath.get(PFpath.size()-2).point.x-self.posX;
+		ydir=PFpath.get(PFpath.size()-2).point.y-self.posY;
+
 		//System.out.format("actor trying to move in %d,%d heading twoards %s\n",xdir,ydir,path[pathPointer].toString());
 		if (xdir == 0 && ydir == 0) {
 			updatePoint();

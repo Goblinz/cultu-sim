@@ -8,9 +8,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class World {
-	
+
 	private int DEBUG_WORLD_SIZE = 20;
-	
+
 	//beststartpos will later be determines by looking at resource areas and choosing the area with the most plentiful amount
 	//of resources
 	//private String bestStartPos = "5,5";
@@ -19,19 +19,19 @@ public class World {
 	ArrayList<Point> startCoords = new ArrayList<Point>();
 	Point point;
 	public int buffer = 4;
-	
+
 	private Tile[][] worldTiles;
-	
+
 	public World(int x, int y){
 		//basic world gen
-		
+
 		worldTiles = new Tile[x][y];
 		noiseGen = new Random();
-		
+
 		for(int i = 0; i < DEBUG_WORLD_SIZE; i++){
 			for(int j = 0; j < DEBUG_WORLD_SIZE;j++){
 				worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,noiseGen.nextInt(100),(i*4 + noiseGen.nextInt(20)));
-				
+
 				if(worldTiles[i][j].getTemp() < 18 && worldTiles[i][j].getNoise() < 20 ){
 					worldTiles[i][j].setType(TileType.ROCK);
 				}
@@ -53,7 +53,7 @@ public class World {
 			}
 		}
 	}
-	
+
 	public World(){
 		//this is the current debug world 
 		//will make algorithims for better world generation later
@@ -77,43 +77,71 @@ public class World {
 		worldTiles[8][4].setType(TileType.FOREST);
 		worldTiles[5][1].setType(TileType.FOREST);
 	}
-	
+
 	public World(String worldName) throws FileNotFoundException{
-		Scanner scanner = new Scanner(new File("src/Worlds/Debug.txt"));
-		
+		Scanner scanner = new Scanner(new File("src/Worlds/" + worldName));
+
 		scanner.useDelimiter(",");
-		
+
 		int count = 0;
-		
+
 		int x = scanner.nextInt();
 		int y = scanner.nextInt();
-		
+
 		System.out.println("rows: " + x + " columns: " + y);
-		
+
 		worldTiles = new Tile[x][y];
 		scanner.nextLine();
 		for(int i = 0; i < x; i++){
 			for(int j = 0; j < y;j++){
 				String foo = "";
-				
-				foo = scanner.next();
-				System.out.println(foo);
-				if (foo.compareTo("x") == 0){
-					count++;
-					System.out.format("adding to %d,%d\n",i,j);
-					worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+				if(scanner.hasNext() == true){
+					foo = scanner.next();
+					System.out.println(foo);
+					if (foo.compareTo("r") == 0){
+						count++;
+						System.out.format("adding to %d,%d\n",i,j);
+						worldTiles[i][j] = new Tile(i,j,TileType.ROCK,true,0,0);
+					}
+					if (foo.compareTo("f") == 0){
+						count++;
+						System.out.format("adding to %d,%d\n",i,j);
+						worldTiles[i][j] = new Tile(i,j,TileType.FOREST,true,0,0);
+					}
+					if (foo.compareTo("fl") == 0){
+						count++;
+						System.out.format("adding to %d,%d\n",i,j);
+						worldTiles[i][j] = new Tile(i,j,TileType.FERTILELAND,true,0,0);
+					}
+					if (foo.compareTo("w") == 0){
+						count++;
+						System.out.format("adding to %d,%d\n",i,j);
+						worldTiles[i][j] = new Tile(i,j,TileType.WATER,true,0,0);
+					}
+					if (foo.compareTo("m") == 0){
+						count++;
+						System.out.format("adding to %d,%d\n",i,j);
+						worldTiles[i][j] = new Tile(i,j,TileType.MINE,true,0,0);
+					}
+					if (foo.compareTo("i") == 0){
+						count++;
+						System.out.format("adding to %d,%d\n",i,j);
+						worldTiles[i][j] = new Tile(i,j,TileType.ICE,true,0,0);
+					}
 				}
 			}
-			scanner.nextLine();
+			if(scanner.hasNextLine() == true){
+				scanner.nextLine();
+			}
 		}
 		for(int i=0;i<20;i++){
 			for(int j=0;j<20;j++)
-				System.out.format("%s",worldTiles[i][j]);
+				System.out.format("%s",worldTiles[i][j].getType());
 			System.out.println();
 		}
 		System.out.println(count);
 	}
-	
+
 	public World(long seed, int worldSizex,int worldSizey){
 		noiseGen = new Random(seed);
 		worldTiles = new Tile[worldSizex][worldSizey];
@@ -144,7 +172,7 @@ public class World {
 		}
 		createBestStartCoords();
 	}
-	
+
 	public void createBestStartCoords(){
 		int check = 0;
 		Point start = null;
@@ -166,19 +194,19 @@ public class World {
 			}
 		}
 	}
-	
+
 	public Point getStartPos(){
 		if(startCoords.size() == 0){
 			System.out.println("It appears there aren't any resource tiles " + buffer + " tiles away from any point");
 		}
-		
+
 		Random gen = new Random();
 		return startCoords.get(gen.nextInt(startCoords.size()-1));
 	}
-	
+
 	public void setBuffer(int x){
 		buffer = x;
 	}
-	
+
 	public Tile[][] getTiles(){ return worldTiles; }
 }

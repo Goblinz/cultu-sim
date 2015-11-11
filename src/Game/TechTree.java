@@ -58,4 +58,12 @@ public class TechTree {
 		}
 		return techPoints;
 	}
+	public boolean hasTech(String Name){
+		boolean hastech=false;
+		for(Tech t: techs){
+			if(t.name==Name && t.isResearched())
+				hastech=true;
+		}
+		return hastech;
+	}
 }

@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
 public class Main {
@@ -63,8 +64,9 @@ public class Main {
 
 	/**
 	 * Create the application.
+	 * @throws FileNotFoundException 
 	 */
-	public Main() {
+	public Main() throws FileNotFoundException {
 		game = new Game();
 		//Point[] path = {new Point(8,8),new Point(3,4)};
 		//game.spawnUnitMoveGather(6, 6,path);

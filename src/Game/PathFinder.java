@@ -34,7 +34,6 @@ public class PathFinder {
 		for(int i=0; i<toReturn.length; i++){
 			toReturn[i] = path.get(i);
 		}
-
 		return toReturn;	
 	}
 	
@@ -100,6 +99,7 @@ public class PathFinder {
 				//PF 2 END
 				
 				for(Tile t: adjacentPassabeTiles(current)){
+					if(current.point.x==8 && current.point.y==4){ System.out.println("FOUND IT1"); }
 					stack.add(t);
 					//System.out.println("fount it");
 				}
@@ -131,14 +131,15 @@ public class PathFinder {
 				new Point(x+1,y+1)};
 		
 		for(int i=0; i<8; i++){
-			//System.out.println(adjs[i].x + ", " + adjs[i].y);
-			
-			//System.out.println(actor);
+
+			//if the actor's tile is adjacent, add it
 			if(adjs[i].x==actor.getX() && adjs[i].y==actor.getY()){
 				adj.add(worldTiles[adjs[i].x][adjs[i].y]);
 			}
 			
+			//if the tile is within the bounds of the map	
 			if(adjs[i].x>=0 && adjs[i].y>=0   &&   adjs[i].x<worldTiles.length && adjs[i].y<worldTiles[0].length){
+				//if it is passable and no other actor is on the tile
 				if(worldTiles[adjs[i].x][adjs[i].y].isPassable() && !worldTiles[adjs[i].x][adjs[i].y].isActorOnTile()){
 					adj.add(worldTiles[adjs[i].x][adjs[i].y]);
 				}
