@@ -7,3 +7,26 @@ clicking on a tile will display what kind of tile in the console
 
 If you want you can add more actors in the Main method (in the Main class),  just give them at least 2 points and they won't move if there is another actor in the way
 
+For loading from file:
+1.File must be in the worlds folder
+2.File must be in this format
+3.In game pass a string that is the name of the world file to the instantiation of new world. e.g. world = new world("dingus") where dingus.txt is in worlds folder
+
+x,y,  // where x and y are the dimensions for the world the symbols must match these dimensions so 10,10, would need 100 symbols
+
+e.g.
+
+5,5,
+,r,r,r,r,r,
+,r,r,r,r,r,
+,r,r,r,r,r,
+,r,r,r,r,r,
+,r,r,r,r,r
+
+Symbols for map gen:
+r=rock
+w=water
+i=ice
+m=mine
+fl=fertileland
+f=forest

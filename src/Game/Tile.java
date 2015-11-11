@@ -91,7 +91,7 @@ public class Tile {
     public void draw(Graphics2D g2) {
         //g2.setPaint(selected ? selColor : bgColor);
         if(type == TileType.ROCK){
-        	g2.setPaint(Color.black);
+        	g2.setPaint(Color.WHITE);
         }
         else if (type == TileType.FOREST){
         	g2.setPaint(Color.green);

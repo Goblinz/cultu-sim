@@ -179,6 +179,7 @@ public class World {
 		for(int i = 0; i < worldTiles.length;i++){
 			for(int j = 0 ; j < worldTiles[i].length; j++){
 				for(Point coord : resourceNodes){
+					start = new Point();
 					if(coord.getX() - i < buffer && coord.getY() - j < buffer){
 						start.setLocation(i, j);
 						check++;
