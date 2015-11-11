@@ -197,6 +197,7 @@ public class World {
 	}
 
 	public Point getStartPos(){
+		createBestStartCoords();
 		if(startCoords.size() == 0){
 			System.out.println("It appears there aren't any resource tiles " + buffer + " tiles away from any point");
 		}

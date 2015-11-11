@@ -39,6 +39,7 @@ public class Game {
 		
 		for(int i=0;i<numberOfFactions;i++){
 			//Point pos = world.getStartPos();
+			//System.out.format("adding city at %d,%d\n",pos.x,pos.y);
 			Point pos = new Point(i*3+3,i*3+3);
 			FactionAI foo = new SimpleFactionAI();
 			Faction temp = new Faction(i,generateFactionName(),foo);

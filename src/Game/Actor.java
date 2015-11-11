@@ -24,7 +24,7 @@ public abstract class Actor {
 	
 	public Ellipse2D.Double ellipse;
 	private boolean hasActed = false;
-
+	int health = 1;
 	public int carryCapacity=100;
 	protected ActorType type;
 	
@@ -187,7 +187,7 @@ public abstract class Actor {
 	public void onDie(Actor killer, World world){
 		//TODO
 		System.out.println("AHHHRGGG actor at (" + killer.getX()+ ", " + killer.getY() + ") killed me! my pos: (" + posX + ", " + posY + ")" );
-		world.getTiles()[x][y].offMove(); //setting tile to null
+		world.getTiles()[posX][posY].offMove(); //setting tile to null
 		
 		//TODO give resources to killing faction
 		
@@ -252,7 +252,7 @@ public abstract class Actor {
 	 * @param a2 actor 2
 	 * @return the winn
 	 */
-	private static Actor fight(Actor a1, Actor a2){
+	public static Actor fight(Actor a1, Actor a2){
 
 		double a1c = Math.random()+5;
 		double a2c = Math.random()+5;

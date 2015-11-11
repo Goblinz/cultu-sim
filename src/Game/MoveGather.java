@@ -9,7 +9,8 @@ public class MoveGather implements Order {
 	int xdir;
 	int temp;
 	int ydir;
-
+	 
+	
 	public void OrderAct(World world, Faction faction, Unit self) {
 
 		PathFinder pf = new PathFinder();
@@ -34,8 +35,7 @@ public class MoveGather implements Order {
 			//System.out.println("updating move position");
 			updatePoint();
 		} else {
-			if (world.getTiles()[self.getX() + xdir][self.getY() + ydir]
-					.isActorOnTile()) {
+			if (world.getTiles()[self.getX() + xdir][self.getY() + ydir].isActorOnTile()) {
 				// Collision with actor
 
 				// checking if colliding with destination 

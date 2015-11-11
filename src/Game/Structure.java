@@ -5,6 +5,7 @@ import java.awt.Color;
 public class Structure extends Actor {
 	public Structure(int factionid, int id, int x, int y, World world) {
 		super(x, y, world, id, factionid, ActorType.STRUCTURE);
+		health =  5;
 	}
 
 	public void act(World world, Faction faction) {

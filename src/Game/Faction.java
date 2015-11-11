@@ -9,6 +9,7 @@ public class Faction {
 	Color factionColor;
 	String name;
 	TechTree techTree;
+	boolean dead=false;
 	int ID;
 	int techPoints=0;
 	FactionAI brain;
@@ -29,8 +30,12 @@ public class Faction {
 	}
 	public void act(World world,ArrayList<Faction> factions){
 		//spawn stuff in
-		System.out.println("faction " + ID + "acting");
-		brain.FactionAct(this, world, factions);
+		//System.out.println("faction " + ID + "acting");
+		if(!(world.getTiles()[cityloc.x][cityloc.y].isActorOnTile() && world.getTiles()[cityloc.x][cityloc.y].actorOnTile().factionID==ID))
+				dead = true;
+		if(!dead)
+			brain.FactionAct(this, world, factions);
+		
 	}
 	public Dictionary<String,Resource> getResources(){
 		return resources;
