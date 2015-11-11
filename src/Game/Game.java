@@ -45,6 +45,27 @@ public class Game {
 	}
 	*/
 	public void tick(){
+		
+		//TEST Checks actors on tile
+		/**
+		for(int x=0; x<world.getTiles().length; x++){
+			for(int y=0; y<world.getTiles()[0].length; y++){
+				String a;
+				if(world.getTiles()[x][y].isActorOnTile()){
+					a="X";
+				}else{
+					a=" ";
+				}
+				
+				System.out.print("["+a+"]");
+			}
+			System.out.println();
+		}
+		*/
+		
+		
+		
+		
 		//TODO FACTION ACT
 		for(Faction f:factions){
 			f.act(world, factions);

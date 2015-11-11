@@ -23,7 +23,6 @@ public class Tile {
 	//nates stuff
 	String name;
 	public Actor onTile = null;
-	private boolean actorOnTile = false;
 	private Resource resource = null;
 	private int noise;
 	private int temp;
@@ -62,18 +61,18 @@ public class Tile {
 	 */
 	public void onMove(Actor actor){
 		onTile = actor;
-		actorOnTile = true;
 	}
 	
 	public void offMove(){
 		onTile = null;
-		actorOnTile = false;
 	}
 	
 	public Actor actorOnTile(){ return onTile; }
 	
 	public boolean isActorOnTile(){
-		return actorOnTile;
+
+		return (onTile !=null);
+		
 	}
 	
 	public Resource getResource(){ return resource; }
@@ -195,7 +194,7 @@ public class Tile {
 	public ArrayList<Tile> getShortestPath2(){
 			ArrayList<Tile> toReturn = new ArrayList<Tile>();
 			Tile temp = this;
-			System.out.println("LT: " + this.getLastTile());
+			//System.out.println("LT: " + this.getLastTile());
 			
 			for(int i=0; i<this.pathLength(); i++){
 				toReturn.add(temp);
