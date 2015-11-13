@@ -55,11 +55,14 @@ public class GameView extends JPanel implements Runnable{
 		g2.setPaint(Color.blue);
 		for(int i = 0; i < ROWS; i++){
 			for(int j = 0; j < COLS; j++){
+				
+				double y = PAD + i * yInc;
+				double x = PAD + j * xInc;
+				tiles[i][j].setDimensions(x, y, xInc, yInc);;
 				tiles[i][j].draw(g2);
 				if(tiles[i][j].onTile != null){
 					//Draw actor on tile
-					double y = PAD + i * yInc;
-					double x = PAD + j * xInc;
+
 					
 					/*
 					Ellipse2D.Double ellipse = new Ellipse2D.Double(x, y, xInc, yInc);

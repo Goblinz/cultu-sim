@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class Tile {
 	
@@ -18,6 +22,12 @@ public class Tile {
 	private boolean isPassable = false;
 	private boolean selected = false;
 	public Point point;
+	
+	public BufferedImage image;
+	private int xInc;
+	private int yInc;
+	private int x;
+	private int y;
 
 	
 	//nates stuff
@@ -40,6 +50,7 @@ public class Tile {
 		isPassable = passable;
 		noise = num;
 		temp = temperature;
+		setImage();
 	}
 	
 	public Tile(int r, int c, Rectangle2D.Double rect, TileType resource){
@@ -47,6 +58,7 @@ public class Tile {
 		col = c;
 		this.rect = rect;
 		type = resource;
+		setImage();
 		
 	}
 	
@@ -84,12 +96,14 @@ public class Tile {
 	
 	public void setType(TileType tp){
 		type = tp;
+		setImage();
 	}
 	
 	//matts edit
 	
     public void draw(Graphics2D g2) {
         //g2.setPaint(selected ? selColor : bgColor);
+    	/*
         if(type == TileType.ROCK){
         	g2.setPaint(Color.WHITE);
         }
@@ -108,7 +122,16 @@ public class Tile {
         g2.fill(rect);
         g2.setPaint(color);
         g2.draw(rect);
+        */
+    	g2.drawImage(image, x, y, xInc, yInc, null);
     }
+    
+	public void setDimensions(double x, double y, double xInc, double yInc){
+		this.x = (int)x;
+		this.y = (int)y;
+		this.xInc = (int)xInc;
+		this.yInc = (int)yInc;
+	}
     
     public void setRect(Rectangle2D.Double rect){
     	this.rect = rect;
@@ -192,17 +215,69 @@ public class Tile {
 		}
 	
 	public ArrayList<Tile> getShortestPath2(){
-			ArrayList<Tile> toReturn = new ArrayList<Tile>();
-			Tile temp = this;
-			//System.out.println("LT: " + this.getLastTile());
+		ArrayList<Tile> toReturn = new ArrayList<Tile>();
+		Tile temp = this;
+		//System.out.println("LT: " + this.getLastTile());
 			
-			for(int i=0; i<this.pathLength(); i++){
-				toReturn.add(temp);
-				temp = temp.getLastTile();
+		for(int i=0; i<this.pathLength(); i++){
+			toReturn.add(temp);
+			temp = temp.getLastTile();
+		}
+			
+		return toReturn;
+			
+	}
+	
+	public void setImage(){
+		if(type == TileType.ROCK){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/rocks1.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
 			}
-			
-			return toReturn;
-			
+		}
+		else if(type == TileType.FERTILELAND){
+			try {
+
+				image = ImageIO.read(getClass().getResourceAsStream("/grass1.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
+		}
+		else if(type == TileType.FOREST){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/forest1.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
+		}
+		else if(type == TileType.ICE){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/forest2.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
+		}
+		else if(type == TileType.MINE){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/sand1.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
+		}
+		else if(type == TileType.WATER){
+			try {
+				image = ImageIO.read(getClass().getResourceAsStream("/water1.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file not found");
+			}
 		}
 	}
+}
 
