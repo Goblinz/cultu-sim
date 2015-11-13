@@ -58,6 +58,7 @@ public class Game {
 	*/
 	public void tick(){
 		
+		
 		//TEST Checks actors on tile
 		/**
 		for(int x=0; x<world.getTiles().length; x++){

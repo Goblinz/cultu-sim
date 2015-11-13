@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import java.awt.Canvas;
+import java.awt.Component;
 
 import javax.swing.JLabel;
 
@@ -17,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 
@@ -25,6 +28,20 @@ public class Main {
 	private JFrame frame;
 	private Game game;
 	public JLabel lblInspector;
+	
+	//game view
+	private GameView GV;
+	//game state buttons
+	private JButton btnNextTurn = new JButton("Next Turn");
+	private JButton btnPlay = new JButton("Play");
+	private JButton btnPause = new JButton("Pause");
+	//placement buttons
+	private JLabel lblPlacements = new JLabel("Placements");
+	private JRadioButton rdbtnForest = new JRadioButton("Forest");
+	private JRadioButton rdbtnCity = new JRadioButton("City");
+	private JRadioButton rdbtnWater = new JRadioButton("Water");
+	private JRadioButton rdbtnHuntingGround = new JRadioButton("Hunting ground");
+	private JRadioButton rdbtnIronDeposit = new JRadioButton("Iron deposit");
 
 	/**
 	 * Launch the application.
@@ -43,23 +60,23 @@ public class Main {
         f.setLocation(100,100);
         f.setVisible(true);
         GV.addComponentListener(GV.cl);
-        */
-		
+		 */
+
 		//this code displays the buttons
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				
+
 				try {
 					Main window = new Main();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 	}
 
 	/**
@@ -77,27 +94,28 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+
 
 		frame = new JFrame();
 
-		frame.setBounds(100, 100, 668, 536);
+		frame.setBounds(200, 200, 668, 536);		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		final GameView GV = new GameView(game.world.getTiles(), game);
+
+		GV = new GameView(game.world.getTiles(), game);
 		//GameView GV = new GameView();
 		GV.setBounds(20, 20, 300, 300);
 		GV.addComponentListener(GV.cl);
 		GV.mainWindow = frame;
 		frame.getContentPane().add(GV);
 
+		//inspector
 		lblInspector = new JLabel("Inspector");
 		lblInspector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblInspector.setBounds(497, 10, 104, 22);
 		frame.getContentPane().add(lblInspector);
-		
-		JButton btnNextTurn = new JButton("Next Turn");
+
+		//game state buttons
 		btnNextTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.tick();
@@ -106,8 +124,7 @@ public class Main {
 		});
 		btnNextTurn.setBounds(208, 384, 117, 23);
 		frame.getContentPane().add(btnNextTurn);
-		
-		JButton btnPlay = new JButton("Play");
+
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//start game loop
@@ -117,8 +134,7 @@ public class Main {
 		});
 		btnPlay.setBounds(109, 384, 89, 23);
 		frame.getContentPane().add(btnPlay);
-		
-		JButton btnPause = new JButton("Pause");
+
 		btnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//pause game loop
@@ -127,31 +143,66 @@ public class Main {
 		});
 		btnPause.setBounds(10, 384, 89, 23);
 		frame.getContentPane().add(btnPause);
-		
-		JLabel lblPlacements = new JLabel("Placements");
+
+		//placement puttons
 		lblPlacements.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPlacements.setBounds(20, 418, 79, 14);
 		frame.getContentPane().add(lblPlacements);
+
 		
-		JRadioButton rdbtnForest = new JRadioButton("Forest");
 		rdbtnForest.setBounds(10, 439, 109, 23);
 		frame.getContentPane().add(rdbtnForest);
+
 		
-		JRadioButton rdbtnIronDeposit = new JRadioButton("Iron deposit");
-		rdbtnIronDeposit.setBounds(121, 439, 109, 23);
-		frame.getContentPane().add(rdbtnIronDeposit);
-		
-		JRadioButton rdbtnCity = new JRadioButton("City");
 		rdbtnCity.setBounds(232, 439, 109, 23);
 		frame.getContentPane().add(rdbtnCity);
-		
-		JRadioButton rdbtnWater = new JRadioButton("Water");
+
 		rdbtnWater.setBounds(10, 467, 109, 23);
 		frame.getContentPane().add(rdbtnWater);
-		
-		JRadioButton rdbtnHuntingGround = new JRadioButton("Hunting ground");
+
 		rdbtnHuntingGround.setBounds(121, 467, 109, 23);
 		frame.getContentPane().add(rdbtnHuntingGround);
+		
+		rdbtnIronDeposit.setBounds(121, 439, 109, 23);
+		frame.getContentPane().add(rdbtnIronDeposit);
+
+		//resize	
+		frame.addComponentListener(new ComponentAdapter() 
+		{  
+			public void componentResized(ComponentEvent evt) {
+				//Component c = (Component)evt.getSource();
+				//System.out.println("WINDOW RESIZED");
+				
+				//game view
+				//TODO errors for days ↓
+				//GV.setBounds(20, 20, (int) frame.getBounds().getWidth(), 300);
+				
+				//move inspector
+				lblInspector.setBounds((int) frame.getBounds().getWidth()-200, 10, 104, 22);
+				//TODO move dynamic desctiptions
+				//move game state buttons
+				btnNextTurn.setBounds(208, (int) frame.getBounds().getHeight()-150, 117, 23);
+				btnPlay.setBounds(109, (int) frame.getBounds().getHeight()-150, 89, 23);
+				btnPause.setBounds(10, (int) frame.getBounds().getHeight()-150, 89, 23);
+				//move placement buttons
+				lblPlacements.setBounds(20, (int) frame.getBounds().getHeight()-120, 79, 14);
+				rdbtnForest.setBounds(10, (int) frame.getBounds().getHeight()-100, 109, 23);
+				rdbtnCity.setBounds(232, (int) frame.getBounds().getHeight()-100, 109, 23);
+				rdbtnWater.setBounds(10, (int) frame.getBounds().getHeight()-72, 109, 23);
+				rdbtnHuntingGround.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
+				rdbtnIronDeposit.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
+				
+				
+			}
+		});
+
+
 	}
-	
+
+	public void resize(){
+		rdbtnIronDeposit.setBounds(121, frame.getBounds().height, 109, 23);
+	}
+
+
+
 }
