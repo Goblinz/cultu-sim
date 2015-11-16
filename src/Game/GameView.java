@@ -111,7 +111,8 @@ public class GameView extends JPanel implements Runnable{
         
         
 	}
-	
+	//AL for resizing
+	ArrayList<JLabel> dispInfo = new ArrayList<JLabel>();
     private MouseListener ml = new MouseAdapter() {
         public void mousePressed(MouseEvent e) {
             Point p = e.getPoint();
@@ -131,6 +132,7 @@ public class GameView extends JPanel implements Runnable{
             	while(!labels.isEmpty()){
             		mainWindow.remove(labels.get(0));
             		labels.remove(0);
+            		dispInfo = new ArrayList<JLabel>();
             	}
             	/*
             	for(int i = 0; i <= labels.size(); i++ ){
@@ -151,7 +153,21 @@ public class GameView extends JPanel implements Runnable{
         		mainWindow.getContentPane().add(newLabel);
         		labels.add(newLabel);
         		counter++;
+        		dispInfo.add(newLabel);
             }
+            
+            //resize
+            mainWindow.addComponentListener(new ComponentAdapter(){  
+				public void componentResized(ComponentEvent evt) {
+					
+					int i=0;
+					for(JLabel j : dispInfo ){
+						i++;
+						j.setBounds((int) (mainWindow.getBounds().getWidth()-200), (i+0)*50, 200, 22);
+					}
+				}
+			});
+            
             /*
             String[] info = tiles[row][col].getInfo();
             	for(int i = 0; i < info.length; i++){
