@@ -124,7 +124,6 @@ public class Main {
 				GV.repaint();
 			}
 		});
-		btnNextTurn.setBounds(208, 384, 117, 23);
 		frame.getContentPane().add(btnNextTurn);
 
 		btnPlay.addActionListener(new ActionListener() {
@@ -134,7 +133,6 @@ public class Main {
 				thread.start();
 			}
 		});
-		btnPlay.setBounds(109, 384, 89, 23);
 		frame.getContentPane().add(btnPlay);
 
 		btnPause.addActionListener(new ActionListener() {
@@ -143,10 +141,14 @@ public class Main {
 				GV.pause = true;
 			}
 		});
-		btnPause.setBounds(10, 384, 89, 23);
 		frame.getContentPane().add(btnPause);
 
-		//placement puttons
+		//game state buttons
+		btnNextTurn.setBounds(208, (int) frame.getBounds().getHeight()-150, 117, 23);
+		btnPlay.setBounds(109, (int) frame.getBounds().getHeight()-150, 89, 23);
+		btnPause.setBounds(10, (int) frame.getBounds().getHeight()-150, 89, 23);
+		
+		//placement buttons
 		placementGroup.add(rdbtnForest);
 		placementGroup.add(rdbtnCity);
 		placementGroup.add(rdbtnWater);
@@ -156,22 +158,20 @@ public class Main {
 		lblPlacements.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPlacements.setBounds(20, 418, 79, 14);
 		frame.getContentPane().add(lblPlacements);
-
 		
-		rdbtnForest.setBounds(10, 439, 109, 23);
+		//move placement buttons
 		frame.getContentPane().add(rdbtnForest);
-		
-		rdbtnCity.setBounds(232, 439, 109, 23);
 		frame.getContentPane().add(rdbtnCity);
-
-		rdbtnWater.setBounds(10, 467, 109, 23);
 		frame.getContentPane().add(rdbtnWater);
-
-		rdbtnFertileLand.setBounds(121, 467, 109, 23);
-		frame.getContentPane().add(rdbtnFertileLand);
-		
-		rdbtnMine.setBounds(121, 439, 109, 23);
+		frame.getContentPane().add(rdbtnFertileLand);	
 		frame.getContentPane().add(rdbtnMine);
+
+		lblPlacements.setBounds(20, (int) frame.getBounds().getHeight()-120, 79, 14);
+		rdbtnForest.setBounds(10, (int) frame.getBounds().getHeight()-100, 109, 23);
+		rdbtnCity.setBounds(232, (int) frame.getBounds().getHeight()-100, 109, 23);
+		rdbtnWater.setBounds(10, (int) frame.getBounds().getHeight()-72, 109, 23);
+		rdbtnFertileLand.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
+		rdbtnMine.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
 
 		//resize	
 		frame.addComponentListener(new ComponentAdapter() 
