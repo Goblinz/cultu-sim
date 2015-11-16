@@ -24,10 +24,10 @@ public abstract class Actor {
 	
 	public Ellipse2D.Double ellipse;
 	private boolean hasActed = false;
-	int health = 1;
+	protected int health = 1;
 	public int carryCapacity=100;
 	protected ActorType type;
-	
+	boolean dead = false;
 	public Color color;
 	public BufferedImage image;
 	private int xInc;
@@ -187,6 +187,7 @@ public abstract class Actor {
 	public void onDie(Actor killer, World world){
 		//TODO
 		System.out.println("AHHHRGGG actor at (" + killer.getX()+ ", " + killer.getY() + ") killed me! my pos: (" + posX + ", " + posY + ")" );
+		dead = true;
 		world.getTiles()[posX][posY].offMove(); //setting tile to null
 		
 		//TODO give resources to killing faction

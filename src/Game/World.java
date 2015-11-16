@@ -196,6 +196,27 @@ public class World {
 		}
 	}
 
+	public void createStartPos(int x, int y){
+		Point temp;
+		int foo = 2;
+		for(int i = 0; i < foo+1; i++){
+			for(int j = 0; j < foo+1;j++){
+				worldTiles[y+i][x+j].setType(TileType.ROCK);
+				if(i == foo && j == foo){
+					worldTiles[y+i][x+j].setType(TileType.FERTILELAND);
+				} 
+			}
+		}
+		for(int i = 0; i < foo+1; i++){
+			for(int j = 0; j < foo+1;j++){
+				worldTiles[y-i][x-j].setType(TileType.ROCK);
+				if(i == foo && j == foo){
+					worldTiles[y-i][x-j].setType(TileType.FOREST);
+				} 
+			}
+		}
+	}
+
 	public Point getStartPos(){
 		createBestStartCoords();
 		if(startCoords.size() == 0){
