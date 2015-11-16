@@ -35,12 +35,13 @@ public class Game {
 		factions.add(temp2);
 		Actor city = new City(0,5,5,world);
 		Actor city2 = new City(1,15,15,world);*/
-		int numberOfFactions  = rand.nextInt(3)+2;
+		//int numberOfFactions  = rand.nextInt(3)+2;
+		int numberOfFactions  = 2;
 		
 		for(int i=0;i<numberOfFactions;i++){
 			//Point pos = world.getStartPos();
 			//System.out.format("adding city at %d,%d\n",pos.x,pos.y);
-			Point pos = new Point(i*3+3,i*3+3);
+			Point pos = new Point(i*10+3,i*10+3);
 			FactionAI foo = new SimpleFactionAI();
 			Faction temp = new Faction(i,generateFactionName(),foo);
 			temp.setCityLocation(pos);

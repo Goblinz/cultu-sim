@@ -11,39 +11,46 @@ public class MoveCombat implements Order {
 	int temp;
 	int ydir;
 	Random rand =  new Random();
-	 
+	Actor target = null; 
 	
 	public void OrderAct(World world, Faction faction, Unit self) {
 		
 		PathFinder pf = new PathFinder();
 		ArrayList<Tile> PFpath = pf.getPathToAL(world, self, path[pathPointer]);
-		if(PFpath.size()>=2){
+		//select ememy actor target
+		if(target == null || target.dead){
+			target = findEnemy(world,ActorType.UNIT,3,new Point(self.posX,self.posY),self.factionID);
+			if(target == null){
+				target = findEnemy(world,ActorType.CITY,3,new Point(self.posX,self.posY),self.factionID);
+			}
+		}
+		if(target == null){
+			//move twoards path
+			PFpath = pf.getPathToAL(world, self, path[pathPointer]);
+		}
+		else{
+			//move twords actor
+			PFpath = pf.getPathToAL(world, self, new Point(target.posX,target.posY));
+		}
+		
+		if(PFpath.size()<2){
+			if(target == null)
+				updatePoint();
+		}
+		else{
 			xdir=PFpath.get(PFpath.size()-2).point.x-self.posX;
 			ydir=PFpath.get(PFpath.size()-2).point.y-self.posY;
-		}else{
-			xdir=0;
-			ydir=0;
-			updatePoint();
-		}
-
-		if (xdir == 0 && ydir == 0) {
-			updatePoint();
-		} else {
-			if (world.getTiles()[self.getX() + xdir][self.getY() + ydir].isActorOnTile()) {
-				// Collision with actor
-				
-				// checking if colliding with destination 
-				if(path[pathPointer].getX() == self.getX() + xdir && path[pathPointer].getY() == self.getY() + ydir){
-					updatePoint();
-				}
-				
-				
-			} else {
+			if(world.getTiles()[self.posX+xdir][self.posY+ydir].isActorOnTile()){
+				//colision
+				updatePoint();
+			}
+			else{
 				self.move(xdir, ydir, world);
 				if(self.getX()==path[pathPointer].getX() && self.getY()==path[pathPointer].getY())
 					updatePoint();
 			}
 		}
+			
 		
 		//FIGHT random enemy
 		if(self.adjacentEnemyActors().size() > 0){
@@ -66,6 +73,27 @@ public class MoveCombat implements Order {
 		pathPointer++;
 		if (pathPointer == path.length)
 			pathPointer = 0;
+	}
+	private Actor findEnemy(World world,ActorType type,int distance,Point loc,int factionID){
+		Actor nearest = null;
+		int dist = 9999999;
+		for(int i=-distance;i<distance;i++){
+			for (int j=-distance;j<distance;j++){
+				int x = loc.x+i;
+				int y = loc.y+j;
+				if(y>0 && y< world.getTiles()[0].length && x>0 && x< world.getTiles().length){
+					if(world.getTiles()[x][y].isActorOnTile() && world.getTiles()[x][y].actorOnTile().factionID!=factionID && world.getTiles()[x][y].actorOnTile().type == type){
+						if(loc.distance(x, y) < dist){
+							dist = (int) loc.distance(x, y);
+							nearest = world.getTiles()[x][y].actorOnTile();
+						}
+					}
+				}
+				
+			}
+		}
+		
+		return nearest;
 	}
 
 }
