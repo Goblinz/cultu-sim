@@ -12,9 +12,9 @@ import javax.swing.*;
 
 public class GameView extends JPanel implements Runnable{
 	Tile[][] tiles;
-	final int PAD = 20;
-	final int ROWS = 20;
-	final int COLS = 20;
+	int PAD = 20;
+	int ROWS = 20;
+	int COLS = 20;
 	private boolean start = true;
 	public JFrame mainWindow;
 	private Game game;

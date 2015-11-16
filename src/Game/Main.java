@@ -182,7 +182,7 @@ public class Main {
 				
 				//game view
 				//TODO errors for days ↓
-				//GV.setBounds(20, 20, (int) frame.getBounds().getWidth(), 300);
+				//GV.setBounds(20, 20, 300, 300);
 				
 				//move inspector
 				lblInspector.setBounds((int) frame.getBounds().getWidth()-200, 10, 104, 22);
