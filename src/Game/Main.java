@@ -106,7 +106,7 @@ public class Main {
 
 		GV = new GameView(game.world.getTiles(), game);
 		//GameView GV = new GameView();
-		GV.setBounds(20, 20, 300, 300);
+		GV.setBounds(20, 20, 400, 400);
 		GV.addComponentListener(GV.cl);
 		GV.mainWindow = frame;
 		frame.getContentPane().add(GV);
