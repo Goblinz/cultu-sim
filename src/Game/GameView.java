@@ -142,6 +142,17 @@ public class GameView extends JPanel implements Runnable{
             }
             //System.out.println(labels.isEmpty());
             
+            ArrayList<String> info = tiles[row][col].getInfo();
+            int counter = 0;
+            for(String item : info){
+        		JLabel newLabel = new JLabel(item);
+        		newLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        		newLabel.setBounds(400, 50 * (counter + 1), 200, 22);
+        		mainWindow.getContentPane().add(newLabel);
+        		labels.add(newLabel);
+        		counter++;
+            }
+            /*
             String[] info = tiles[row][col].getInfo();
             	for(int i = 0; i < info.length; i++){
             		JLabel newLabel = new JLabel(info[i]);
@@ -150,6 +161,8 @@ public class GameView extends JPanel implements Runnable{
             		mainWindow.getContentPane().add(newLabel);
             		labels.add(newLabel);
             	}
+            
+            */
             
             //add new components
             /*

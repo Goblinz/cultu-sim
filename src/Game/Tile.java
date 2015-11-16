@@ -164,6 +164,7 @@ public class Tile {
     	isPassable = pass;
     }
     
+    /*
     public String[] getInfo(){
     	String[] ret = null;
     	if(isActorOnTile()){
@@ -171,7 +172,7 @@ public class Tile {
     		ret[0] = "Tile type : " + type;
     		ret[1] = "Row : " + row;
     		ret[2] = "Col : " + col;
-    		ret[3] = "Contains : " + onTile;
+    		ret[3] = "Contains : " + onTile.getType();
     		ret[4] = "Faction ID :" + onTile.factionID;
     	}
     	else{
@@ -179,6 +180,25 @@ public class Tile {
     		ret[0] = "Tile type : " + type;
     		ret[1] = "Row:" + row;
     		ret[2] = "Col:" + col;
+    	}
+    	return ret;
+    }
+    */
+    
+    public ArrayList<String> getInfo(){
+    	ArrayList<String> ret = new ArrayList<String>();
+    	if(isActorOnTile()){
+    		ret.add("Tile type: " + type );
+    		ret.add("Row : " + row);
+    		ret.add("Col : " + col);
+    		ret.add("On Tile : " + onTile.getType());
+    		ret.add("Faction ID : " + onTile.factionID);
+    		ret.add("Carrying : " + onTile.resources);
+    	}
+    	else{
+    		ret.add("Tile type : " + getType());
+    		ret.add("Row : " + row);
+    		ret.add("Col : " + col);
     	}
     	return ret;
     }
