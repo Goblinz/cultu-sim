@@ -14,6 +14,7 @@ import java.awt.Font;
 import java.awt.Button;
 import java.awt.Point;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
@@ -36,12 +37,13 @@ public class Main {
 	private JButton btnPlay = new JButton("Play");
 	private JButton btnPause = new JButton("Pause");
 	//placement buttons
+	private ButtonGroup placementGroup = new ButtonGroup();
 	private JLabel lblPlacements = new JLabel("Placements");
 	private JRadioButton rdbtnForest = new JRadioButton("Forest");
 	private JRadioButton rdbtnCity = new JRadioButton("City");
 	private JRadioButton rdbtnWater = new JRadioButton("Water");
-	private JRadioButton rdbtnHuntingGround = new JRadioButton("Hunting ground");
-	private JRadioButton rdbtnIronDeposit = new JRadioButton("Iron deposit");
+	private JRadioButton rdbtnFertileLand = new JRadioButton("Fertile Land");
+	private JRadioButton rdbtnMine = new JRadioButton("Iron deposit");
 
 	/**
 	 * Launch the application.
@@ -145,6 +147,12 @@ public class Main {
 		frame.getContentPane().add(btnPause);
 
 		//placement puttons
+		placementGroup.add(rdbtnForest);
+		placementGroup.add(rdbtnCity);
+		placementGroup.add(rdbtnWater);
+		placementGroup.add(rdbtnFertileLand);
+		placementGroup.add(rdbtnMine);
+		
 		lblPlacements.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPlacements.setBounds(20, 418, 79, 14);
 		frame.getContentPane().add(lblPlacements);
@@ -152,7 +160,6 @@ public class Main {
 		
 		rdbtnForest.setBounds(10, 439, 109, 23);
 		frame.getContentPane().add(rdbtnForest);
-
 		
 		rdbtnCity.setBounds(232, 439, 109, 23);
 		frame.getContentPane().add(rdbtnCity);
@@ -160,11 +167,11 @@ public class Main {
 		rdbtnWater.setBounds(10, 467, 109, 23);
 		frame.getContentPane().add(rdbtnWater);
 
-		rdbtnHuntingGround.setBounds(121, 467, 109, 23);
-		frame.getContentPane().add(rdbtnHuntingGround);
+		rdbtnFertileLand.setBounds(121, 467, 109, 23);
+		frame.getContentPane().add(rdbtnFertileLand);
 		
-		rdbtnIronDeposit.setBounds(121, 439, 109, 23);
-		frame.getContentPane().add(rdbtnIronDeposit);
+		rdbtnMine.setBounds(121, 439, 109, 23);
+		frame.getContentPane().add(rdbtnMine);
 
 		//resize	
 		frame.addComponentListener(new ComponentAdapter() 
@@ -189,8 +196,8 @@ public class Main {
 				rdbtnForest.setBounds(10, (int) frame.getBounds().getHeight()-100, 109, 23);
 				rdbtnCity.setBounds(232, (int) frame.getBounds().getHeight()-100, 109, 23);
 				rdbtnWater.setBounds(10, (int) frame.getBounds().getHeight()-72, 109, 23);
-				rdbtnHuntingGround.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
-				rdbtnIronDeposit.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
+				rdbtnFertileLand.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
+				rdbtnMine.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
 				
 				
 			}
@@ -200,7 +207,7 @@ public class Main {
 	}
 
 	public void resize(){
-		rdbtnIronDeposit.setBounds(121, frame.getBounds().height, 109, 23);
+		rdbtnMine.setBounds(121, frame.getBounds().height, 109, 23);
 	}
 
 
