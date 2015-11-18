@@ -211,7 +211,23 @@ public class World {
 			for(int j = 0; j < foo+1;j++){
 				worldTiles[y-i][x-j].setType(TileType.ROCK);
 				if(i == foo && j == foo){
-					worldTiles[y-i][x-j].setType(TileType.FOREST);
+					//worldTiles[y-i][x-j].setType(TileType.MINE);
+				} 
+			}
+		}
+		for(int i = 0; i < foo+1; i++){
+			for(int j = 0; j < foo+1;j++){
+				worldTiles[y-i][x+j].setType(TileType.ROCK);
+				if(i == foo && j == foo){
+					worldTiles[y-i][x+j].setType(TileType.MINE);
+				} 
+			}
+		}
+		for(int i = 0; i < foo+1; i++){
+			for(int j = 0; j < foo+1;j++){
+				worldTiles[y+i][x-j].setType(TileType.ROCK);
+				if(i == foo && j == foo){
+					worldTiles[y+i][x-j].setType(TileType.FOREST);
 				} 
 			}
 		}

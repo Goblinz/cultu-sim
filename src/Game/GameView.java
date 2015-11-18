@@ -12,9 +12,9 @@ import javax.swing.*;
 
 public class GameView extends JPanel implements Runnable{
 	Tile[][] tiles;
-	final int PAD = 20;
-	final int ROWS = 20;
-	final int COLS = 20;
+	int PAD = 20;
+	int ROWS = 20;
+	int COLS = 20;
 	private boolean start = true;
 	public JFrame mainWindow;
 	private Game game;
@@ -111,7 +111,8 @@ public class GameView extends JPanel implements Runnable{
         
         
 	}
-	
+	//AL for resizing
+	ArrayList<JLabel> dispInfo = new ArrayList<JLabel>();
     private MouseListener ml = new MouseAdapter() {
         public void mousePressed(MouseEvent e) {
             Point p = e.getPoint();
@@ -131,6 +132,7 @@ public class GameView extends JPanel implements Runnable{
             	while(!labels.isEmpty()){
             		mainWindow.remove(labels.get(0));
             		labels.remove(0);
+            		dispInfo = new ArrayList<JLabel>();
             	}
             	/*
             	for(int i = 0; i <= labels.size(); i++ ){
@@ -147,11 +149,25 @@ public class GameView extends JPanel implements Runnable{
             for(String item : info){
         		JLabel newLabel = new JLabel(item);
         		newLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        		newLabel.setBounds(400, 50 * (counter + 1), 200, 22);
+        		newLabel.setBounds((int) (mainWindow.getBounds().getWidth()-200), 50 * (counter + 1), 200, 22);
         		mainWindow.getContentPane().add(newLabel);
         		labels.add(newLabel);
         		counter++;
+        		dispInfo.add(newLabel);
             }
+            
+            //resize
+            mainWindow.addComponentListener(new ComponentAdapter(){  
+				public void componentResized(ComponentEvent evt) {
+					
+					int i=0;
+					for(JLabel j : dispInfo ){
+						i++;
+						j.setBounds((int) (mainWindow.getBounds().getWidth()-200), (i+0)*50, 200, 22);
+					}
+				}
+			});
+            
             /*
             String[] info = tiles[row][col].getInfo();
             	for(int i = 0; i < info.length; i++){
