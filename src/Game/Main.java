@@ -191,14 +191,13 @@ public class Main {
 				//game view
 				//TODO errors for days ↓
 				//GV.setTilesAndGame(game.world.getTiles(), game);
-				System.out.println("RESIZE");
 				if(GV != null){
 					GV.remove(GV);
 					frame.remove(GV);
 					frame.repaint();
 				}
 				GV = new GameView(game.world.getTiles(), game);
-				GV.setBounds(20, 20, (int) frame.getBounds().getWidth()-250, (int) frame.getBounds().getHeight()-180);
+				GV.setBounds(20, 0, (int) frame.getBounds().getWidth()-215, (int) frame.getBounds().getHeight()-160);
 				GV.addComponentListener(GV.cl);
 				GV.mainWindow = frame;
 				frame.getContentPane().add(GV);
