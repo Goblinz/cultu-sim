@@ -104,12 +104,15 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
+		/*
 		GV = new GameView(game.world.getTiles(), game);
 		//GameView GV = new GameView();
-		GV.setBounds(20, 20, 400, 400);
+		GV.setBounds(20, 20, 100, 100);
+		//GV.setBounds(20, 20, (int) frame.getBounds().getWidth()-250, (int) frame.getBounds().getHeight()-180);
 		GV.addComponentListener(GV.cl);
 		GV.mainWindow = frame;
 		frame.getContentPane().add(GV);
+		*/
 
 		//inspector
 		lblInspector = new JLabel("Inspector");
@@ -166,14 +169,7 @@ public class Main {
 		frame.getContentPane().add(rdbtnFertileLand);	
 		frame.getContentPane().add(rdbtnMine);
 
-		lblPlacements.setBounds(20, (int) frame.getBounds().getHeight()-120, 79, 14);
-		rdbtnForest.setBounds(10, (int) frame.getBounds().getHeight()-100, 109, 23);
-		rdbtnCity.setBounds(232, (int) frame.getBounds().getHeight()-100, 109, 23);
-		rdbtnWater.setBounds(10, (int) frame.getBounds().getHeight()-72, 109, 23);
-		rdbtnFertileLand.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
-		rdbtnMine.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
-
-		//resize	
+		//resize and init 
 		frame.addComponentListener(new ComponentAdapter() 
 		{  
 			public void componentResized(ComponentEvent evt) {
@@ -182,7 +178,19 @@ public class Main {
 				
 				//game view
 				//TODO errors for days ↓
-				//GV.setBounds(20, 20, 300, 300);
+				//GV.setTilesAndGame(game.world.getTiles(), game);
+				System.out.println("RESIZE");
+				if(GV != null){
+					GV.remove(GV);
+					frame.remove(GV);
+					frame.repaint();
+				}
+				GV = new GameView(game.world.getTiles(), game);
+				GV.setBounds(20, 20, (int) frame.getBounds().getWidth()-250, (int) frame.getBounds().getHeight()-180);
+				GV.addComponentListener(GV.cl);
+				GV.mainWindow = frame;
+				frame.getContentPane().add(GV);
+				frame.repaint();
 				
 				//move inspector
 				lblInspector.setBounds((int) frame.getBounds().getWidth()-200, 10, 104, 22);
@@ -205,11 +213,5 @@ public class Main {
 
 
 	}
-
-	public void resize(){
-		rdbtnMine.setBounds(121, frame.getBounds().height, 109, 23);
-	}
-
-
 
 }
