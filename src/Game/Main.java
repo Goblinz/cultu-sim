@@ -36,6 +36,7 @@ public class Main {
 	private JButton btnNextTurn = new JButton("Next Turn");
 	private JButton btnPlay = new JButton("Play");
 	private JButton btnPause = new JButton("Pause");
+	private JButton btnSelector = new JButton("Selector");
 	//placement buttons
 	private ButtonGroup placementGroup = new ButtonGroup();
 	private JLabel lblPlacements = new JLabel("Placements");
@@ -116,6 +117,15 @@ public class Main {
 		lblInspector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblInspector.setBounds(497, 10, 104, 22);
 		frame.getContentPane().add(lblInspector);
+		
+		btnSelector.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				placementGroup.clearSelection();
+			}
+		});
+		
+		btnSelector.setBounds(119, 418, 80, 23);
+		frame.getContentPane().add(btnSelector);
 
 		//game state buttons
 		btnNextTurn.addActionListener(new ActionListener() {
@@ -124,6 +134,7 @@ public class Main {
 				GV.repaint();
 			}
 		});
+		
 		btnNextTurn.setBounds(208, 384, 117, 23);
 		frame.getContentPane().add(btnNextTurn);
 
@@ -188,6 +199,7 @@ public class Main {
 				lblInspector.setBounds((int) frame.getBounds().getWidth()-200, 10, 104, 22);
 				//TODO move dynamic desctiptions
 				//move game state buttons
+				btnSelector.setBounds(119,(int) frame.getBounds().getHeight() - 125, 89, 23);
 				btnNextTurn.setBounds(208, (int) frame.getBounds().getHeight()-150, 117, 23);
 				btnPlay.setBounds(109, (int) frame.getBounds().getHeight()-150, 89, 23);
 				btnPause.setBounds(10, (int) frame.getBounds().getHeight()-150, 89, 23);
@@ -198,7 +210,7 @@ public class Main {
 				rdbtnWater.setBounds(10, (int) frame.getBounds().getHeight()-72, 109, 23);
 				rdbtnFertileLand.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
 				rdbtnMine.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
-				
+
 				
 			}
 		});
