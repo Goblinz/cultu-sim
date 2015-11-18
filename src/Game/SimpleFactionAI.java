@@ -12,14 +12,18 @@ public class SimpleFactionAI implements FactionAI {
 	int buildQueueIndex = 0;
 	int curID = 1;
 	int buildCounter = 0;
+	FactionAIUtil util;
+	public SimpleFactionAI(){
+		util = new FactionAIUtil();
+	}
 
 	public void FactionAct(Faction self, World world,
 			ArrayList<Faction> factions) {
 		TileType tileSearch = buildQueue[buildQueueIndex];
 		self.techPoints++;
 		//research tech if possible
-		System.out.format("looking at %s\n",self.techTree);
-		System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
+		//System.out.format("looking at %s\n",self.techTree);
+		//System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
 		for(Tech t: self.techTree.getPossibleTechs()){
 			if(t.cost<=self.techPoints){
 				self.techPoints = self.techTree.buyTech(t, self.techPoints);
@@ -33,8 +37,8 @@ public class SimpleFactionAI implements FactionAI {
 					&& buildCounter%6!=5) {
 			self.resources.get("Food").addQuantity(-50);
 			self.resources.get("Wood").addQuantity(-50);
-			Point targetPoint = findNearest(tileSearch, self.cityloc, world);
-			Point actorSpawn = findNearestEmpty(self.cityloc, world);
+			Point targetPoint = util.findNearest(tileSearch, self.cityloc, world);
+			Point actorSpawn = util.findNearestEmpty(self.cityloc, world);
 			if (targetPoint != null && actorSpawn != null) {
 				new Structure(self.ID, curID, targetPoint.x, targetPoint.y,
 						world);
@@ -57,7 +61,7 @@ public class SimpleFactionAI implements FactionAI {
 			self.resources.get("Food").addQuantity(-50);
 			self.resources.get("Wood").addQuantity(-5);
 			self.resources.get("Metal").addQuantity(-50);
-			Point actorSpawn = findNearestEmpty(self.cityloc, world);
+			Point actorSpawn = util.findNearestEmpty(self.cityloc, world);
 			if(actorSpawn!=null){
 				buildCounter++;
 				Unit temp = new Unit(self.ID, curID, actorSpawn.x,
@@ -90,40 +94,5 @@ public class SimpleFactionAI implements FactionAI {
 		
 	}
 
-	private Point findNearest(TileType type, Point orgin, World world) {
-		Point Return = null;
-
-		for (int i = 0; i < world.getTiles().length; i++) {
-			for (int j = 0; j < world.getTiles().length; j++) {
-				if (world.getTiles()[i][j].getType() == type
-						&& !world.getTiles()[i][j].isActorOnTile()) {
-					if (Return == null)
-						Return = new Point(i, j);
-					else {
-						if (Return.distance(orgin) > orgin.distance(i, j))
-							Return = new Point(i, j);
-					}
-				}
-			}
-		}
-		return Return;
-	}
-
-	private Point findNearestEmpty(Point orgin, World world) {
-		Point Return = null;
-
-		for (int i = 0; i < world.getTiles().length; i++) {
-			for (int j = 0; j < world.getTiles().length; j++) {
-				if (!world.getTiles()[i][j].isActorOnTile()) {
-					if (Return == null)
-						Return = new Point(i, j);
-					else {
-						if (Return.distance(orgin) > orgin.distance(i, j))
-							Return = new Point(i, j);
-					}
-				}
-			}
-		}
-		return Return;
-	}
+	
 }

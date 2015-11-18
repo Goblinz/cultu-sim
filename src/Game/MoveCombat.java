@@ -34,7 +34,7 @@ public class MoveCombat implements Order {
 		}
 		
 		if(PFpath.size()<2){
-			if(target == null)
+			if(target == null  && path[pathPointer].distance(self.posX, self.posY) < 3)
 				updatePoint();
 		}
 		else{
@@ -44,6 +44,8 @@ public class MoveCombat implements Order {
 				//colision
 				updatePoint();
 			}
+			//else if(xdir==0 && ydir==0)
+			//	updatePoint();
 			else{
 				self.move(xdir, ydir, world);
 				if(self.getX()==path[pathPointer].getX() && self.getY()==path[pathPointer].getY())
