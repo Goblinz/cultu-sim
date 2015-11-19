@@ -101,8 +101,7 @@ public class GameView extends JPanel implements Runnable{
             }
         }
         */
-		
-		
+
 		w = getWidth();
 		h = getHeight();
 		xInc = (double)(w - 2 * PAD)/ COLS;
@@ -156,18 +155,6 @@ public class GameView extends JPanel implements Runnable{
             	}
             }
             
-            /*
-            if(!dispInfo.isEmpty()){
-            	while(!dispInfo.isEmpty()){
-            		mainWindow.remove(dispInfo.get(0));
-            		dispInfo.remove(0);
-            		dispInfo = new ArrayList<JLabel>();
-            	}
-            }
-        	*/
-            
-            //System.out.println(labels.isEmpty());
-            
             ArrayList<String> info = tiles[row][col].getInfo();
             JLabel newLabel;
             int counter = 0;
@@ -177,7 +164,6 @@ public class GameView extends JPanel implements Runnable{
         		newLabel.setBounds((int) (mainWindow.getBounds().getWidth()-200), 50 * (counter + 1), 200, 22);
         		mainWindow.getContentPane().add(newLabel);
         		labels.add(newLabel);
-        		//dispInfo.add(newLabel);
         		counter++;
             }
             
