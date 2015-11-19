@@ -54,6 +54,12 @@ public class SlightlyMoreComplicatedSimpleFactionAI implements FactionAI {
 			if (self.resources.get("Food").getQuantity() >= 100
 					&& self.resources.get("Wood").getQuantity() >= 55
 						&& self.resources.get("Metal").getQuantity() >= 50) {
+				ArrayList<Faction> enemyFactions = new ArrayList<Faction>();
+				for(Faction f: factions){
+					if(f.ID != self.ID && !f.dead)
+						enemyFactions.add(f);
+				}
+				if(enemyFactions.size() !=0){
 				self.resources.get("Food").addQuantity(-30);
 				self.resources.get("Wood").addQuantity(-5);
 				self.resources.get("Metal").addQuantity(-30);
@@ -64,13 +70,10 @@ public class SlightlyMoreComplicatedSimpleFactionAI implements FactionAI {
 					curID++;
 					temp.combatValue += 2;
 					MoveCombat path = new MoveCombat();
-					ArrayList<Faction> enemyFactions = new ArrayList<Faction>();
-					for(Faction f: factions){
-						if(f.ID != self.ID && !f.dead)
-							enemyFactions.add(f);
-					}
+					
 					Random rand = new Random();
-					Point[] points = {enemyFactions.get(rand.nextInt(enemyFactions.size())).cityloc , self.cityloc };
+						Point[] points = {enemyFactions.get(rand.nextInt(enemyFactions.size())).cityloc , self.cityloc };
+						
 					path.setPath(points);
 					temp.recieveOrder(path);
 					
@@ -83,7 +86,7 @@ public class SlightlyMoreComplicatedSimpleFactionAI implements FactionAI {
 						e.printStackTrace();
 						System.out.println("file not found");
 					}
-					
+				}
 				}
 			}
 		}
