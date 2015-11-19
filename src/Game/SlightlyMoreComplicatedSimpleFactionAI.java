@@ -54,9 +54,9 @@ public class SlightlyMoreComplicatedSimpleFactionAI implements FactionAI {
 			if (self.resources.get("Food").getQuantity() >= 100
 					&& self.resources.get("Wood").getQuantity() >= 55
 						&& self.resources.get("Metal").getQuantity() >= 50) {
-				self.resources.get("Food").addQuantity(-50);
+				self.resources.get("Food").addQuantity(-30);
 				self.resources.get("Wood").addQuantity(-5);
-				self.resources.get("Metal").addQuantity(-50);
+				self.resources.get("Metal").addQuantity(-30);
 				Point actorSpawn = util.findNearestEmpty(self.cityloc, world);
 				if(actorSpawn!=null){
 					Unit temp = new Unit(self.ID, curID, actorSpawn.x,
