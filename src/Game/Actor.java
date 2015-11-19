@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -255,13 +256,19 @@ public abstract class Actor {
 	 */
 	public static Actor fight(Actor a1, Actor a2){
 
-		double a1c = Math.random()+5;
-		double a2c = Math.random()+5;
+		//double a1c = Math.random()+5;
+		//double a2c = Math.random()+5;
 
-		if(a1.getCombatValue()*a1c>a2.getCombatValue()*a2c){
+		//if(a1.getCombatValue()*a1c>a2.getCombatValue()*a2c){
+		//	return a1;
+		//}
+		//return a2;
+		Random rand = new Random();
+		double combatSwing = -5 + rand.nextInt(11);
+		if(a1.getCombatValue()+ combatSwing>a2.getCombatValue())
 			return a1;
-		}
-		return a2;
+		else
+			return a2;
 	}
 
 	public ArrayList<Tile> adjacentEnemyActors(){

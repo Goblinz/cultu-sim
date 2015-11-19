@@ -12,14 +12,18 @@ public class SimpleFactionAI implements FactionAI {
 	int buildQueueIndex = 0;
 	int curID = 1;
 	int buildCounter = 0;
+	FactionAIUtil util;
+	public SimpleFactionAI(){
+		util = new FactionAIUtil();
+	}
 
 	public void FactionAct(Faction self, World world,
 			ArrayList<Faction> factions) {
 		TileType tileSearch = buildQueue[buildQueueIndex];
 		self.techPoints++;
 		//research tech if possible
-		System.out.format("looking at %s\n",self.techTree);
-		System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
+		//System.out.format("looking at %s\n",self.techTree);
+		//System.out.format("looking at %s\n",self.techTree.getPossibleTechs());
 		for(Tech t: self.techTree.getPossibleTechs()){
 			if(t.cost<=self.techPoints){
 				self.techPoints = self.techTree.buyTech(t, self.techPoints);
@@ -33,8 +37,8 @@ public class SimpleFactionAI implements FactionAI {
 					&& buildCounter%6!=5) {
 			self.resources.get("Food").addQuantity(-50);
 			self.resources.get("Wood").addQuantity(-50);
-			Point targetPoint = findNearest(tileSearch, self.cityloc, world);
-			Point actorSpawn = findNearestEmpty(self.cityloc, world);
+			Point targetPoint = util.findNearest(tileSearch, self.cityloc, world);
+			Point actorSpawn = util.findNearestEmpty(self.cityloc, world);
 			if (targetPoint != null && actorSpawn != null) {
 				new Structure(self.ID, curID, targetPoint.x, targetPoint.y,
 						world);
@@ -54,10 +58,16 @@ public class SimpleFactionAI implements FactionAI {
 		if (self.resources.get("Food").getQuantity() >= 100
 				&& self.resources.get("Wood").getQuantity() >= 55
 					&& self.resources.get("Metal").getQuantity() >= 50) {
-			self.resources.get("Food").addQuantity(-50);
+			ArrayList<Faction> enemyFactions = new ArrayList<Faction>();
+			for(Faction f: factions){
+				if(f.ID != self.ID && !f.dead)
+					enemyFactions.add(f);
+			}
+			if(enemyFactions.size() !=0){
+			self.resources.get("Food").addQuantity(-30);
 			self.resources.get("Wood").addQuantity(-5);
-			self.resources.get("Metal").addQuantity(-50);
-			Point actorSpawn = findNearestEmpty(self.cityloc, world);
+			self.resources.get("Metal").addQuantity(-30);
+			Point actorSpawn = util.findNearestEmpty(self.cityloc, world);
 			if(actorSpawn!=null){
 				buildCounter++;
 				Unit temp = new Unit(self.ID, curID, actorSpawn.x,
@@ -65,13 +75,10 @@ public class SimpleFactionAI implements FactionAI {
 				curID++;
 				temp.combatValue += 2;
 				MoveCombat path = new MoveCombat();
-				ArrayList<Faction> enemyFactions = new ArrayList<Faction>();
-				for(Faction f: factions){
-					if(f.ID != self.ID && !f.dead)
-						enemyFactions.add(f);
-				}
+				
 				Random rand = new Random();
-				Point[] points = {enemyFactions.get(rand.nextInt(enemyFactions.size())).cityloc , self.cityloc };
+					Point[] points = {enemyFactions.get(rand.nextInt(enemyFactions.size())).cityloc , self.cityloc };
+					
 				path.setPath(points);
 				temp.recieveOrder(path);
 				
@@ -84,46 +91,11 @@ public class SimpleFactionAI implements FactionAI {
 					e.printStackTrace();
 					System.out.println("file not found");
 				}
-				
+			}
 			}
 		}
 		
 	}
 
-	private Point findNearest(TileType type, Point orgin, World world) {
-		Point Return = null;
-
-		for (int i = 0; i < world.getTiles().length; i++) {
-			for (int j = 0; j < world.getTiles().length; j++) {
-				if (world.getTiles()[i][j].getType() == type
-						&& !world.getTiles()[i][j].isActorOnTile()) {
-					if (Return == null)
-						Return = new Point(i, j);
-					else {
-						if (Return.distance(orgin) > orgin.distance(i, j))
-							Return = new Point(i, j);
-					}
-				}
-			}
-		}
-		return Return;
-	}
-
-	private Point findNearestEmpty(Point orgin, World world) {
-		Point Return = null;
-
-		for (int i = 0; i < world.getTiles().length; i++) {
-			for (int j = 0; j < world.getTiles().length; j++) {
-				if (!world.getTiles()[i][j].isActorOnTile()) {
-					if (Return == null)
-						Return = new Point(i, j);
-					else {
-						if (Return.distance(orgin) > orgin.distance(i, j))
-							Return = new Point(i, j);
-					}
-				}
-			}
-		}
-		return Return;
-	}
+	
 }

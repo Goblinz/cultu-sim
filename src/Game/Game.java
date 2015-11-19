@@ -22,7 +22,8 @@ public class Game {
 		//Change to random gen by entering new World(x,y,z) where the world is an X * Y grid with seed z(long integer)
 		//To load from a file put the name of the file as the parameter.  MAKE SURE THE FILE IS IN THE WORLDS FOLDER AND INCLUDE THE FILE EXTENSION
 		//FORMAT FOR WORLD FILE: r=rock, w=water, fl=fertileland, f=forest, i=ice, m=mine
-		world = new World(300,20,20);
+		
+		world = new World(System.currentTimeMillis(),20,20);
 		Random rand = new Random();
 		factions = new ArrayList<Faction>();
 		/*FactionAI foo = new SimpleFactionAI();
@@ -42,7 +43,7 @@ public class Game {
 			//Point pos = world.getStartPos();
 			//System.out.format("adding city at %d,%d\n",pos.x,pos.y);
 			Point pos = new Point(i*10+3,i*10+3);
-			FactionAI foo = new SimpleFactionAI();
+			FactionAI foo = new SlightlyMoreComplicatedSimpleFactionAI();
 			Faction temp = new Faction(i,generateFactionName(),foo);
 			temp.setCityLocation(pos);
 			factions.add(temp);

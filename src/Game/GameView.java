@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class GameView extends JPanel implements Runnable{
 	Tile[][] tiles;
-	int PAD = 20;
+	int PAD = 5;
 	int ROWS = 20;
 	int COLS = 20;
 	private boolean start = true;
@@ -39,6 +39,12 @@ public class GameView extends JPanel implements Runnable{
 		//initTiles();
 	}
 	
+	public void setTilesAndGame(Tile[][] tiles, Game game){
+		this.tiles = tiles;
+		this.game = game;
+	}
+	
+	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
@@ -57,9 +63,10 @@ public class GameView extends JPanel implements Runnable{
 		for(int i = 0; i < ROWS; i++){
 			for(int j = 0; j < COLS; j++){
 				
+				//System.out.println(tiles);
 				double y = PAD + i * yInc;
 				double x = PAD + j * xInc;
-				tiles[i][j].setDimensions(x, y, xInc, yInc);;
+				tiles[i][j].setDimensions(x, y, xInc, yInc);
 				tiles[i][j].draw(g2);
 				if(tiles[i][j].onTile != null){
 					//Draw actor on tile
@@ -220,7 +227,7 @@ public class GameView extends JPanel implements Runnable{
     
     public ComponentListener cl = new ComponentAdapter() {
         public void componentResized(ComponentEvent e) {
-            tiles = null;
+            //tiles = null;
             repaint();
         }
     };
