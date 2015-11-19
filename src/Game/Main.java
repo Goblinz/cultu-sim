@@ -208,6 +208,7 @@ public class Main {
 				GV.setBounds(20, 0, (int) frame.getBounds().getWidth()-215, (int) frame.getBounds().getHeight()-160);
 				GV.addComponentListener(GV.cl);
 				GV.mainWindow = frame;
+				GV.placements = placementGroup;
 				frame.getContentPane().add(GV);
 				frame.repaint();
 				
