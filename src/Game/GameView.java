@@ -19,6 +19,7 @@ public class GameView extends JPanel implements Runnable{
 	public JFrame mainWindow;
 	private Game game;
 	public boolean pause = false;
+	public ButtonGroup placements;
 	
 	private int w;
 	private int h;
@@ -115,6 +116,8 @@ public class GameView extends JPanel implements Runnable{
 	ArrayList<JLabel> dispInfo = new ArrayList<JLabel>();
     private MouseListener ml = new MouseAdapter() {
         public void mousePressed(MouseEvent e) {
+        	
+ 
             Point p = e.getPoint();
             if(!isInGrid(p)) return;
             double xInc = (double)(getWidth() - 2*PAD)/COLS;
@@ -122,9 +125,19 @@ public class GameView extends JPanel implements Runnable{
             int row = (int)((p.y-PAD)/yInc);
             int col = (int)((p.x-PAD)/xInc);
             System.out.println(tiles[row][col]);
+            String newPlacement = null;
             
-            //labels.add()
-            //testing adding a label to main window
+            if(placements.getSelection() != null){
+            	newPlacement = placements.getSelection().getActionCommand();
+            }
+        	if(newPlacement != null){
+        		if(newPlacement.equals("FOREST")){
+        			tiles[row][col].setType(TileType.FOREST);
+        		}
+        		else if(newPlacement.equals("WATER")){
+        			tiles[row][col].setType(TileType.WATER);
+        		}
+        	}
             
             //remove old components
             

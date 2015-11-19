@@ -110,6 +110,7 @@ public class Main {
 		GV.setBounds(20, 20, 400, 400);
 		GV.addComponentListener(GV.cl);
 		GV.mainWindow = frame;
+		GV.placements = placementGroup;
 		frame.getContentPane().add(GV);
 
 		//inspector
@@ -159,6 +160,13 @@ public class Main {
 		btnNextTurn.setBounds(208, (int) frame.getBounds().getHeight()-150, 117, 23);
 		btnPlay.setBounds(109, (int) frame.getBounds().getHeight()-150, 89, 23);
 		btnPause.setBounds(10, (int) frame.getBounds().getHeight()-150, 89, 23);
+		
+		//add listeners to placement radio buttons
+		rdbtnForest.setActionCommand("FOREST");
+		rdbtnCity.setActionCommand("CITY");
+		rdbtnWater.setActionCommand("WATER");
+		rdbtnFertileLand.setActionCommand("FERTILELAND");
+		rdbtnMine.setActionCommand("MINE");
 		
 		//placement buttons
 		placementGroup.add(rdbtnForest);
@@ -222,7 +230,6 @@ public class Main {
 	public void resize(){
 		rdbtnMine.setBounds(121, frame.getBounds().height, 109, 23);
 	}
-
 
 
 }
