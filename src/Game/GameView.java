@@ -143,6 +143,25 @@ public class GameView extends JPanel implements Runnable{
         		else if(newPlacement.equals("WATER")){
         			tiles[row][col].setType(TileType.WATER);
         		}
+        		else if(newPlacement.equals("MINE")){
+        			tiles[row][col].setType(TileType.MINE);
+        		}
+        		else if(newPlacement.equals("ROCK")){
+        			tiles[row][col].setType(TileType.ROCK);
+        		}
+        		else if(newPlacement.equals("FERTILELAND")){
+        			tiles[row][col].setType(TileType.FERTILELAND);
+        		}
+        		else if(newPlacement.equals("CITY")){
+        			//place a new city
+        			int i = game.factions.size();
+        			Point pos = new Point(row,col);
+        			FactionAI foo = new SlightlyMoreComplicatedSimpleFactionAI();
+        			Faction temp = new Faction(i,game.generateFactionName(),foo);
+        			temp.setCityLocation(pos);
+        			game.factions.add(temp);
+        			Actor city = new City(i,pos.x,pos.y,game.world);
+        		}
         	}
             
             //remove old components

@@ -8,9 +8,9 @@ import java.util.Random;
 public class Game {
 	public ArrayList<Resource> resources;
 	public World world;
-	private ArrayList<Faction> factions;
+	public ArrayList<Faction> factions;
 	//private View view = new View(world);
-	private String generateFactionName(){
+	public String generateFactionName(){
 		Random rand = new Random();
 		String[] prefix = {"Ha","Fa","Go","Hoo","Da","Re","Ro","Wa"};
 		String[] base = {"m","roo","gla","ko","jen","pra"};

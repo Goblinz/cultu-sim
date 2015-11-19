@@ -44,7 +44,8 @@ public class Main {
 	private JRadioButton rdbtnCity = new JRadioButton("City");
 	private JRadioButton rdbtnWater = new JRadioButton("Water");
 	private JRadioButton rdbtnFertileLand = new JRadioButton("Fertile Land");
-	private JRadioButton rdbtnMine = new JRadioButton("Iron deposit");
+	private JRadioButton rdbtnMine = new JRadioButton("Mine");
+	private JRadioButton rdbtnRock = new JRadioButton("Rock");
 
 	/**
 	 * Launch the application.
@@ -170,6 +171,7 @@ public class Main {
 		rdbtnWater.setActionCommand("WATER");
 		rdbtnFertileLand.setActionCommand("FERTILELAND");
 		rdbtnMine.setActionCommand("MINE");
+		rdbtnRock.setActionCommand("ROCK");
 		
 		//placement buttons
 		placementGroup.add(rdbtnForest);
@@ -177,6 +179,7 @@ public class Main {
 		placementGroup.add(rdbtnWater);
 		placementGroup.add(rdbtnFertileLand);
 		placementGroup.add(rdbtnMine);
+		placementGroup.add(rdbtnRock);
 		
 		lblPlacements.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPlacements.setBounds(20, 418, 79, 14);
@@ -188,6 +191,7 @@ public class Main {
 		frame.getContentPane().add(rdbtnWater);
 		frame.getContentPane().add(rdbtnFertileLand);	
 		frame.getContentPane().add(rdbtnMine);
+		frame.getContentPane().add(rdbtnRock);
 
 		//resize and init 
 		frame.addComponentListener(new ComponentAdapter() 
@@ -230,6 +234,7 @@ public class Main {
 				rdbtnWater.setBounds(10, (int) frame.getBounds().getHeight()-72, 109, 23);
 				rdbtnFertileLand.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
 				rdbtnMine.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
+				rdbtnRock.setBounds(232, (int) frame.getBounds().getHeight()-72, 109, 23);
 
 			}
 		});
