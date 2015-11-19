@@ -26,7 +26,7 @@ public class GameView extends JPanel implements Runnable{
 	double xInc;
 	double yInc;
 	
-	private ArrayList<JLabel> labels = new ArrayList<JLabel>();
+	private static ArrayList<JLabel> labels = new ArrayList<JLabel>();
 	
 	public GameView(){
 		addMouseListener(ml);
@@ -154,34 +154,38 @@ public class GameView extends JPanel implements Runnable{
             		labels.remove(0);
             		dispInfo = new ArrayList<JLabel>();
             	}
-            	/*
-            	for(int i = 0; i <= labels.size(); i++ ){
-            		mainWindow.remove(labels.get(i));
-            		System.out.println(labels.get(i).getText());
-            		labels.remove(i);
-            	}
-            	*/
             }
+            
+            /*
+            if(!dispInfo.isEmpty()){
+            	while(!dispInfo.isEmpty()){
+            		mainWindow.remove(dispInfo.get(0));
+            		dispInfo.remove(0);
+            		dispInfo = new ArrayList<JLabel>();
+            	}
+            }
+        	*/
+            
             //System.out.println(labels.isEmpty());
             
             ArrayList<String> info = tiles[row][col].getInfo();
+            JLabel newLabel;
             int counter = 0;
             for(String item : info){
-        		JLabel newLabel = new JLabel(item);
+            	newLabel = new JLabel(item);
         		newLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
         		newLabel.setBounds((int) (mainWindow.getBounds().getWidth()-200), 50 * (counter + 1), 200, 22);
         		mainWindow.getContentPane().add(newLabel);
         		labels.add(newLabel);
+        		//dispInfo.add(newLabel);
         		counter++;
-        		dispInfo.add(newLabel);
             }
             
             //resize
             mainWindow.addComponentListener(new ComponentAdapter(){  
-				public void componentResized(ComponentEvent evt) {
-					
+				public void componentResized(ComponentEvent evt) {	
 					int i=0;
-					for(JLabel j : dispInfo ){
+					for(JLabel j : labels ){
 						i++;
 						j.setBounds((int) (mainWindow.getBounds().getWidth()-200), (i+0)*50, 200, 22);
 					}

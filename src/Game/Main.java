@@ -150,7 +150,7 @@ public class Main {
 			}
 		});
 		frame.getContentPane().add(btnPlay);
-
+		btnPause.setBounds(10, (int) frame.getBounds().getHeight()-150, 89, 23);
 		btnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//pause game loop
@@ -193,6 +193,9 @@ public class Main {
 		frame.addComponentListener(new ComponentAdapter() 
 		{  
 			public void componentResized(ComponentEvent evt) {
+				
+				//btnPause.doClick();
+				
 				//Component c = (Component)evt.getSource();
 				//System.out.println("WINDOW RESIZED");
 				
@@ -228,15 +231,13 @@ public class Main {
 				rdbtnFertileLand.setBounds(121, (int) frame.getBounds().getHeight()-72, 109, 23);
 				rdbtnMine.setBounds(121, (int) frame.getBounds().getHeight()-100, 109, 23);
 
-				
 			}
 		});
 
+		//frame.addKeyListener('K');
 
 	}
 
-	public void resize(){
-		rdbtnMine.setBounds(121, frame.getBounds().height, 109, 23);
-	}
-
+	
+	
 }
