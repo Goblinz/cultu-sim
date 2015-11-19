@@ -144,6 +144,15 @@ public class GameView extends JPanel implements Runnable{
         		else if(newPlacement.equals("WATER")){
         			tiles[row][col].setType(TileType.WATER);
         		}
+        		else if(newPlacement.equals("MINE")){
+        			tiles[row][col].setType(TileType.MINE);
+        		}
+        		else if(newPlacement.equals("ROCK")){
+        			tiles[row][col].setType(TileType.ROCK);
+        		}
+        		else if(newPlacement.equals("FERTILELAND")){
+        			tiles[row][col].setType(TileType.FERTILELAND);
+        		}
         	}
             
             //remove old components
