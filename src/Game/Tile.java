@@ -274,7 +274,7 @@ public class Tile {
 		}
 		else if(type == TileType.FOREST){
 			try {
-				image = ImageIO.read(getClass().getResourceAsStream("/forest1.png"));
+				image = ImageIO.read(getClass().getResourceAsStream("/forest4.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.out.println("file not found");
