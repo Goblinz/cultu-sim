@@ -28,7 +28,7 @@ public class FactionAIUtil {
 
 		for (int i = 0; i < world.getTiles().length; i++) {
 			for (int j = 0; j < world.getTiles().length; j++) {
-				if (!world.getTiles()[i][j].isActorOnTile()) {
+				if (!world.getTiles()[i][j].isActorOnTile() && world.getTiles()[i][j].isPassable()) {
 					if (Return == null)
 						Return = new Point(i, j);
 					else {
@@ -40,5 +40,15 @@ public class FactionAIUtil {
 		}
 		return Return;
 	}
+	
+	public boolean canSpawnBuilding(Faction self){
+		return self.resources.get("Food").getQuantity() >= 50	&& self.resources.get("Wood").getQuantity() >= 50;
+	}
+	public boolean canSpawnWarrior(Faction self){
+		return self.resources.get("Food").getQuantity() >= 100
+				&& self.resources.get("Wood").getQuantity() >= 55
+				&& self.resources.get("Metal").getQuantity() >= 50;
+	}
+	
 
 }
