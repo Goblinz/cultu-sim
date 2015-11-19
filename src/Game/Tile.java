@@ -96,6 +96,12 @@ public class Tile {
 	
 	public void setType(TileType tp){
 		type = tp;
+		if(tp == TileType.WATER){
+			this.setPassable(false);
+		}
+		else{
+			this.setPassable(true);
+		}
 		setImage();
 	}
 	

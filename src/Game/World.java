@@ -170,28 +170,36 @@ public class World {
 				}
 			}
 		}
-		createBestStartCoords();
+		//createBestStartCoords();
 	}
 
 	public void createBestStartCoords(){
 		int check = 0;
 		Point start = null;
+		System.out.println(worldTiles.length + "," + worldTiles[0].length);
 		for(int i = 0; i < worldTiles.length;i++){
 			for(int j = 0 ; j < worldTiles[i].length; j++){
 				for(Point coord : resourceNodes){
 					start = new Point();
-					if(coord.getX() - i < buffer && coord.getY() - j < buffer){
+					double disx = coord.getY() - i;
+					double disy = coord.getX() - j;
+					if(disx < buffer && disy < buffer){
 						start.setLocation(i, j);
 						check++;
 					}
 				}
-				if(check >= 2){
+				if(check >= 1 && startCoords.contains(start) == false){
 					startCoords.add(start);
 					check = 0;
 					start = null;
 				}
 				check = 0;
 				start = null;
+			}
+		}
+		for(int i = 0; i < startCoords.size();i++){
+			if(startCoords.get(i).getX() < 10 && startCoords.get(i).getY() < 10){
+				System.out.println(startCoords.get(i).getY() + "," + startCoords.get(i));
 			}
 		}
 	}
