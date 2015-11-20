@@ -180,7 +180,7 @@ public class GameView extends JPanel implements Runnable{
             for(String item : info){
             	newLabel = new JLabel(item);
         		newLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        		newLabel.setBounds((int) (mainWindow.getBounds().getWidth()-200), 50 * (counter + 1), 200, 22);
+        		newLabel.setBounds((int) (mainWindow.getBounds().getWidth()-195), 50 * (counter + 1), 200, 22);
         		mainWindow.getContentPane().add(newLabel);
         		labels.add(newLabel);
         		counter++;

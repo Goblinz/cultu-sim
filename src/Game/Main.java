@@ -213,7 +213,7 @@ public class Main {
 				frame.repaint();
 				
 				//move inspector
-				lblInspector.setBounds((int) frame.getBounds().getWidth()-200, 10, 104, 22);
+				lblInspector.setBounds((int) frame.getBounds().getWidth()-195, 10, 104, 22);
 				//move game state buttons
 				btnSelector.setBounds(119,(int) frame.getBounds().getHeight() - 125, 89, 23);
 				btnNextTurn.setBounds(208, (int) frame.getBounds().getHeight()-150, 117, 23);
