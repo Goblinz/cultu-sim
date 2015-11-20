@@ -7,8 +7,8 @@ This is a simulation game in which factions are pitted against each other in a c
 The factions are each given a starting city which has the ability to spawn combat units and non-combat units.
 The non-combat units are able to gather metals and wood from the surrounding. These resources can be to produce 
 additional units or buildings. In order to obtain wood a lumber mill must be built on top of a forest; from the
-lumber, the non-combat Unit is able to gather wood and bring it back to the faction’s city. Mines work in the
-exact same way, except they must be built on a mine tile. The combat units are spawned at the faction’s city to
+lumber, the non-combat Unit is able to gather wood and bring it back to the faction’s city. Mines and farms work in the
+exact same way, except they must be built on a mine/fertile land tile. The combat units are spawned at the faction’s city to
 fight the enemy factions. They can be used to attack other factions or defend their own. Both types of units have
 the ability to fight, but the combat units are much stronger. Units are able to destroy buildings and cities of
 enemy factions. All of these are run automatically when the game is in the play state. The game state can be
@@ -46,6 +46,8 @@ e.g.
 ,r,r,r,r,r,
 ,r,r,r,r,r,
 ,r,r,r,r,r
+
+NOTES: the world must have the same width and height. If the world is larger than 50x50 the pathfinder will throw a stack overflow 
 
 Symbols for map gen:
 r=rock
