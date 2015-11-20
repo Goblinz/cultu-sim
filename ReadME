@@ -41,11 +41,11 @@ x,y,  // where x and y are the dimensions for the world the symbols must match t
 e.g.
 
 5,5,
-,r,r,r,r,r,
-,r,r,r,r,r,
-,r,r,r,r,r,
-,r,r,r,r,r,
-,r,r,r,r,r
+,r,r,r,i,r,
+,w,r,r,r,r,
+,r,r,w,r,fl,
+,r,m,r,r,r,
+,r,r,m,r,r
 
 NOTES: the world must have the same width and height. If the world is larger than 50x50 the pathfinder will throw a stack overflow 
 
