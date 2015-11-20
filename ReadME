@@ -1,7 +1,31 @@
 Cultu Sim ReadME
 Work In progress
 
-The Program currently spawns an actor (the blue circle) at 6,6 and will patrol to 5,5 to 0,5 to 5,0 in an endless loop
+Synopsis:
+The Simulation:
+This is a simulation game in which factions are pitted against each other in a computer generated world.
+The factions are each given a starting city which has the ability to spawn combat units and non-combat units.
+The non-combat units are able to gather metals and wood from the surrounding. These resources can be to produce 
+additional units or buildings. In order to obtain wood a lumber mill must be built on top of a forest; from the
+lumber, the non-combat Unit is able to gather wood and bring it back to the faction’s city. Mines work in the
+exact same way, except they must be built on a mine tile. The combat units are spawned at the faction’s city to
+fight the enemy factions. They can be used to attack other factions or defend their own. Both types of units have
+the ability to fight, but the combat units are much stronger. Units are able to destroy buildings and cities of
+enemy factions. All of these are run automatically when the game is in the play state. The game state can be
+changed using the “pause”, “play”, and “next turn” buttons.
+
+User interaction:
+While the majority of the game is run by the preprogrammed artificial intelligence (AI), there is a key that the
+user can choose to play. Tiles can be placed into the map during the simulation. Any type of tile may be replaced
+by any other type of tile by clicking on the tile type in the bottom of the screen, and then clicking on the map.
+Additional cities may be also be place in the same manor. Each new city placed will create a new faction.
+
+Known Errors:
+Pressing the play button while the game is already playing will cause a stack overflow.
+Resizing the window while the game is playing will cause the board to stop moving. Note: pause the game before resizing.
+Map sizes that are too large will give the pathfinder a stack overflow.
+
+The Program currently spawns an actor at 6,6 and will patrol to 5,5 to 0,5 to 5,0 in an endless loop
 To progress the program click the next turn and the actor will move
 clicking on a tile will display what kind of tile in the console
 

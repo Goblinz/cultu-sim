@@ -204,6 +204,7 @@ public class Main {
 					frame.remove(GV);
 					frame.repaint();
 				}
+				
 				GV = new GameView(game.world.getTiles(), game);
 				GV.setBounds(20, 0, (int) frame.getBounds().getWidth()-215, (int) frame.getBounds().getHeight()-160);
 				GV.addComponentListener(GV.cl);
@@ -211,6 +212,8 @@ public class Main {
 				GV.placements = placementGroup;
 				frame.getContentPane().add(GV);
 				frame.repaint();
+				GV.ROWS = game.world.getTiles().length;
+				GV.COLS = game.world.getTiles()[0].length;
 				
 				//move inspector
 				lblInspector.setBounds((int) frame.getBounds().getWidth()-195, 10, 104, 22);
