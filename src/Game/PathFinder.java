@@ -15,6 +15,9 @@ public class PathFinder {
 		world = w;
 	}
 
+	/**
+	 * an object used to find the shortest passable path between an actor and a Point
+	 */
 	public PathFinder(){
 
 	}

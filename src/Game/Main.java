@@ -193,19 +193,12 @@ public class Main {
 		frame.getContentPane().add(rdbtnMine);
 		frame.getContentPane().add(rdbtnRock);
 
-		//resize and init 
+		//resize and initialize
 		frame.addComponentListener(new ComponentAdapter() 
 		{  
 			public void componentResized(ComponentEvent evt) {
 				
 				//btnPause.doClick();
-				
-				//Component c = (Component)evt.getSource();
-				//System.out.println("WINDOW RESIZED");
-				
-				//game view
-				//TODO errors for days ↓
-				//GV.setTilesAndGame(game.world.getTiles(), game);
 				if(GV != null){
 					GV.remove(GV);
 					frame.remove(GV);
@@ -221,7 +214,6 @@ public class Main {
 				
 				//move inspector
 				lblInspector.setBounds((int) frame.getBounds().getWidth()-200, 10, 104, 22);
-				//TODO move dynamic desctiptions
 				//move game state buttons
 				btnSelector.setBounds(119,(int) frame.getBounds().getHeight() - 125, 89, 23);
 				btnNextTurn.setBounds(208, (int) frame.getBounds().getHeight()-150, 117, 23);

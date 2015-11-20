@@ -191,6 +191,10 @@ public class Tile {
     }
     */
     
+    /**
+     * returns an arraylist of the tile info
+     * @return ArrayList<String> 
+     */
     public ArrayList<String> getInfo(){
     	ArrayList<String> ret = new ArrayList<String>();
     	if(isActorOnTile()){
@@ -212,8 +216,16 @@ public class Tile {
         //Pathfinding stuff
     ArrayList<Tile> shortestPath = null;
     
+    /**
+     * returns the shortest path to the tile
+     * @return ArrayList<Tile>
+     */
     public ArrayList<Tile> getShortestPath(){ return shortestPath; }
     
+    /**
+     * 
+     * @param s the shortest length path to this tile
+     */
     public void setShortestPath(ArrayList<Tile> s){ shortestPath = s; }
 
 	public int getTemp() {
@@ -228,6 +240,10 @@ public class Tile {
 		
 		public void setLastTile(Tile t){ last = t; }
 		
+		/**
+		 * returns the length of the shortest path to the tile
+		 * @return int
+		 */
 		public int pathLength(){
 			if(this.getLastTile()==this){
 				return 1;
@@ -240,6 +256,10 @@ public class Tile {
 			}
 		}
 	
+	/**
+	 * returns the shortest path to the tile
+	 * @return ArrayList<tile>
+	 */
 	public ArrayList<Tile> getShortestPath2(){
 		ArrayList<Tile> toReturn = new ArrayList<Tile>();
 		Tile temp = this;
@@ -254,6 +274,9 @@ public class Tile {
 			
 	}
 	
+	/**
+	 * sets the tile image based on the tile type
+	 */
 	public void setImage(){
 		if(type == TileType.ROCK){
 			try {
