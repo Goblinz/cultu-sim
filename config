@@ -1,0 +1,10 @@
+-describes number of factions at the start
+numFaction=3
+-width of the world
+width=30
+-height of the world
+height=30
+-what seed to use in world gen (0 is random)
+seed=0
+-what file to use to recall a saved world,  null is no file recall
+worldfile=null

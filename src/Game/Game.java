@@ -1,8 +1,10 @@
 package Game;
 import java.awt.Point;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Game {
@@ -19,11 +21,44 @@ public class Game {
 	}
 	
 	public Game() throws FileNotFoundException{
+		
+		int width=20;
+		int height = 20;
+		long seed = System.currentTimeMillis();
+		int numberOfFactions  = 2;
+		String file = null;
 		//Change to random gen by entering new World(x,y,z) where the world is an X * Y grid with seed z(long integer)
 		//To load from a file put the name of the file as the parameter.  MAKE SURE THE FILE IS IN THE WORLDS FOLDER AND INCLUDE THE FILE EXTENSION
 		//FORMAT FOR WORLD FILE: r=rock, w=water, fl=fertileland, f=forest, i=ice, m=mine
+		Scanner scanner = new Scanner(new File("config"));
+		//System.out.println("read file");
 		
-		world = new World(System.currentTimeMillis(),20,20);
+		while(scanner.hasNextLine()){
+			//System.out.println("reading line");
+			String line = scanner.nextLine();
+			//System.out.println("read line");
+			if(!line.startsWith("-")){ //ignoring lines with this
+				String[] bits = line.split("=");
+				if(bits[0].equals("width"))
+					width = Integer.parseInt(bits[1]);
+				else if(bits[0].equals("height"))
+					height = Integer.parseInt(bits[1]);
+				else if(bits[0].equals("numFaction"))
+					numberOfFactions = Integer.parseInt(bits[1]);
+				else if(bits[0].equals("seed"))
+					seed = Integer.parseInt(bits[1]);
+				else if(bits[0].equals("worldfile"))
+					file = bits[1];
+				
+			}
+		}
+		if(seed==0)
+			seed = System.currentTimeMillis();
+		//System.out.format(":%s:\n",file);
+		if(file.equals("null"))
+			world = new World(seed,width,height);
+		else
+			world = new World(file);
 		Random rand = new Random();
 		factions = new ArrayList<Faction>();
 		/*FactionAI foo = new SimpleFactionAI();
@@ -37,12 +72,12 @@ public class Game {
 		Actor city = new City(0,5,5,world);
 		Actor city2 = new City(1,15,15,world);*/
 		//int numberOfFactions  = rand.nextInt(3)+2;
-		int numberOfFactions  = 2;
+		
 		
 		for(int i=0;i<numberOfFactions;i++){
 			//Point pos = world.getStartPos();
 			//System.out.format("adding city at %d,%d\n",pos.x,pos.y);
-			Point pos = new Point(i*10+3,i*10+3);
+			Point pos = new Point(i*4+3,i*4+3);
 			FactionAI foo = new SlightlyMoreComplicatedSimpleFactionAI();
 			Faction temp = new Faction(i,generateFactionName(),foo);
 			temp.setCityLocation(pos);
