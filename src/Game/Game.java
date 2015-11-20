@@ -73,11 +73,12 @@ public class Game {
 		Actor city2 = new City(1,15,15,world);*/
 		//int numberOfFactions  = rand.nextInt(3)+2;
 		
-		
+		width = world.getTiles().length;
+		height = world.getTiles()[0].length;
 		for(int i=0;i<numberOfFactions;i++){
 			//Point pos = world.getStartPos();
 			//System.out.format("adding city at %d,%d\n",pos.x,pos.y);
-			Point pos = new Point(i*4+3,i*4+3);
+			Point pos = new Point(rand.nextInt(width-10)+5,rand.nextInt(height-10)+5);
 			FactionAI foo = new SlightlyMoreComplicatedSimpleFactionAI();
 			Faction temp = new Faction(i,generateFactionName(),foo);
 			temp.setCityLocation(pos);

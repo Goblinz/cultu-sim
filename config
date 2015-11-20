@@ -1,5 +1,5 @@
 -describes number of factions at the start
-numFaction=3
+numFaction=10
 -width of the world
 width=30
 -height of the world
