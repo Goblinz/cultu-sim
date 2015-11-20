@@ -203,7 +203,11 @@ public class Tile {
     		ret.add("Col : " + col);
     		ret.add("On Tile : " + onTile.getType());
     		ret.add("Faction ID : " + onTile.factionID);
-    		ret.add("Carrying : " + onTile.resources);
+    		//ret.add("Carrying : " + onTile.resources);
+    		//for(Resource r : onTile.resources)
+    		ret.add("Food: " + onTile.resources.get("Food").getQuantity());
+    		ret.add("Wood: " + onTile.resources.get("Wood").getQuantity());
+    		ret.add("Metal: " + onTile.resources.get("Metal").getQuantity());
     	}
     	else{
     		ret.add("Tile type : " + getType());
