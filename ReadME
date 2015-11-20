@@ -35,6 +35,7 @@ For loading from file:
 1.File must be in the worlds folder
 2.File must be in this format
 3.In game pass a string that is the name of the world file to the instantiation of new world. e.g. world = new world("dingus") where dingus.txt is in worlds folder
+4.The world must be square so width = length.
 
 x,y,  // where x and y are the dimensions for the world the symbols must match these dimensions so 10,10, would need 100 symbols
 
